@@ -1,0 +1,5 @@
+﻿# MT5 账户凭据（仅本机使用；demo 账户）
+# 更新: 2026-09-12 00:16:03
+LOGIN=277335900
+PASSWORD=yxqY3lab@
+SERVER=Exness-MT5Trial5

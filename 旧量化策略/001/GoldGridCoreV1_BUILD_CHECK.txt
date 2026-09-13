@@ -1,0 +1,8 @@
+{
+  "brace_balance": 0,
+  "paren_balance": 0,
+  "OnInit": true,
+  "OnTick": true,
+  "OnTester": true,
+  "custom_score": true
+}

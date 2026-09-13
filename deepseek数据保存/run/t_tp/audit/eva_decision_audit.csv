@@ -1,0 +1,1 @@
+run_id,time,time_msc,symbol,direction,order_number,allowed,note,vol_gate_low,market_state,rv_ratio,multiplier_a,grid_dist_pts,risk_level,avg_vol_per_min,spread_pts,baseline,price

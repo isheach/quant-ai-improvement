@@ -1,0 +1,2 @@
+run_id,strategy_version,param_set_id,symbol,timeframe,tester,optimization,start_time,account_currency,initial_balance,regime_mode,magic,trend_magic,lot_size,use_dynamic_lot,vol_window_min,volgate_on,volgate_enter_low,volgate_exit_low,volgate_confirm,downshift_on,enable_state_machine,trend_tf,fast_ema,slow_ema,uni_grid_explow,uni_grid_expslope,uni_base_profit,uni_max_pos
+XAUUSDm_20230101_0000_1781,eva002,true01_2,XAUUSDm,M1,1,0,2023.01.01 00:00:00,USD,2000.00,VOLGATE,123456,223456,0.01,0,35,1,0.0220,0.0220,50,0,1,M5,5,30,0.50,0.50,200000,3

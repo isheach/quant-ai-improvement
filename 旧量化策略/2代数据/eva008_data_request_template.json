@@ -1,0 +1,71 @@
+{
+  "_schema": "eva008 数据请求文件（第3代；格式同 eva007，按‘同代同编号’统一命名）。由分析方(含 AI)看完初步数据后生成；交给 eva006 的 request 子命令读取并批量输出对应行情切片。",
+  "_usage": "python eva008_data_pipeline.py request --file eva008_data_request_template.json --root eva_data --symbol XAUUSD --trades <某次run>/eva_trade_events.csv --outdir eva_request_out",
+  "_changes_vs_eva004": "point 现在可省略：eva006 会优先读取 <root>/<symbol>/meta.json(由 eva005 写)自动取点值；缺省按 0.001(黄金3位)。仍可在此显式写 point 或命令行 --point 覆盖。",
+  "_fields": {
+    "request_id": "唯一标识(自由文本，写进 manifest)",
+    "symbol": "品种，如 XAUUSD（命令行 --symbol 可覆盖）",
+    "data_root": "行情仓库根目录，可选（命令行 --root 可覆盖）",
+    "point": "可选；每点价格。3位=0.001，2位=0.01。省略则自动识别",
+    "default_timeframe": "未单独指定时各 output 默认周期：tick/m1/m5/m15",
+    "trade_events": "trade_path 类型需要的 eva_trade_events.csv 路径，可选（--trades 可覆盖）",
+    "outdir": "输出目录，可选（--outdir 可覆盖）",
+    "outputs": "请求列表，见 _output_types"
+  },
+  "_output_types": {
+    "range": "固定区间：from / to（可选 timeframe）",
+    "around_time": "某时刻附近：center + pre_seconds / post_seconds",
+    "trade_path": "某些交易的持仓路径：position_id(单个或数组) 或 filter 选单；pre_seconds/post_seconds 进出场前后延伸；limit 限条数"
+  },
+
+  "request_id": "demo_req_002",
+  "symbol": "XAUUSD",
+  "data_root": "eva_data",
+  "default_timeframe": "tick",
+  "trade_events": "eva_audit/<run_id>/eva_trade_events.csv",
+  "outdir": "eva_request_out",
+
+  "outputs": [
+    {
+      "name": "window_m1",
+      "type": "range",
+      "timeframe": "m1",
+      "from": "2024-03-05 13:00:00",
+      "to": "2024-03-05 13:30:00"
+    },
+    {
+      "name": "spike_zoom_tick",
+      "type": "around_time",
+      "timeframe": "tick",
+      "center": "2024-03-05 13:20:00",
+      "pre_seconds": 120,
+      "post_seconds": 120
+    },
+    {
+      "name": "stopped_trades",
+      "type": "trade_path",
+      "timeframe": "tick",
+      "filter": { "exit_reason": "last_order_stop" },
+      "pre_seconds": 60,
+      "post_seconds": 60,
+      "limit": 20
+    },
+    {
+      "name": "immediate_reverse_check",
+      "type": "trade_path",
+      "timeframe": "tick",
+      "filter": { "entry_reason": "grid_sell", "vol_regime": "0" },
+      "pre_seconds": 30,
+      "post_seconds": 120,
+      "limit": 30
+    },
+    {
+      "name": "one_position",
+      "type": "trade_path",
+      "timeframe": "tick",
+      "position_id": [101, 102],
+      "pre_seconds": 30,
+      "post_seconds": 30
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tag": "DS260913_MR30_V2_TRAIN",
+  "attempt": 1,
+  "started_at_local": "2026-09-13T17:51:18+08:00",
+  "finished_at_local": "2026-09-13T17:52:03+08:00",
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 45.1,
+  "worker": "D:\\desktop\\新量化策略\\deepseek数据保存\\mt5workers\\w01",
+  "command": [
+    "D:\\desktop\\新量化策略\\deepseek数据保存\\mt5workers\\w01\\terminal64.exe",
+    "/portable",
+    "/config:D:\\desktop\\新量化策略\\deepseek数据保存\\mt5workers\\w01\\config\\run_DS260913_MR30_V2_TRAIN.ini"
+  ],
+  "ini_path": "D:\\desktop\\新量化策略\\gpt数据保存\\mt5_runs\\mr30\\DS260913_MR30_V2_TRAIN.ini",
+  "ini_sha256": "A9665364A82797C3DC4754B08EEAE47CB0B35AB767984A3B416AA3905255802B",
+  "ex5_sha256": "D5CCD721B968102A6C4FF2F06A21A81A7178AC53D20BC22567A1D240CE4FE112",
+  "copied_outputs": {
+    "report.htm": "D:\\desktop\\新量化策略\\gpt数据保存\\审计\\第三批_MR30\\runs\\DS260913_MR30_V2_TRAIN\\report.htm",
+    "audit_selfcheck.csv": "D:\\desktop\\新量化策略\\gpt数据保存\\审计\\第三批_MR30\\runs\\DS260913_MR30_V2_TRAIN\\audit_selfcheck.csv",
+    "signals.csv": "D:\\desktop\\新量化策略\\gpt数据保存\\审计\\第三批_MR30\\runs\\DS260913_MR30_V2_TRAIN\\signals.csv",
+    "trades.csv": "D:\\desktop\\新量化策略\\gpt数据保存\\审计\\第三批_MR30\\runs\\DS260913_MR30_V2_TRAIN\\trades.csv"
+  }
+}

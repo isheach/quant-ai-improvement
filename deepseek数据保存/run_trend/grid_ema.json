@@ -1,0 +1,10 @@
+﻿{
+  "InpFastEMA": [10, 15, 20],
+  "InpSlowEMA": [40, 60, 80, 120],
+  "InpSL_ATR": [3.0],
+  "InpBreakoutBars": [60],
+  "InpUseDDKill": ["false"],
+  "InpTrail_ATR": [0],
+  "InpUseTrendConfirm": ["true"],
+  "InpTrendTF": ["30"]
+}

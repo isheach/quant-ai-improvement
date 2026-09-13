@@ -1,0 +1,260 @@
+[
+  {
+    "exp_id": "base_locked",
+    "net": "76.56",
+    "pf": "1.34",
+    "payoff": "0.75",
+    "trades": "102",
+    "winpct": "44 (43.14%)",
+    "maxwin": "25.03",
+    "maxloss": "-13.36",
+    "eqdd": "60.80 (10.94%)",
+    "eqddr": "10.94% (60.80)",
+    "baldd": "51.51 (9.34%)",
+    "rf": "1.26",
+    "sharpe": "7.06",
+    "bars": "699566",
+    "ticks": "2798159",
+    "eqdd_val": 60.8,
+    "eqdd_pct": 10.94,
+    "ret_dd": 1.2592105263157896,
+    "n_tr": 102,
+    "months": 23,
+    "trades_per_month": 4.4,
+    "by_exit": {
+      "trend_state_exit": [
+        88,
+        95.21
+      ],
+      "sl": [
+        14,
+        -18.65
+      ]
+    },
+    "audit_net": 76.56
+  },
+  {
+    "exp_id": "base_locked_valid",
+    "net": "242.89",
+    "pf": "1.67",
+    "payoff": "2.36",
+    "trades": "103",
+    "winpct": "37 (35.92%)",
+    "maxwin": "93.73",
+    "maxloss": "-20.31",
+    "eqdd": "88.86 (11.04%)",
+    "eqddr": "12.33% (76.05)",
+    "baldd": "60.87 (7.76%)",
+    "rf": "2.73",
+    "sharpe": "11.33",
+    "bars": "525769",
+    "ticks": "2103037",
+    "eqdd_val": 88.86,
+    "eqdd_pct": 11.04,
+    "ret_dd": 2.7334008552779654,
+    "n_tr": 103,
+    "months": 17,
+    "trades_per_month": 6.1,
+    "by_exit": {
+      "trend_state_exit": [
+        88,
+        156.77
+      ],
+      "stage1_daily_loss_stop": [
+        2,
+        62.17
+      ],
+      "grid_tp_baseline_revert": [
+        1,
+        29.31
+      ],
+      "sl": [
+        12,
+        -5.36
+      ]
+    },
+    "audit_net": 242.89
+  },
+  {
+    "exp_id": "b1_baseline",
+    "net": "272.60",
+    "pf": "1.32",
+    "payoff": "0.56",
+    "trades": "484",
+    "winpct": "175 (36.16%)",
+    "maxwin": "46.81",
+    "maxloss": "-11.47",
+    "eqdd": "69.22 (11.28%)",
+    "eqddr": "11.28% (69.22)",
+    "baldd": "60.67 (9.16%)",
+    "rf": "3.94",
+    "sharpe": "6.60",
+    "bars": "699566",
+    "ticks": "2798159",
+    "eqdd_val": 69.22,
+    "eqdd_pct": 11.28,
+    "ret_dd": 3.938168159491477,
+    "n_tr": 484,
+    "months": 24,
+    "trades_per_month": 20.2,
+    "by_exit": {
+      "trend_state_exit": [
+        433,
+        225.02
+      ],
+      "sl": [
+        51,
+        47.58
+      ]
+    },
+    "audit_net": 272.6
+  },
+  {
+    "exp_id": "v_baseline",
+    "net": "-44.12",
+    "pf": "0.58",
+    "payoff": "-0.98",
+    "trades": "45",
+    "winpct": "10 (22.22%)",
+    "maxwin": "17.54",
+    "maxloss": "-8.63",
+    "eqdd": "81.39 (15.15%)",
+    "eqddr": "15.15% (81.39)",
+    "baldd": "72.70 (13.75%)",
+    "rf": "-0.54",
+    "sharpe": "-5.00",
+    "bars": "525769",
+    "ticks": "2103037",
+    "eqdd_val": 81.39,
+    "eqdd_pct": 15.15,
+    "ret_dd": -0.5420813367735594,
+    "n_tr": 45,
+    "months": 2,
+    "trades_per_month": 22.5,
+    "by_exit": {
+      "trend_state_exit": [
+        34,
+        -30.63
+      ],
+      "sl": [
+        10,
+        -9.56
+      ],
+      "stage1_equity_kill": [
+        1,
+        -3.93
+      ]
+    },
+    "audit_net": -44.12
+  },
+  {
+    "exp_id": "g_pg_z7000",
+    "net": "-1.00",
+    "pf": "0.99",
+    "payoff": "-0.02",
+    "trades": "46",
+    "winpct": "25 (54.35%)",
+    "maxwin": "20.80",
+    "maxloss": "-13.66",
+    "eqdd": "45.00 (8.45%)",
+    "eqddr": "8.45% (45.00)",
+    "baldd": "41.95 (7.89%)",
+    "rf": "-0.02",
+    "sharpe": "-0.22",
+    "bars": "699566",
+    "ticks": "2798159",
+    "eqdd_val": 45.0,
+    "eqdd_pct": 8.45,
+    "ret_dd": -0.022222222222222223,
+    "n_tr": 46,
+    "months": 16,
+    "trades_per_month": 2.9,
+    "by_exit": {
+      "stage1_daily_loss_stop": [
+        5,
+        -42.38
+      ],
+      "grid_tp_baseline_revert": [
+        41,
+        41.38
+      ]
+    },
+    "audit_net": -1.0
+  },
+  {
+    "exp_id": "s_gateoff",
+    "net": "55.97",
+    "pf": "1.19",
+    "payoff": "0.35",
+    "trades": "162",
+    "winpct": "65 (40.12%)",
+    "maxwin": "25.03",
+    "maxloss": "-13.36",
+    "eqdd": "64.47 (12.05%)",
+    "eqddr": "12.05% (64.47)",
+    "baldd": "52.78 (10.03%)",
+    "rf": "0.87",
+    "sharpe": "3.74",
+    "bars": "699566",
+    "ticks": "2798159",
+    "eqdd_val": 64.47,
+    "eqdd_pct": 12.05,
+    "ret_dd": 0.8681557313479138,
+    "n_tr": 162,
+    "months": 24,
+    "trades_per_month": 6.8,
+    "by_exit": {
+      "trend_state_exit": [
+        130,
+        110.57
+      ],
+      "sl": [
+        32,
+        -54.6
+      ]
+    },
+    "audit_net": 55.97
+  },
+  {
+    "exp_id": "att_valid_gateoff",
+    "net": "302.71",
+    "pf": "1.61",
+    "payoff": "2.03",
+    "trades": "149",
+    "winpct": "59 (39.60%)",
+    "maxwin": "93.73",
+    "maxloss": "-20.31",
+    "eqdd": "94.87 (14.92%)",
+    "eqddr": "14.92% (94.87)",
+    "baldd": "73.87 (11.91%)",
+    "rf": "3.19",
+    "sharpe": "9.98",
+    "bars": "525769",
+    "ticks": "2103037",
+    "eqdd_val": 94.87,
+    "eqdd_pct": 14.92,
+    "ret_dd": 3.1907873932750075,
+    "n_tr": 149,
+    "months": 18,
+    "trades_per_month": 8.3,
+    "by_exit": {
+      "trend_state_exit": [
+        118,
+        273.07
+      ],
+      "stage1_daily_loss_stop": [
+        2,
+        62.17
+      ],
+      "sl": [
+        28,
+        -61.84
+      ],
+      "grid_tp_baseline_revert": [
+        1,
+        29.31
+      ]
+    },
+    "audit_net": 302.71
+  }
+]

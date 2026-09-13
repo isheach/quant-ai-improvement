@@ -1,0 +1,8 @@
+﻿{
+  "InpTrendTF": ["5", "10", "20", "30"],
+  "InpUseDDKill": ["false"],
+  "InpSL_ATR": [4.0],
+  "InpTrail_ATR": [0],
+  "InpBreakoutBars": [30],
+  "InpUseTrendConfirm": ["true"]
+}

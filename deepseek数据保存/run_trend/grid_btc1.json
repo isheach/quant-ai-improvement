@@ -1,0 +1,9 @@
+﻿{
+  "InpSL_ATR": [1.0, 1.5, 2.0, 3.0],
+  "InpTrendTF": ["30", "15", "60"],
+  "InpBreakoutBars": [30, 60, 120],
+  "InpUseDDKill": ["false"],
+  "InpUseRVGate": ["false"],
+  "InpAllowMinLotOvershoot": ["true"],
+  "InpMinLotMaxRiskPct": ["8.0"]
+}

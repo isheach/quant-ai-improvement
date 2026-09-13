@@ -1,0 +1,741 @@
+{
+  "ok": true,
+  "checks": {
+    "source_exists": {
+      "ok": true,
+      "detail": "D:\\desktop\\新量化策略\\deepseek数据保存\\执行_第三批\\stage3_family_preregistration\\dsh_MR30.mq5"
+    },
+    "ex5_exists": {
+      "ok": true,
+      "detail": "D:\\desktop\\新量化策略\\deepseek数据保存\\执行_第三批\\stage3_family_preregistration\\dsh_MR30.ex5"
+    },
+    "compile_log_exists": {
+      "ok": true,
+      "detail": "D:\\desktop\\新量化策略\\gpt数据保存\\审计\\第三批_R4离线更正\\compile_MR30.log"
+    },
+    "compile_zero_errors": {
+      "ok": true,
+      "detail": "compiler Result line"
+    },
+    "compile_zero_warnings": {
+      "ok": true,
+      "detail": "compiler Result line"
+    },
+    "input_schema_exact": {
+      "ok": true,
+      "detail": "got=['InpRiskPct', 'InpUseEquityForRisk', 'InpMaxLot', 'InpAllowMinLotOvershoot', 'InpMinLotMaxRiskPct', 'InpMAPeriod', 'InpSigmaPeriod', 'InpEntrySigma', 'InpNeedReenter', 'InpAllowLong', 'InpAllowShort', 'InpTP_ATR', 'InpSL_ATR', 'InpMaxBarsInTrade', 'InpUseVolRegime', 'InpVolLookback', 'InpVolPctLow', 'InpVolPctHigh', 'InpATRPeriod', 'InpMagic', 'InpRunTag', 'InpWriteAudit', 'InpSlippagePoints', 'InpLatencyTicks', 'InpTestEndDate', 'InpCloseAtEndHour', 'InpVerboseLog']"
+    },
+    "symbol_guard": {
+      "ok": true,
+      "detail": "if(_Symbol != \"BTCUSDm\")"
+    },
+    "period_guard": {
+      "ok": true,
+      "detail": "if(Period() != PERIOD_M1)"
+    },
+    "tag_guard": {
+      "ok": true,
+      "detail": "if(!IsPreregisteredTag())"
+    },
+    "risk_guard": {
+      "ok": true,
+      "detail": "InpRiskPct != 1.5"
+    },
+    "min_lot_guard": {
+      "ok": true,
+      "detail": "InpAllowMinLotOvershoot"
+    },
+    "latency_guard": {
+      "ok": true,
+      "detail": "InpLatencyTicks != 0"
+    },
+    "audit_guard": {
+      "ok": true,
+      "detail": "!InpWriteAudit"
+    },
+    "date_guard": {
+      "ok": true,
+      "detail": "InpTestEndDate !="
+    },
+    "variant_guard": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_"
+    },
+    "forbidden_sleep_absent": {
+      "ok": true,
+      "detail": "\\bSleep\\s*\\("
+    },
+    "forbidden_latency_ms_input_absent": {
+      "ok": true,
+      "detail": "InpLatencyMs"
+    },
+    "forbidden_position_modify_absent": {
+      "ok": true,
+      "detail": "\\bPositionModify\\s*\\("
+    },
+    "forbidden_grid_function_absent": {
+      "ok": true,
+      "detail": "\\b(?:Grid|Martingale)\\b"
+    },
+    "forbidden_trailing_stop_function_absent": {
+      "ok": true,
+      "detail": "\\b(?:Trailing|TrailWinner)\\b"
+    },
+    "only_m1_copyrates": {
+      "ok": true,
+      "detail": "M1 aggregation only"
+    },
+    "drops_incomplete_bucket": {
+      "ok": true,
+      "detail": "completed M30 bars only"
+    },
+    "v3_lookback_excludes_signal_bar": {
+      "ok": true,
+      "detail": "trailing ATR percentile distribution"
+    },
+    "dedup_after_write": {
+      "ok": true,
+      "detail": "ticket remembered only after successful FileWrite"
+    },
+    "filewrite_uses_byte_sentinel": {
+      "ok": true,
+      "detail": "FileWrite byte-count semantics"
+    },
+    "unique_audit_header": {
+      "ok": true,
+      "detail": "one entry_time column"
+    },
+    "ocp_and_formula_audit": {
+      "ok": true,
+      "detail": "four-way P&L evidence fields"
+    },
+    "identifier_not_ticket_fallback": {
+      "ok": true,
+      "detail": "position identifier is distinct from position ticket"
+    },
+    "six_planned_inis": {
+      "ok": true,
+      "detail": "got=['DS260913_MR30_V1_TRAIN', 'DS260913_MR30_V1_VALID', 'DS260913_MR30_V2_TRAIN', 'DS260913_MR30_V2_VALID', 'DS260913_MR30_V3_TRAIN', 'DS260913_MR30_V3_VALID']"
+    },
+    "DS260913_MR30_V1_TRAIN_tag_matches_filename": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: tag_matches_filename"
+    },
+    "DS260913_MR30_V1_TRAIN_symbol": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: symbol"
+    },
+    "DS260913_MR30_V1_TRAIN_period": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: period"
+    },
+    "DS260913_MR30_V1_TRAIN_model": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: model"
+    },
+    "DS260913_MR30_V1_TRAIN_optimization_off": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: optimization_off"
+    },
+    "DS260913_MR30_V1_TRAIN_deposit": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: deposit"
+    },
+    "DS260913_MR30_V1_TRAIN_currency": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: currency"
+    },
+    "DS260913_MR30_V1_TRAIN_from": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: from"
+    },
+    "DS260913_MR30_V1_TRAIN_to": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: to"
+    },
+    "DS260913_MR30_V1_TRAIN_expert": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: expert"
+    },
+    "DS260913_MR30_V1_TRAIN_risk": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: risk"
+    },
+    "DS260913_MR30_V1_TRAIN_no_overshoot": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: no_overshoot"
+    },
+    "DS260913_MR30_V1_TRAIN_ticks_zero": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: ticks_zero"
+    },
+    "DS260913_MR30_V1_TRAIN_end_date": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: end_date"
+    },
+    "DS260913_MR30_V1_TRAIN_tp_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: tp_variant"
+    },
+    "DS260913_MR30_V1_TRAIN_regime_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: regime_variant"
+    },
+    "DS260913_MR30_V1_TRAIN_no_unknown_inputs": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_TRAIN.ini: no_unknown_inputs"
+    },
+    "DS260913_MR30_V1_VALID_tag_matches_filename": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: tag_matches_filename"
+    },
+    "DS260913_MR30_V1_VALID_symbol": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: symbol"
+    },
+    "DS260913_MR30_V1_VALID_period": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: period"
+    },
+    "DS260913_MR30_V1_VALID_model": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: model"
+    },
+    "DS260913_MR30_V1_VALID_optimization_off": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: optimization_off"
+    },
+    "DS260913_MR30_V1_VALID_deposit": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: deposit"
+    },
+    "DS260913_MR30_V1_VALID_currency": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: currency"
+    },
+    "DS260913_MR30_V1_VALID_from": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: from"
+    },
+    "DS260913_MR30_V1_VALID_to": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: to"
+    },
+    "DS260913_MR30_V1_VALID_expert": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: expert"
+    },
+    "DS260913_MR30_V1_VALID_risk": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: risk"
+    },
+    "DS260913_MR30_V1_VALID_no_overshoot": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: no_overshoot"
+    },
+    "DS260913_MR30_V1_VALID_ticks_zero": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: ticks_zero"
+    },
+    "DS260913_MR30_V1_VALID_end_date": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: end_date"
+    },
+    "DS260913_MR30_V1_VALID_tp_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: tp_variant"
+    },
+    "DS260913_MR30_V1_VALID_regime_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: regime_variant"
+    },
+    "DS260913_MR30_V1_VALID_no_unknown_inputs": {
+      "ok": true,
+      "detail": "DS260913_MR30_V1_VALID.ini: no_unknown_inputs"
+    },
+    "DS260913_MR30_V2_TRAIN_tag_matches_filename": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: tag_matches_filename"
+    },
+    "DS260913_MR30_V2_TRAIN_symbol": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: symbol"
+    },
+    "DS260913_MR30_V2_TRAIN_period": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: period"
+    },
+    "DS260913_MR30_V2_TRAIN_model": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: model"
+    },
+    "DS260913_MR30_V2_TRAIN_optimization_off": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: optimization_off"
+    },
+    "DS260913_MR30_V2_TRAIN_deposit": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: deposit"
+    },
+    "DS260913_MR30_V2_TRAIN_currency": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: currency"
+    },
+    "DS260913_MR30_V2_TRAIN_from": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: from"
+    },
+    "DS260913_MR30_V2_TRAIN_to": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: to"
+    },
+    "DS260913_MR30_V2_TRAIN_expert": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: expert"
+    },
+    "DS260913_MR30_V2_TRAIN_risk": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: risk"
+    },
+    "DS260913_MR30_V2_TRAIN_no_overshoot": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: no_overshoot"
+    },
+    "DS260913_MR30_V2_TRAIN_ticks_zero": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: ticks_zero"
+    },
+    "DS260913_MR30_V2_TRAIN_end_date": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: end_date"
+    },
+    "DS260913_MR30_V2_TRAIN_tp_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: tp_variant"
+    },
+    "DS260913_MR30_V2_TRAIN_regime_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: regime_variant"
+    },
+    "DS260913_MR30_V2_TRAIN_no_unknown_inputs": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_TRAIN.ini: no_unknown_inputs"
+    },
+    "DS260913_MR30_V2_VALID_tag_matches_filename": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: tag_matches_filename"
+    },
+    "DS260913_MR30_V2_VALID_symbol": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: symbol"
+    },
+    "DS260913_MR30_V2_VALID_period": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: period"
+    },
+    "DS260913_MR30_V2_VALID_model": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: model"
+    },
+    "DS260913_MR30_V2_VALID_optimization_off": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: optimization_off"
+    },
+    "DS260913_MR30_V2_VALID_deposit": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: deposit"
+    },
+    "DS260913_MR30_V2_VALID_currency": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: currency"
+    },
+    "DS260913_MR30_V2_VALID_from": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: from"
+    },
+    "DS260913_MR30_V2_VALID_to": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: to"
+    },
+    "DS260913_MR30_V2_VALID_expert": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: expert"
+    },
+    "DS260913_MR30_V2_VALID_risk": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: risk"
+    },
+    "DS260913_MR30_V2_VALID_no_overshoot": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: no_overshoot"
+    },
+    "DS260913_MR30_V2_VALID_ticks_zero": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: ticks_zero"
+    },
+    "DS260913_MR30_V2_VALID_end_date": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: end_date"
+    },
+    "DS260913_MR30_V2_VALID_tp_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: tp_variant"
+    },
+    "DS260913_MR30_V2_VALID_regime_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: regime_variant"
+    },
+    "DS260913_MR30_V2_VALID_no_unknown_inputs": {
+      "ok": true,
+      "detail": "DS260913_MR30_V2_VALID.ini: no_unknown_inputs"
+    },
+    "DS260913_MR30_V3_TRAIN_tag_matches_filename": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: tag_matches_filename"
+    },
+    "DS260913_MR30_V3_TRAIN_symbol": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: symbol"
+    },
+    "DS260913_MR30_V3_TRAIN_period": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: period"
+    },
+    "DS260913_MR30_V3_TRAIN_model": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: model"
+    },
+    "DS260913_MR30_V3_TRAIN_optimization_off": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: optimization_off"
+    },
+    "DS260913_MR30_V3_TRAIN_deposit": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: deposit"
+    },
+    "DS260913_MR30_V3_TRAIN_currency": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: currency"
+    },
+    "DS260913_MR30_V3_TRAIN_from": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: from"
+    },
+    "DS260913_MR30_V3_TRAIN_to": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: to"
+    },
+    "DS260913_MR30_V3_TRAIN_expert": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: expert"
+    },
+    "DS260913_MR30_V3_TRAIN_risk": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: risk"
+    },
+    "DS260913_MR30_V3_TRAIN_no_overshoot": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: no_overshoot"
+    },
+    "DS260913_MR30_V3_TRAIN_ticks_zero": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: ticks_zero"
+    },
+    "DS260913_MR30_V3_TRAIN_end_date": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: end_date"
+    },
+    "DS260913_MR30_V3_TRAIN_tp_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: tp_variant"
+    },
+    "DS260913_MR30_V3_TRAIN_regime_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: regime_variant"
+    },
+    "DS260913_MR30_V3_TRAIN_no_unknown_inputs": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_TRAIN.ini: no_unknown_inputs"
+    },
+    "DS260913_MR30_V3_VALID_tag_matches_filename": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: tag_matches_filename"
+    },
+    "DS260913_MR30_V3_VALID_symbol": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: symbol"
+    },
+    "DS260913_MR30_V3_VALID_period": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: period"
+    },
+    "DS260913_MR30_V3_VALID_model": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: model"
+    },
+    "DS260913_MR30_V3_VALID_optimization_off": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: optimization_off"
+    },
+    "DS260913_MR30_V3_VALID_deposit": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: deposit"
+    },
+    "DS260913_MR30_V3_VALID_currency": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: currency"
+    },
+    "DS260913_MR30_V3_VALID_from": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: from"
+    },
+    "DS260913_MR30_V3_VALID_to": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: to"
+    },
+    "DS260913_MR30_V3_VALID_expert": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: expert"
+    },
+    "DS260913_MR30_V3_VALID_risk": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: risk"
+    },
+    "DS260913_MR30_V3_VALID_no_overshoot": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: no_overshoot"
+    },
+    "DS260913_MR30_V3_VALID_ticks_zero": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: ticks_zero"
+    },
+    "DS260913_MR30_V3_VALID_end_date": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: end_date"
+    },
+    "DS260913_MR30_V3_VALID_tp_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: tp_variant"
+    },
+    "DS260913_MR30_V3_VALID_regime_variant": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: regime_variant"
+    },
+    "DS260913_MR30_V3_VALID_no_unknown_inputs": {
+      "ok": true,
+      "detail": "DS260913_MR30_V3_VALID.ini: no_unknown_inputs"
+    },
+    "DS260913_MR30_V1_TRAIN_no_holdout": {
+      "ok": true,
+      "detail": "user holdout must not appear"
+    },
+    "DS260913_MR30_V1_TRAIN_no_exposed_oos": {
+      "ok": true,
+      "detail": "exposed OOS must not appear"
+    },
+    "DS260913_MR30_V1_VALID_no_holdout": {
+      "ok": true,
+      "detail": "user holdout must not appear"
+    },
+    "DS260913_MR30_V1_VALID_no_exposed_oos": {
+      "ok": true,
+      "detail": "exposed OOS must not appear"
+    },
+    "DS260913_MR30_V2_TRAIN_no_holdout": {
+      "ok": true,
+      "detail": "user holdout must not appear"
+    },
+    "DS260913_MR30_V2_TRAIN_no_exposed_oos": {
+      "ok": true,
+      "detail": "exposed OOS must not appear"
+    },
+    "DS260913_MR30_V2_VALID_no_holdout": {
+      "ok": true,
+      "detail": "user holdout must not appear"
+    },
+    "DS260913_MR30_V2_VALID_no_exposed_oos": {
+      "ok": true,
+      "detail": "exposed OOS must not appear"
+    },
+    "DS260913_MR30_V3_TRAIN_no_holdout": {
+      "ok": true,
+      "detail": "user holdout must not appear"
+    },
+    "DS260913_MR30_V3_TRAIN_no_exposed_oos": {
+      "ok": true,
+      "detail": "exposed OOS must not appear"
+    },
+    "DS260913_MR30_V3_VALID_no_holdout": {
+      "ok": true,
+      "detail": "user holdout must not appear"
+    },
+    "DS260913_MR30_V3_VALID_no_exposed_oos": {
+      "ok": true,
+      "detail": "exposed OOS must not appear"
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "source_sha256": "3B1331CCB208D2D57D97C1FD0C327F5F3153310C13B519E6817B6877C7ADC09E",
+  "source_bytes": 39493,
+  "ex5_sha256": "D5CCD721B968102A6C4FF2F06A21A81A7178AC53D20BC22567A1D240CE4FE112",
+  "ex5_bytes": 48224,
+  "inis": [
+    {
+      "path": "D:\\desktop\\新量化策略\\gpt数据保存\\mt5_runs\\mr30\\DS260913_MR30_V1_TRAIN.ini",
+      "tag": "DS260913_MR30_V1_TRAIN",
+      "variant": "1",
+      "checks": {
+        "tag_matches_filename": true,
+        "symbol": true,
+        "period": true,
+        "model": true,
+        "optimization_off": true,
+        "deposit": true,
+        "currency": true,
+        "from": true,
+        "to": true,
+        "expert": true,
+        "risk": true,
+        "no_overshoot": true,
+        "ticks_zero": true,
+        "end_date": true,
+        "tp_variant": true,
+        "regime_variant": true,
+        "no_unknown_inputs": true
+      },
+      "unknown_inputs": [],
+      "sha256": "FEC7AD7C42734FFBF42A6B75B8B19E0ED0425271706C7ECC67C10C8D8863E9EA"
+    },
+    {
+      "path": "D:\\desktop\\新量化策略\\gpt数据保存\\mt5_runs\\mr30\\DS260913_MR30_V1_VALID.ini",
+      "tag": "DS260913_MR30_V1_VALID",
+      "variant": "1",
+      "checks": {
+        "tag_matches_filename": true,
+        "symbol": true,
+        "period": true,
+        "model": true,
+        "optimization_off": true,
+        "deposit": true,
+        "currency": true,
+        "from": true,
+        "to": true,
+        "expert": true,
+        "risk": true,
+        "no_overshoot": true,
+        "ticks_zero": true,
+        "end_date": true,
+        "tp_variant": true,
+        "regime_variant": true,
+        "no_unknown_inputs": true
+      },
+      "unknown_inputs": [],
+      "sha256": "58EA77F1DC7460B6F381BA95338FA771D5C7AFCDE2374249D907FA9362147D94"
+    },
+    {
+      "path": "D:\\desktop\\新量化策略\\gpt数据保存\\mt5_runs\\mr30\\DS260913_MR30_V2_TRAIN.ini",
+      "tag": "DS260913_MR30_V2_TRAIN",
+      "variant": "2",
+      "checks": {
+        "tag_matches_filename": true,
+        "symbol": true,
+        "period": true,
+        "model": true,
+        "optimization_off": true,
+        "deposit": true,
+        "currency": true,
+        "from": true,
+        "to": true,
+        "expert": true,
+        "risk": true,
+        "no_overshoot": true,
+        "ticks_zero": true,
+        "end_date": true,
+        "tp_variant": true,
+        "regime_variant": true,
+        "no_unknown_inputs": true
+      },
+      "unknown_inputs": [],
+      "sha256": "A9665364A82797C3DC4754B08EEAE47CB0B35AB767984A3B416AA3905255802B"
+    },
+    {
+      "path": "D:\\desktop\\新量化策略\\gpt数据保存\\mt5_runs\\mr30\\DS260913_MR30_V2_VALID.ini",
+      "tag": "DS260913_MR30_V2_VALID",
+      "variant": "2",
+      "checks": {
+        "tag_matches_filename": true,
+        "symbol": true,
+        "period": true,
+        "model": true,
+        "optimization_off": true,
+        "deposit": true,
+        "currency": true,
+        "from": true,
+        "to": true,
+        "expert": true,
+        "risk": true,
+        "no_overshoot": true,
+        "ticks_zero": true,
+        "end_date": true,
+        "tp_variant": true,
+        "regime_variant": true,
+        "no_unknown_inputs": true
+      },
+      "unknown_inputs": [],
+      "sha256": "00B2BF26CBA137F4BA890F14FB56E47D90839F623043A51B403FD84787EB8EBA"
+    },
+    {
+      "path": "D:\\desktop\\新量化策略\\gpt数据保存\\mt5_runs\\mr30\\DS260913_MR30_V3_TRAIN.ini",
+      "tag": "DS260913_MR30_V3_TRAIN",
+      "variant": "3",
+      "checks": {
+        "tag_matches_filename": true,
+        "symbol": true,
+        "period": true,
+        "model": true,
+        "optimization_off": true,
+        "deposit": true,
+        "currency": true,
+        "from": true,
+        "to": true,
+        "expert": true,
+        "risk": true,
+        "no_overshoot": true,
+        "ticks_zero": true,
+        "end_date": true,
+        "tp_variant": true,
+        "regime_variant": true,
+        "no_unknown_inputs": true
+      },
+      "unknown_inputs": [],
+      "sha256": "09113A0FC9B7BD8E3358BF28BFE14E0E0BA65E1D02C772E99B66BC1884E532A1"
+    },
+    {
+      "path": "D:\\desktop\\新量化策略\\gpt数据保存\\mt5_runs\\mr30\\DS260913_MR30_V3_VALID.ini",
+      "tag": "DS260913_MR30_V3_VALID",
+      "variant": "3",
+      "checks": {
+        "tag_matches_filename": true,
+        "symbol": true,
+        "period": true,
+        "model": true,
+        "optimization_off": true,
+        "deposit": true,
+        "currency": true,
+        "from": true,
+        "to": true,
+        "expert": true,
+        "risk": true,
+        "no_overshoot": true,
+        "ticks_zero": true,
+        "end_date": true,
+        "tp_variant": true,
+        "regime_variant": true,
+        "no_unknown_inputs": true
+      },
+      "unknown_inputs": [],
+      "sha256": "914C9162B65ED36FC02F1DDFF6FDFE887CF17D53744C2D5C2847038D9CE05C77"
+    }
+  ]
+}

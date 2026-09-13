@@ -1,0 +1,4 @@
+﻿symbol,price,contract_size,notional_001lot_usd,usd_per_point_001lot,spread_pts,spread_1way_usd,spread_roundtrip_usd,spread_rt_pct_of_500,stop_pts_1pct_risk,stop_price_units,stop_pct_of_price,move_1pct_of_price_usd
+XAUUSDm,4385.24,100.0,4385.24,0.001,260,0.26,0.52,0.104,5000.0,5.0,0.114,43.85
+BTCUSDm,77966.98,1.0,779.67,0.0001,1000,0.1,0.2,0.04,50000.0,500.0,0.6413,7.8
+USDJPYm,154.099,100000.0,1000.0,0.006489,10,0.0649,0.1298,0.026,770.5,0.7705,0.5,10.0

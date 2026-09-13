@@ -1,0 +1,8 @@
+run_id,time,time_msc,symbol,direction,order_number,allowed,note,vol_gate_low,market_state,rv_ratio,multiplier_a,grid_dist_pts,risk_level,avg_vol_per_min,spread_pts,baseline,price
+diag_grid_audit,2023.03.12 22:05:00,1678658700000,XAUUSD_HIST,sell,1,1,opened,0,0,0.0177,1.0000,7237.0,1,38.98,200.0,1867.548,1883.238
+diag_grid_audit,2023.04.09 22:05:00,1681077900000,XAUUSD_HIST,buy,1,1,opened,0,0,0.0120,1.0000,5949.0,1,33.25,480.0,2007.543,1997.006
+diag_grid_audit,2023.10.08 22:05:00,1696802700000,XAUUSD_HIST,sell,1,1,opened,1,0,0.0074,1.0000,5328.0,1,31.38,200.0,1831.699,1853.390
+diag_grid_audit,2024.04.14 22:09:00,1713132540000,XAUUSD_HIST,sell,1,1,opened,0,0,0.0186,1.0000,9465.0,1,68.55,200.0,2344.225,2369.105
+diag_grid_audit,2024.05.19 22:05:00,1716156300000,XAUUSD_HIST,sell,1,1,opened,0,0,0.0200,1.0000,10258.0,1,101.42,200.0,2414.881,2425.201
+diag_grid_audit,2024.10.27 22:05:00,1730066700000,XAUUSD_HIST,buy,1,1,opened,1,0,0.0179,1.0000,10582.0,1,77.33,160.0,2746.465,2733.443
+diag_grid_audit,2024.12.08 23:05:00,1733699100000,XAUUSD_HIST,sell,1,1,opened,1,0,0.0055,1.0000,7598.0,1,31.73,160.0,2633.079,2642.961

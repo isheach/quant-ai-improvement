@@ -1,0 +1,7 @@
+﻿run_id,html_total_trades,html_total_deals,html_in_rows,html_out_rows,audit_rows,audit_net,report_net,net_diff,tol,rows_match,deals_match,sum_ok,cost_ok,ocp_ok,ocp_total,formula_ok,formula_total,formula_max_error,unique_tickets,selfcheck_ok,selfcheck_written,selfcheck_failed,hashes_ok,hashes_readback,verdict
+R4_JPY_LONG_A,403.0,806.0,403,403,403,-48.49,-48.49,0.0,0.048490000000000005,True,True,True,True,403,403,403,403,0.012955498018738076,True,True,403,0,True,False,通过
+R4_JPY_LONG_B,403.0,806.0,403,403,403,-48.49,-48.49,0.0,0.048490000000000005,True,True,True,True,403,403,403,403,0.012955498018738076,True,True,403,0,True,False,通过
+R4_JPY_PARTIAL_A,791.0,1581.0,790,791,791,-106.02,-106.02,0.0,0.10602,True,True,True,True,791,791,791,791,0.04845780795340815,True,True,791,0,True,False,通过
+R4_JPY_PARTIAL_B,791.0,1581.0,790,791,791,-106.02,-106.02,0.0,0.10602,True,True,True,True,791,791,791,791,0.04845780795340815,True,True,791,0,True,False,通过
+R4_JPY_SHORT_A,399.0,798.0,399,399,399,-79.18,-79.18,0.0,0.07918000000000001,True,True,True,True,399,399,399,399,0.04845780795340815,True,True,399,0,True,False,通过
+R4_JPY_SHORT_B,399.0,798.0,399,399,399,-79.18,-79.18,0.0,0.07918000000000001,True,True,True,True,399,399,399,399,0.04845780795340815,True,True,399,0,True,False,通过

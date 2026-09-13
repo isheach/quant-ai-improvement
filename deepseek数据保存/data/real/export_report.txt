@@ -1,0 +1,32 @@
+=== dsh_ExportRates 2026.09.10 23:17:01 ===
+Common 目录: C:\Users\UIC\AppData\Roaming\MetaQuotes\Terminal\Common
+
+==================== XAUUSDm ====================
+  规格: digits=3 point=0.00100000 contract=100.00 vol_min=0.0100
+        tick_value=0.00000000 tick_size=0.00100000 -> 0.01手每$1价格波动=1.0000 USD(按合约反推)
+        当前点差=260 点
+    首个有数据月: 2025-04 bars=17246 first=2025.04.11 09:54
+  M1 导出: 500017 根  2025.04.11 09:54 ~ 2026.09.10 15:17  点差中位=160 点
+         -> Common\Files\dshtools\XAUUSDm_M1_real.csv
+  M5 导出: 100228 根  -> Common\Files\dshtools\XAUUSDm_M5_real.csv
+  tick 探测(最后1天): 357868 个 tick  (>=0 说明有 tick 数据可用)
+
+==================== BTCUSDm ====================
+  规格: digits=2 point=0.01000000 contract=1.00 vol_min=0.0100
+        tick_value=0.01000000 tick_size=0.01000000 -> 0.01手每$1价格波动=0.0100 USD(按合约反推)
+        当前点差=1000 点
+    首个有数据月: 2025-09 bars=4100 first=2025.09.28 03:40
+  M1 导出: 500012 根  2025.09.28 03:40 ~ 2026.09.10 15:17  点差中位=1800 点
+         -> Common\Files\dshtools\BTCUSDm_M1_real.csv
+  M5 导出: 100019 根  -> Common\Files\dshtools\BTCUSDm_M5_real.csv
+  tick 探测(最后1天): 121581 个 tick  (>=0 说明有 tick 数据可用)
+
+==================== USDJPYm ====================
+  规格: digits=3 point=0.00100000 contract=100000.00 vol_min=0.0100
+        tick_value=0.64973458 tick_size=0.00100000 -> 0.01手每$1价格波动=1000.0000 USD(按合约反推)
+        当前点差=10 点
+    首个有数据月: 2025-05 bars=23635 first=2025.05.08 10:38
+  M1 导出: 500009 根  2025.05.08 10:38 ~ 2026.09.10 15:18  点差中位=9 点
+         -> Common\Files\dshtools\USDJPYm_M1_real.csv
+  M5 导出: 100095 根  -> Common\Files\dshtools\USDJPYm_M5_real.csv
+  tick 探测(最后1天): 97087 个 tick  (>=0 说明有 tick 数据可用)

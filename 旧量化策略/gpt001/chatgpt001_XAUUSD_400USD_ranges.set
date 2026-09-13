@@ -1,0 +1,164 @@
+;==============================================================
+; chatgpt001_XAUUSD_400USD_ranges.set
+; 场景：Exness XAUUSD，初始资金约400 USD
+; 默认：固定0.01手，便于观察真实盈亏结构；利滚利功能保留但默认关闭
+; 格式：参数=默认值||起点||步长||终点||是否优化(Y/N)
+; 建议：不要一次优化所有 Y，按 README 的阶段分组优化。
+;==============================================================
+
+; ---------------- 基础 / 固定手数 / 利滚利 ----------------
+InpMagicNum=310001
+InpTrendMagicNum=310002
+InpLotSize=0.01||0.01||0.01||0.03||N
+InpUseDynamicLot=false||false||1||true||N
+InpLotByEquity=false||false||1||true||N
+InpDynBaseCapital=400.0||300.0||100.0||1000.0||N
+InpDynBaseLotStep=0.01||0.01||0.01||0.03||N
+InpDynLevelCoef=1.50||1.20||0.10||2.00||N
+InpDynMaxLot=0.03||0.01||0.01||0.05||N
+
+; ---------------- 训练速度 / 日志 ----------------
+InpEnableLog=false||false||1||true||N
+InpEnableStateMachineLog=false||false||1||true||N
+InpCutDecisionLog=false||false||1||true||N
+InpEnableTesterLog=false||false||1||true||N
+InpEnableTradeAudit=false||false||1||true||N
+InpAuditDecisions=true||false||1||true||N
+InpShowDashboard=false||false||1||true||N
+InpShowBaselineLine=false||false||1||true||N
+InpStrategyVersion=chatgpt001
+InpParamSetId=chatgpt001_xauusd400_fixed
+
+; ---------------- 执行过滤 / 小账户保护 ----------------
+InpMaxSpreadPoints=300||0||100||700||N
+InpMaxDeviationPoints=30||10||10||60||N
+InpUseEquityPeakHardStop=false||false||1||true||N
+InpEquityPeakHardStopPct=35.0||20.0||5.0||50.0||N
+InpSystemHardCooldownMinutes=1440||720||360||2880||N
+InpHardStopCloseAll=true||false||1||true||N
+
+; ---------------- 网格核心参数 ----------------
+InpEnableGrid=true||false||1||true||N
+InpRefPrice=3000||2500||250||4500||N
+InpRefVolPct=0.024||0.015||0.003||0.045||Y
+InpGridZ=8000||5000||500||12000||Y
+InpGridExpLow=0.50||0.30||0.10||0.80||Y
+InpGridExpSlope=0.50||0.20||0.10||1.00||Y
+InpVolFactorMax=40.0||20.0||5.0||60.0||N
+InpMinGridZ=2500||1500||250||4500||Y
+InpMoveB=130||80||20||260||Y
+InpMoveVolExp=0.8||0.3||0.1||1.2||N
+InpCoefC=63||30||10||120||Y
+InpCoefCVolExp=0.0||0.0||0.2||1.0||N
+InpCoefDecay=0.85||0.70||0.05||0.95||Y
+InpUniGridExpCoef=1.40||1.15||0.05||1.70||Y
+InpUniMaxPos=3||2||1||4||Y
+InpX_Minutes=40||20||10||80||Y
+InpAvgVolumeMinutes=50||30||10||90||N
+InpBaseAvgVolumePerMin=160||100||20||260||N
+InpMaxAvgVolumePerMin=220||160||20||360||N
+
+; ---------------- 网格风控 / 冷静期 ----------------
+InpRiskL2ProfitPerLot=1000.0||500.0||250.0||2000.0||N
+InpRiskL3ProfitPerLot=0.0||0.0||100.0||1000.0||N
+InpRiskL3LossPerLot=900.0||500.0||100.0||1500.0||Y
+InpLastOrderLossPerLot=900.0||500.0||100.0||1600.0||Y
+InpDelayOrder2Minutes=19||5||5||40||Y
+InpDelayOrder3Minutes=13||5||5||40||Y
+InpDelayOrder4Minutes=16||5||5||45||N
+InpDelayOrder5Minutes=12||5||5||45||N
+InpDelayOrder6Minutes=8||5||5||45||N
+InpCooldownMinutes=120||30||30||240||N
+InpBigCooldownMinutes=840||360||120||1440||N
+InpUseCutoffLineStop=true||false||1||true||N
+
+; ---------------- 宽松趋势：趋势开单 + 逆势网格禁开 ----------------
+InpEnableStateMachine=true||false||1||true||N
+InpTrendTimeframe=5||1||1||15||N
+InpTrendFastEMAPeriod=20||10||5||40||Y
+InpTrendSlowEMAPeriod=60||40||10||100||Y
+InpTrendSlowSlopeLookback=3||2||1||6||Y
+InpTrendBreakoutBars=30||15||5||60||Y
+InpTrendUseRVFilter=true||false||1||true||N
+InpTrendMinRVRatio=0.020||0.010||0.005||0.045||Y
+InpTrendConfirmBars=2||1||1||4||Y
+InpTrendExitOnFastEMA=true||false||1||true||N
+InpBlockAgainstTrendGrid=true||false||1||true||N
+InpCloseOppositeGridOnTrend=true||false||1||true||N
+
+; ---------------- Alpha 趋势单 ----------------
+InpEnableTrendOrders=true||false||1||true||N
+InpTrendUseGridLot=true||false||1||true||N
+InpTrendLotSize=0.01||0.01||0.01||0.03||N
+InpTrendMaxPositions=1||1||1||2||N
+InpTrendATRPeriod=14||14||1||14||N
+InpTrendSL_ATR_Mult=2.20||1.60||0.20||3.20||Y
+InpTrendTP_ATR_Mult=0.00||0.00||1.00||8.00||N
+InpTrendTrail_ATR_Mult=2.80||1.80||0.20||4.20||Y
+InpTrendCloseOnStateExit=true||false||1||true||N
+InpTrendRespectRiskGate=false||false||1||true||N
+InpTrendRespectCooldown=false||false||1||true||N
+
+; ---------------- 严格趋势：保护趋势单 / 自适应砍仓 ----------------
+InpCutUseStrictTrend=true||false||1||true||N
+InpStrictBreakoutBars=50||40||10||100||Y
+InpStrictConfirmBars=4||3||1||8||Y
+InpStrictMinRVRatio=0.030||0.020||0.005||0.060||Y
+InpStrictUseHigherTF=true||false||1||true||N
+InpStrictHigherTF=15||15||15||30||N
+InpStrictHTFFastEMA=20||10||5||40||N
+InpStrictHTFSlowEMA=60||40||10||100||N
+
+; ---------------- 趋势开单增强 ----------------
+InpTrendEntryUseADXSoftGate=false||false||1||true||N
+InpTrendEntryADXMin=16.0||12.0||2.0||24.0||N
+InpTrendEntryMaxDistATR=1.20||0.60||0.20||2.00||Y
+InpTrendMinBarsBetweenEntries=3||1||1||8||Y
+InpTrendCooldownMode=1||0||1||2||N
+
+; ---------------- 趋势风险预算 / 利滚利保留 ----------------
+InpTrendUseRiskLot=false||false||1||true||N
+InpTrendRiskPct=0.25||0.10||0.05||0.50||N
+InpTrendLotMultiplier=1.00||0.50||0.25||1.50||Y
+InpTrendMinLot=0.01||0.01||0.01||0.01||N
+InpTrendMaxLot=0.03||0.01||0.01||0.05||N
+InpTrendMaxConsecutiveLoss=4||2||1||8||Y
+InpTrendThrottleLotMult=0.50||0.30||0.10||0.80||Y
+InpTrendThrottleInsteadOfStop=true||false||1||true||N
+
+; ---------------- 趋势持仓管理 ----------------
+InpTrendTrailStartR=1.00||0.50||0.25||2.00||Y
+InpTrendBreakEvenR=1.00||0.50||0.25||1.50||Y
+InpTrendKeepRunnerOnRangeExit=true||false||1||true||N
+InpTrendRunnerMinR=1.00||0.50||0.25||2.00||Y
+InpTrendTimeStopBars=8||4||2||16||Y
+InpTrendTimeStopMinMoveATR=0.50||0.20||0.10||1.00||Y
+
+; ---------------- 保护性趋势单 ----------------
+InpEnableProtectiveTrend=true||false||1||true||N
+InpProtectiveTrendHedgeRatio=0.30||0.10||0.10||0.60||Y
+InpProtectiveTrendMaxLot=0.03||0.01||0.01||0.05||N
+InpProtectiveMinBasketLossPerLot=250.0||150.0||50.0||700.0||Y
+InpProtectiveMinAdverseATR=0.80||0.50||0.25||1.75||Y
+InpProtectiveIgnoreBigCooldown=true||false||1||true||N
+
+; ---------------- 自适应趋势砍仓 ----------------
+InpEnableAdaptiveTrendCut=true||false||1||true||N
+InpCutUseADXGate=true||false||1||true||N
+InpCutADXPeriod=14||14||1||14||N
+InpCutADXAvgBars=50||30||10||80||Y
+InpCutADXMeanMult=1.20||0.90||0.10||1.50||Y
+InpCutADXMin=22.0||16.0||2.0||30.0||Y
+InpCutRequireDIRAlign=true||false||1||true||N
+InpCutRequireADXRising=true||false||1||true||N
+InpCutADXRisingBars=2||1||1||4||Y
+InpCutExtraConfirmBars=2||0||1||4||Y
+InpCutMinSidePositions=2||1||1||3||Y
+InpCutMinLossPerLot=350.0||150.0||50.0||900.0||Y
+InpCutMinAdverseATR=1.00||0.50||0.25||2.50||Y
+InpCutMinAdverseGridFrac=0.45||0.25||0.05||0.85||Y
+InpCutPartialFirst=true||false||1||true||N
+InpCutPartialOrders=1||1||1||2||N
+InpCutCooldownBars=2||1||1||4||Y
+InpCutAllowFullClose=false||false||1||true||N
+InpCutFullCloseGridFrac=0.90||0.70||0.05||1.10||N

@@ -1,0 +1,13 @@
+﻿{
+  "InpMinLotMaxRiskPct": [4.0, 6.0, 8.0, 10.0],
+  "InpSL_ATR": [3.0],
+  "InpTrendTF": ["30"],
+  "InpFastEMA": [10],
+  "InpSlowEMA": [60],
+  "InpBreakoutBars": [60],
+  "InpTrail_ATR": [0],
+  "InpRiskPct": [1.5],
+  "InpAllowMinLotOvershoot": ["true"],
+  "InpUseDDKill": ["false"],
+  "InpUseRVGate": ["false"]
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "XAUUSDm",
+  "symbol_digits": 3,
+  "output_digits": 3,
+  "point": 0.00100,
+  "exported_by": "eva008_TickDataExporterEA(tester)",
+  "bar_first_date": "2026.09.07 23:59:00",
+  "bar_last_date": "2026.09.09 23:45:00",
+  "tick_first_date": "2026.09.08 00:00:00",
+  "tick_last_date": "2026.09.09 23:59:59",
+  "total_ticks": 11024,
+  "total_bars": 3495,
+  "generated": "2026.09.09 23:59:59"
+}

@@ -1,0 +1,10 @@
+﻿{
+  "InpRiskPct": [2.5, 3.0, 4.0, 5.0, 6.0],
+  "InpSL_ATR": [3.0],
+  "InpUseDDKill": ["false"],
+  "InpTrendTF": ["30"],
+  "InpFastEMA": [10],
+  "InpSlowEMA": [60],
+  "InpBreakoutBars": [60],
+  "InpTrail_ATR": [0]
+}

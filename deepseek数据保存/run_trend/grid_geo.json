@@ -1,0 +1,8 @@
+﻿{
+  "InpSL_ATR": [2.0, 3.0, 4.0, 6.0],
+  "InpBreakoutBars": [0, 15, 30, 60],
+  "InpUseDDKill": ["false"],
+  "InpTrail_ATR": [0],
+  "InpUseTrendConfirm": ["true"],
+  "InpTrendTF": ["30"]
+}

@@ -1,0 +1,5 @@
+﻿{
+  "InpUseDDKill": ["false"],
+  "InpSL_ATR": [1.5, 2.5, 4.0, 6.0],
+  "InpTrail_ATR": [0, 3.0, 6.0, 9.0]
+}

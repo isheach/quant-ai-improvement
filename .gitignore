@@ -1,43 +1,65 @@
-﻿# ===== 行情数据（不上传；用 / 前缀锚定，避免误伤同名子目录）=====
+﻿# 本仓库为「新量化策略」文件夹的镜像，数据类文件已在构建阶段物理排除。
+# 此文件用于防止后续误提交。
+
+# 行情数据
 *.hc
 *.hcc
 *.tst
-/data/
-/mt5workers/
+*.hst
+**/ticks/
+**/m1/
+**/m5/
+**/m15/
+**/m30/
+**/h1/
+**/eva_data/
+**/uploaddata/
+**/eva001_export/
+**/eva008_export/
 
-# ===== 逐笔交易数据（不上传）=====
-**/runs_r3/**/trades.csv
-**/runs_r3/**/signals.csv
-**/runs_r3/**/dd_episodes.csv
-**/runs_r3/**/dd_monthly.csv
-**/runs_r4/**/trades.csv
-**/runs_r4/**/signals.csv
-**/runs_r4/**/dd_episodes.csv
-**/runs_r4/**/dd_monthly.csv
+# 逐笔交易数据
+**/trades.csv
+**/signals.csv
+**/dd_episodes.csv
+**/dd_monthly.csv
+**/baskets.csv
+**/equity.csv
 
-# ===== MT5 测试报告 HTML =====
+# 测试报告与图表
 *.htm
 *.html
+*.png
+*.jpg
 
-# ===== 编译产物与可执行文件 =====
+# 压缩包
+*.zip
+*.7z
+*.z01
+*.z02
+
+# 可执行与编译产物
+*.exe
 *.ex5
 *.ex4
-*.exe
 *.dll
 *.dat
 *.db
 
-# ===== 中间回填日志 =====
-inbox_*.jsonl
-outbox_*.jsonl
-*.log
+# 工作副本与缓存
+mt5workers/
+**/mt5workers/
 __pycache__/
 *.pyc
+*.log
 
-# ===== 备份 =====
-_backup_*/
+# 中间回填日志
+inbox_*.jsonl
+outbox_*.jsonl
 
-# ===== 系统 =====
+# 系统
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# 构建脚本
+_build_repo.py

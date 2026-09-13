@@ -1,0 +1,125 @@
+;==============================================================
+; chatgpt001_fast_v2_XAUUSD_400USD_ranges.set
+; Fixes no-trade issue:
+; 1) realistic ATR/price RV thresholds, not 2%-3%
+; 2) ATR/USD grid distance by default, not oversized points grid
+; 3) slower lagged baseline
+; 4) softer trend entry option
+;==============================================================
+
+; ---------- basic ----------
+InpMagicNum=310001
+InpTrendMagicNum=310002
+InpFixedLot=0.01||0.01||0.01||0.03||N
+InpUseDynamicLot=false||false||1||true||N
+InpDynamicLotByEquity=false||false||1||true||N
+InpDynBaseCapital=400.0||300.0||100.0||1000.0||N
+InpDynMaxLot=0.03||0.01||0.01||0.05||N
+InpProcessOnNewM1BarOnly=true||false||1||true||N
+InpPrintDebug=false||false||1||true||N
+
+; ---------- execution ----------
+InpMaxSpreadPoints=300||0||100||700||N
+InpDeviationPoints=30||10||10||60||N
+
+; ---------- grid ----------
+InpEnableGrid=true||false||1||true||N
+InpGridUseATRPriceDistance=true||false||1||true||N
+InpGridATRMult=1.00||0.50||0.10||1.80||Y
+InpGridMinPriceDistance=1.50||0.80||0.20||3.00||Y
+InpGridMaxPriceDistance=7.50||4.00||0.50||12.00||N
+InpGridBasePoints=2500||800||200||5000||N
+InpGridMinPoints=800||300||100||2000||N
+InpGridVolRefPct=0.00060||0.00030||0.00010||0.00120||N
+InpGridVolMaxMult=2.50||1.50||0.25||4.00||N
+InpGridExpCoef=1.30||1.05||0.05||1.60||Y
+InpGridMaxPositionsPerSide=3||2||1||4||Y
+InpBaselineFreeAlpha=0.035||0.010||0.005||0.080||Y
+InpBaselineHoldAlpha=0.010||0.003||0.003||0.030||Y
+InpGridMinMinutesBetweenAdds=12||5||5||35||Y
+InpBlockAgainstTrendGrid=true||false||1||true||N
+
+; ---------- grid risk ----------
+InpLastOrderLossPerLot=900.0||500.0||100.0||1600.0||Y
+InpSideLossPerLotHard=1800.0||1000.0||200.0||3000.0||N
+InpGridCooldownMinutes=120||30||30||240||N
+InpBigCooldownMinutes=840||360||120||1440||N
+InpUseEquityPeakHardStop=false||false||1||true||N
+InpEquityPeakHardStopPct=35.0||20.0||5.0||50.0||N
+InpSystemCooldownMinutes=1440||720||360||2880||N
+
+; ---------- loose trend signal ----------
+InpTrendTF=5
+InpTrendFastEMA=20||10||5||40||Y
+InpTrendSlowEMA=60||30||10||100||Y
+InpTrendSlopeLookback=3||2||1||8||Y
+InpTrendBreakoutBars=20||10||5||45||Y
+InpTrendMinRVPct=0.00035||0.00015||0.00005||0.00100||Y
+InpTrendConfirmBars=1||1||1||3||Y
+InpTrendAllowEMASlopeEntry=true||false||1||true||N
+InpTrendSlopeMinATR=0.10||0.02||0.02||0.30||Y
+
+; ---------- strict trend / ADX ----------
+InpUseStrictTrend=true||false||1||true||N
+InpStrictBreakoutBars=40||25||5||80||Y
+InpStrictConfirmBars=4||2||1||7||Y
+InpStrictMinRVPct=0.00055||0.00020||0.00005||0.00150||Y
+InpStrictUseHTF=true||false||1||true||N
+InpStrictHTF=15
+InpStrictHTFFastEMA=20||10||5||40||N
+InpStrictHTFSlowEMA=60||30||10||100||N
+InpADXPeriod=14
+InpADXAvgBars=50||30||10||80||Y
+InpCutADXMin=20.0||12.0||2.0||30.0||Y
+InpCutADXMeanMult=1.10||0.80||0.10||1.50||Y
+InpCutRequireDIAlign=true||false||1||true||N
+InpCutRequireADXRising=false||false||1||true||N
+InpCutADXRisingBars=2||1||1||4||N
+
+; ---------- alpha trend ----------
+InpEnableTrendOrders=true||false||1||true||N
+InpTrendUseGridLot=true||false||1||true||N
+InpTrendLot=0.01||0.01||0.01||0.03||N
+InpTrendUseRiskLot=false||false||1||true||N
+InpTrendRiskPct=0.25||0.10||0.05||0.50||N
+InpTrendLotMultiplier=1.00||0.50||0.25||1.50||Y
+InpTrendMaxLot=0.03||0.01||0.01||0.05||N
+InpTrendMaxPositions=1||1||1||2||N
+InpTrendSL_ATR_Mult=2.20||1.60||0.20||3.20||Y
+InpTrendTP_ATR_Mult=0.00||0.00||1.00||8.00||N
+InpTrendTrail_ATR_Mult=2.80||1.80||0.20||4.20||Y
+InpTrendEntryMaxDistATR=2.80||1.20||0.20||4.50||Y
+InpTrendMinBarsBetweenEntry=3||1||1||8||Y
+InpTrendCooldownMode=1||0||1||2||N
+
+; ---------- trend exit ----------
+InpTrendBreakEvenR=1.00||0.50||0.25||1.50||Y
+InpTrendTrailStartR=1.00||0.50||0.25||2.00||Y
+InpTrendKeepRunnerOnRange=true||false||1||true||N
+InpTrendRunnerMinR=1.00||0.50||0.25||2.00||Y
+InpTrendTimeStopBars=8||4||2||16||Y
+InpTrendTimeStopMinMoveATR=0.50||0.20||0.10||1.00||Y
+InpTrendMaxConsecutiveLoss=4||2||1||8||N
+InpTrendThrottleLotMult=0.50||0.30||0.10||0.80||N
+InpTrendThrottleInsteadStop=true||false||1||true||N
+
+; ---------- protective trend ----------
+InpEnableProtectiveTrend=true||false||1||true||N
+InpProtectiveHedgeRatio=0.30||0.10||0.10||0.60||Y
+InpProtectiveMaxLot=0.03||0.01||0.01||0.05||N
+InpProtectiveMinLossPerLot=250.0||150.0||50.0||700.0||Y
+InpProtectiveMinAdverseATR=0.80||0.50||0.25||1.75||Y
+InpProtectiveIgnoreBigCD=true||false||1||true||N
+
+; ---------- staged cut ----------
+InpEnableAdaptiveTrendCut=true||false||1||true||N
+InpCutExtraConfirmBars=2||0||1||4||Y
+InpCutMinSidePositions=2||1||1||3||Y
+InpCutMinLossPerLot=350.0||150.0||50.0||900.0||Y
+InpCutMinAdverseATR=1.00||0.50||0.25||2.50||Y
+InpCutMinAdverseGridFrac=0.45||0.25||0.05||0.85||Y
+InpCutPartialFirst=true||false||1||true||N
+InpCutPartialOrders=1||1||1||2||N
+InpCutCooldownBars=2||1||1||4||Y
+InpCutAllowFullClose=false||false||1||true||N
+InpCutFullCloseGridFrac=0.90||0.70||0.05||1.10||N

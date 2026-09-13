@@ -1,0 +1,51 @@
+eva028 下一步：只测试网格整篮止损
+====================================
+
+你刚才的6个优化结果不能用于选择20/30/40阈值，原因：
+1. 阶段1总开关也被优化，所以出现 true/false × 3个阈值 = 6个pass；正确应只有3个pass。
+2. 日损停止=true、净值永久锁=true，两个保护会先于或覆盖整篮止损效果。
+3. 测试区间横跨2023—2025；本轮必须只用2024训练。
+
+请按下面设置：
+
+测试器
+------
+品种：与原回测完全相同的Exness黄金品种（含后缀，例如XAUUSDm）
+周期：M1
+模型：每个点基于真实点
+日期：2024.01.01—2024.12.31
+初始资金：400 USD
+动态手数：false
+固定手数：0.01
+加载参数：eva028_24.3_basket_sweep.set
+
+阶段1参数值
+-----------
+InpEnableStage1Risk = true
+InpEnableGridBasketStop = true
+InpMaxGridBasketLossMoney = 30（开始20、步长10、停止40）
+InpGridBasketCooldownMinutes = 1440
+InpEnableDailyLossStop = false
+InpMaxDailyLossMoney = 20（本轮不生效）
+InpEnableStrategyKillSwitch = false
+InpMaxStrategyDrawdownPct = 15（本轮不生效）
+InpResetStage1LocksOnInit = false
+
+优化勾选
+--------
+只勾选 InpMaxGridBasketLossMoney。
+其他所有参数左侧复选框都不能勾选，尤其不能勾 InpEnableStage1Risk。
+运行后必须恰好得到3个pass：20、30、40。如果不是3个，立即停止。
+
+请返回
+------
+1. 三个pass的优化结果截图（必须显示净利润、PF、回撤%、交易数、阈值）。
+2. 优化结果导出的XML。
+3. 日志最后包含“eva028阶段1统计”的行。
+4. 先不要跑2025；等确认2024选出阈值后，再冻结阈值验证2025。
+
+图三为什么会变平
+----------------
+峰值净值约534美元，15%回撤线约为453.9美元。净值到454美元后永久锁触发，
+平掉本EA仓位并停止后续交易。优化结果显示最大回撤15.01%，与设计完全吻合。
+这说明永久锁在工作，不代表代码死循环或测试器卡死。
