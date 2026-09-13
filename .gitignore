@@ -1,0 +1,35 @@
+﻿# ===== 行情与交易数据（按用户要求不上传）=====
+*.hc
+*.hcc
+*.tst
+*.csv
+*.htm
+*.html
+bases/
+cache/
+history/
+ticks/
+
+# ===== 编译产物与可执行文件 =====
+*.ex5
+*.ex4
+*.exe
+*.dll
+*.dat
+*.db
+
+# ===== 中间日志与缓存 =====
+*.log
+__pycache__/
+*.pyc
+inbox_*.jsonl
+outbox_*.jsonl
+
+# ===== 备份 =====
+_backup_*/
+mt5workers/
+
+# ===== 系统 =====
+Thumbs.db
+desktop.ini
+.DS_Store

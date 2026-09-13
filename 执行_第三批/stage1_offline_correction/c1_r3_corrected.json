@@ -1,0 +1,38 @@
+{
+ "train": {
+  "report_path": "D:\\desktop\\新量化策略\\deepseek数据保存\\执行_20260912\\runs_r3\\DS260913_C1R3_TRAIN\\report_DS260913_C1R3_TRAIN.htm",
+  "report_sha256": "C806ED39A346ED5CD67A1425C860CF2F32E897E5D4383967EAF0BB031D11BD8F",
+  "equity_dd_maximal_raw": "451.98 (22.17%)",
+  "equity_dd_maximal_usd": 451.98,
+  "equity_dd_maximal_pct": 22.17,
+  "equity_dd_relative_raw": "39.95% (306.80)",
+  "equity_dd_relative_pct": 39.95,
+  "equity_dd_relative_usd": 39.95,
+  "balance_dd_maximal_pct": 18.76,
+  "balance_dd_relative_pct": 35.89,
+  "total_trades": 525.0,
+  "total_deals": 1050.0,
+  "net": 3280.42,
+  "pf": 1.64,
+  "bars": 3302578.0,
+  "ticks": 13210209.0
+ },
+ "valid": {
+  "report_path": "D:\\desktop\\新量化策略\\deepseek数据保存\\执行_20260912\\runs_r3\\DS260913_C1R3_VALID\\report_DS260913_C1R3_VALID.htm",
+  "report_sha256": "9F96B3FC5A005FA969A0D8D914FFEDC366855D4208EC9A7A816287E68DBF0A85",
+  "equity_dd_maximal_raw": "118.13 (18.60%)",
+  "equity_dd_maximal_usd": 118.13,
+  "equity_dd_maximal_pct": 18.6,
+  "equity_dd_relative_raw": "18.60% (118.13)",
+  "equity_dd_relative_pct": 18.6,
+  "equity_dd_relative_usd": 18.6,
+  "balance_dd_maximal_pct": 14.92,
+  "balance_dd_relative_pct": 14.92,
+  "total_trades": 52.0,
+  "total_deals": 104.0,
+  "net": 187.48,
+  "pf": 1.62,
+  "bars": 524026.0,
+  "ticks": 2096098.0
+ }
+}

@@ -1,0 +1,73 @@
+==============================================================================
+文件      : D:\desktop\新量化策略\deepseek数据保存\交接\日元滚动\dsh_JPYGrid.mq5
+字节数    : 49542
+行数      : 1184
+SHA256    : 6CC5FAC470CB0EA7006767CC234CC3C0B62A76615CDEE28E6FEB0B505C473EED
+input 个数: 36
+==============================================================================
+[OK]   24
+   + 无 BOM
+   + 大括号配平 123/123
+   + 圆括号配平 744/744
+   + 方括号配平 124/124
+   + 自定义函数 33 个：AlignLotDown, AuditDir, BuildAggBars, CloseDir, DDCloseEpisode, DDEpisodeLog, DealReasonStr, DoOpenLayer, EfficiencyRatio, GetDirStat, IsNewBucket, LayerLot, ManageDir, MarginModeStr, MarginOk, MoneyPerPricePerLot, MoneyPerPricePerLotAt, OnDeinit, OnInit, OnTick, OnTradeTransaction, PickFilling, ReasonOrUnknown, Reconcile, RecordDeal, RefreshAccountRisk, RefreshER, ResetBasketState, SessionAllowsOpen, TFMinutes, TrackEquityCurve, WriteBasketRow, WriteSpecsFile
+   + 无未定义函数调用
+   + 所有自定义函数都在首次使用之前定义
+   + input 参数 36 个
+   + 全部 36 个 Inp* 标识符都已声明
+   + 所有 FileOpen/FolderCreate/FileIsExist 都带 FILE_COMMON
+   + 机制存在: OnTradeTransaction 实现
+   + 机制存在: HistorySelectByPosition 反查入场腿
+   + 机制存在: InpLatencyMs 出现在下单路径
+   + 机制存在: 三层硬上限：MaxLayers
+   + 机制存在: 三层硬上限：MaxTotalLot
+   + 机制存在: 三层硬上限：BasketStopPct
+   + 机制存在: 最坏浮亏记录 baskets.csv
+   + 机制存在: InpTFMinutes 防枚举坑
+   + 机制存在: 净额账户自动关做空
+   + 机制存在: tick 级延迟真实机制
+   + CSV 列数一致：g_auditFh 表头 19 列，写入端 2 处全部匹配
+   + CSV 列数一致：g_baskFh 表头 15 列，写入端 2 处全部匹配
+   + CSV 列数一致：g_ddFh 表头 10 列，写入端 2 处全部匹配
+   + CSV 列数一致：g_monFh 表头 7 列，写入端 3 处全部匹配
+==============================================================================
+自检结果：全部通过
+==============================================================================
+
+---- input 参数清单（名称 = 默认值  |  类型）----
+  InpTF                      = PERIOD_M5    [ENUM_TIMEFRAMES]
+  InpTFMinutes               = 5            [int]
+  InpGridStepPoints          = 200.0        [double]
+  InpTPPoints                = 200.0        [double]
+  InpMaxLayers               = 8            [int]
+  InpLotPerLayer             = 0.01         [double]
+  InpLotMultiplier           = 1.0          [double]
+  InpMaxLotPerLayer          = 0.10         [double]
+  InpMaxTotalLot             = 0.40         [double]
+  InpGridLong                = true         [bool]
+  InpGridShort               = false        [bool]
+  InpBasketStopPct           = 15.0         [double]
+  InpUseBasketTP             = true         [bool]
+  InpCooldownMinAfterStop    = 0            [int]
+  InpCloseAllFriday          = false        [bool]
+  InpFridayStopHour          = 21           [int]
+  InpUseDailyStop            = true         [bool]
+  InpDailyLossPct            = 5.0          [double]
+  InpUseDDKill               = true         [bool]
+  InpMaxDDPct                = 30.0         [double]
+  InpDDCooldownMin           = 1440         [int]
+  InpStopAfterDDLock         = false        [bool]
+  InpUseERGate               = true         [bool]
+  InpMaxER                   = 0.35         [double]
+  InpERPeriod                = 24           [int]
+  InpUseSessionFilter        = false        [bool]
+  InpTradeStartHour          = 0            [int]
+  InpTradeEndHour            = 23           [int]
+  InpMagic                   = 20260914     [long]
+  InpRunTag                  = ""           [string]
+  InpWriteAudit              = true         [bool]
+  InpVerboseLog              = false        [bool]
+  InpDDMinDepthPct           = 2.0          [double]
+  InpSlippagePoints          = 50           [double]
+  InpLatencyMs               = 300          [int]
+  InpLatencyTicks            = 0            [int]

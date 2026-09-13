@@ -1,0 +1,34 @@
+﻿�ܽ�����      : 768
+grid pass ��  : 691
+����������    : 70
+
+--- ����A��grid pass �� expert �ֲ� ---
+    expert=jpyrev     671
+    expert=trend      20
+
+--- ����B��grid pass �� from/to �ֲ� ---
+    2017.01.01 �� 2022.05.31   n=691
+    �� to ���� 2022.05.31 �� grid pass �� = 0
+
+--- ����C���������е� from/to �ֲ� ---
+    2014.01.14 �� 2024.05.31   n=46
+    None �� None   n=24
+
+--- ����D������ ����_005 ��1.1����50 ��/�� ����� PF �� PF>1 ��������---
+    ��50 ��/�� �� pass �� = 298
+    ���� PF>1.0 ������   = 0
+    ��� PF = 0.8587  (jpyg-025 pass 8)  ����=1044  ��/��=193.0  net=-168.00  params={'InpUseTrendConfirm': 'false', 'InpSL_ATR': '3.0'}
+    ������_005 ���ƣ�298 �� / PF>1 = 0 / ��� PF 0.859��
+
+--- ����E��jpyg-034 pass3 ��ʵ��ֵ������_001 ��3.2 �ĸ���ê�㣩---
+    {"grid_id": "jpyg-034", "pass": "3", "params": {"InpEntrySigma": "3.0", "InpExitFrac": "0.05"}, "net": "-9.84", "profit_factor": "0.909948", "trades": "224", "dd_pct": "7.1043", "from": "2017.01.01", "to": "2022.05.31"}
+    ȫ 691 pass �� PF ��ߵ� 5 ����
+      PF=1.2000 trades=16 dd=1.9871 jpyg-012 pass 59 {'InpMAPeriod': '24', 'InpTF': '16386'}
+      PF=1.2000 trades=16 dd=1.9871 jpyg-002 pass 8 {'InpTF': '16386'}
+      PF=0.9929 trades=138 dd=17.3544 jpyg-025 pass 5 {'InpUseTrendConfirm': 'true', 'InpSL_ATR': '2.0'}
+      PF=0.9913 trades=19 dd=2.1345 jpyg-012 pass 76 {'InpMAPeriod': '28', 'InpTF': '16386'}
+      PF=0.9740 trades=66 dd=4.3011 jpyg-034 pass 4 {'InpEntrySigma': '3.5', 'InpExitFrac': '0.05'}
+    ���� trades>=200 ����� 3 ����
+      PF=0.9099 trades=224 dd=7.1043 jpyg-034 pass 3 {'InpEntrySigma': '3.0', 'InpExitFrac': '0.05'}
+      PF=0.9039 trades=224 dd=7.0998 jpyg-034 pass 9 {'InpEntrySigma': '3.0', 'InpExitFrac': '0.10'}
+      PF=0.8778 trades=225 dd=6.1414 jpyg-034 pass 63 {'InpEntrySigma': '3.0', 'InpExitFrac': '0.55'}

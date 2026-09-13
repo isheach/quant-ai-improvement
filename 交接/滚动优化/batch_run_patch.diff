@@ -1,0 +1,16 @@
+--- batch_run.py
++++ batch_run_wf_patched.py
+@@ -143,8 +143,13 @@
+ 
+     merged = dict(base)
+     merged.update({k: str(v) for k, v in params.items()})
+ 
++    # ★★ 滚动优化（walk-forward）自定义分段：请求里带 from/to 时覆盖该段默认日期。
++    #    不带 from/to 的请求行为完全不变（向后兼容）。
++    if req.get("from") and req.get("to"):
++        ph = dict(ph)
++        ph[phase] = (str(req["from"]), str(req["to"]))
+     ini = R.make_ini(tag, phase, merged, sym, ph, dep, expert)
+     t0 = time.time()
+     p = subprocess.Popen([TERMINAL, "/config:" + ini])
+     p.wait()
