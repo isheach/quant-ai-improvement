@@ -1,0 +1,7 @@
+﻿audit_net,audit_rows,cost_ok,deals_match,dup_tickets,formula_ok,formula_total,html_deals,html_out_rows,html_trades,net_diff,ocp_ok,ocp_total,partial_rows,report_net,rows_match,run_id,selfcheck_dups,selfcheck_failed,selfcheck_written,status,sum_ok,tol,verdict
+-48.49,403,True,True,0,403,403,806.0,403,403.0,0.0,403,403,0,-48.49,True,R4_JPY_LONG_A,28869,0,403,done,True,0.048490000000000005,通过
+-48.49,403,True,True,0,403,403,806.0,403,403.0,0.0,403,403,0,-48.49,True,R4_JPY_LONG_B,28869,0,403,done,True,0.048490000000000005,通过
+-79.18,399,True,True,0,399,399,798.0,399,399.0,0.0,399,399,0,-79.18,True,R4_JPY_SHORT_A,28235,0,399,done,True,0.07918000000000001,通过
+-79.18,399,True,True,0,399,399,798.0,399,399.0,0.0,399,399,0,-79.18,True,R4_JPY_SHORT_B,28235,0,399,done,True,0.07918000000000001,通过
+-106.02,791,True,False,0,791,791,1581.0,791,791.0,0.0,791,791,1,-106.02,True,R4_JPY_PARTIAL_A,62623,0,791,done,True,0.10602,未通过
+-106.02,791,True,False,0,791,791,1581.0,791,791.0,0.0,791,791,1,-106.02,True,R4_JPY_PARTIAL_B,62623,0,791,done,True,0.10602,未通过

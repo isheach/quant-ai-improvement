@@ -1,14 +1,23 @@
-﻿# ===== 行情与交易数据（按用户要求不上传）=====
+﻿# ===== 行情数据（不上传；用 / 前缀锚定，避免误伤同名子目录）=====
 *.hc
 *.hcc
 *.tst
-*.csv
+/data/
+/mt5workers/
+
+# ===== 逐笔交易数据（不上传）=====
+**/runs_r3/**/trades.csv
+**/runs_r3/**/signals.csv
+**/runs_r3/**/dd_episodes.csv
+**/runs_r3/**/dd_monthly.csv
+**/runs_r4/**/trades.csv
+**/runs_r4/**/signals.csv
+**/runs_r4/**/dd_episodes.csv
+**/runs_r4/**/dd_monthly.csv
+
+# ===== MT5 测试报告 HTML =====
 *.htm
 *.html
-bases/
-cache/
-history/
-ticks/
 
 # ===== 编译产物与可执行文件 =====
 *.ex5
@@ -18,16 +27,15 @@ ticks/
 *.dat
 *.db
 
-# ===== 中间日志与缓存 =====
+# ===== 中间回填日志 =====
+inbox_*.jsonl
+outbox_*.jsonl
 *.log
 __pycache__/
 *.pyc
-inbox_*.jsonl
-outbox_*.jsonl
 
 # ===== 备份 =====
 _backup_*/
-mt5workers/
 
 # ===== 系统 =====
 Thumbs.db
