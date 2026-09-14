@@ -1,0 +1,26 @@
+[
+  {
+    "month": "2018-01",
+    "journal_jpy_bars": 1021,
+    "filtered_monthly_jpy": 0,
+    "diff": 1021
+  },
+  {
+    "month": "2023-01",
+    "journal_jpy_bars": 1060,
+    "filtered_monthly_jpy": 0,
+    "diff": 1060
+  },
+  {
+    "month": "2023-07",
+    "journal_jpy_bars": 1014,
+    "filtered_monthly_jpy": 0,
+    "diff": 1014
+  },
+  {
+    "month": "2024-03",
+    "journal_jpy_bars": 1010,
+    "filtered_monthly_jpy": 0,
+    "diff": 1010
+  }
+]

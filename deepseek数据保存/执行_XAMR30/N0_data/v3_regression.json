@@ -1,0 +1,238 @@
+[
+  {
+    "tag": "2018-01",
+    "frm": "2018.01.01",
+    "to": "2018.02.01",
+    "ok": [
+      [
+        "probe_valid=1",
+        false,
+        "reason="
+      ],
+      [
+        "MethodA==MethodB (JPY)",
+        false,
+        "A=None B=None"
+      ],
+      [
+        "MethodA==MethodB (XAU)",
+        false,
+        "A=None B=None"
+      ],
+      [
+        "outside=0",
+        false,
+        "outside=None"
+      ],
+      [
+        "dup=0",
+        false,
+        "jpy=None xau=None"
+      ],
+      [
+        "non-monotonic=0",
+        false,
+        "jpy=None xau=None"
+      ],
+      [
+        "0 < JPY_monthly <= days*48",
+        false,
+        "jpy=0 cap=1488"
+      ],
+      [
+        "JPY 量级合理 (500~4000)",
+        false,
+        "jpy=0"
+      ],
+      [
+        "0 < XAU_monthly <= days*48",
+        false,
+        "xau=0 cap=1488"
+      ]
+    ],
+    "jb": {
+      "USDJPYm": 1021
+    },
+    "cap": 1488,
+    "det": {
+      "SELFTEST iBars jpy=10280 xau=9922": "SELFTEST series jpy=[2017.01.03 00:00 .. 2018.01.31 14:00]"
+    }
+  },
+  {
+    "tag": "2023-01",
+    "frm": "2023.01.01",
+    "to": "2023.02.01",
+    "ok": [
+      [
+        "probe_valid=1",
+        false,
+        "reason="
+      ],
+      [
+        "MethodA==MethodB (JPY)",
+        false,
+        "A=None B=None"
+      ],
+      [
+        "MethodA==MethodB (XAU)",
+        false,
+        "A=None B=None"
+      ],
+      [
+        "outside=0",
+        false,
+        "outside=None"
+      ],
+      [
+        "dup=0",
+        false,
+        "jpy=None xau=None"
+      ],
+      [
+        "non-monotonic=0",
+        false,
+        "jpy=None xau=None"
+      ],
+      [
+        "0 < JPY_monthly <= days*48",
+        false,
+        "jpy=0 cap=1488"
+      ],
+      [
+        "JPY 量级合理 (500~4000)",
+        false,
+        "jpy=0"
+      ],
+      [
+        "0 < XAU_monthly <= days*48",
+        false,
+        "xau=0 cap=1488"
+      ]
+    ],
+    "jb": {
+      "USDJPYm": 1060
+    },
+    "cap": 1488,
+    "det": {
+      "SELFTEST iBars jpy=13536 xau=12780": "SELFTEST series jpy=[2022.01.02 22:00 .. 2023.01.31 23:30]"
+    }
+  },
+  {
+    "tag": "2023-07",
+    "frm": "2023.07.01",
+    "to": "2023.08.01",
+    "ok": [
+      [
+        "probe_valid=1",
+        false,
+        "reason="
+      ],
+      [
+        "MethodA==MethodB (JPY)",
+        false,
+        "A=None B=None"
+      ],
+      [
+        "MethodA==MethodB (XAU)",
+        false,
+        "A=None B=None"
+      ],
+      [
+        "outside=0",
+        false,
+        "outside=None"
+      ],
+      [
+        "dup=0",
+        false,
+        "jpy=None xau=None"
+      ],
+      [
+        "non-monotonic=0",
+        false,
+        "jpy=None xau=None"
+      ],
+      [
+        "0 < JPY_monthly <= days*48",
+        false,
+        "jpy=0 cap=1488"
+      ],
+      [
+        "JPY 量级合理 (500~4000)",
+        false,
+        "jpy=0"
+      ],
+      [
+        "0 < XAU_monthly <= days*48",
+        false,
+        "xau=0 cap=1488"
+      ]
+    ],
+    "jb": {
+      "USDJPYm": 1014
+    },
+    "cap": 1488,
+    "det": {
+      "SELFTEST iBars jpy=19730 xau=18646": "SELFTEST series jpy=[2022.01.02 22:00 .. 2023.07.31 23:30]"
+    }
+  },
+  {
+    "tag": "2024-03",
+    "frm": "2024.03.01",
+    "to": "2024.04.01",
+    "ok": [
+      [
+        "probe_valid=1",
+        false,
+        "reason="
+      ],
+      [
+        "MethodA==MethodB (JPY)",
+        false,
+        "A=None B=None"
+      ],
+      [
+        "MethodA==MethodB (XAU)",
+        false,
+        "A=None B=None"
+      ],
+      [
+        "outside=0",
+        false,
+        "outside=None"
+      ],
+      [
+        "dup=0",
+        false,
+        "jpy=None xau=None"
+      ],
+      [
+        "non-monotonic=0",
+        false,
+        "jpy=None xau=None"
+      ],
+      [
+        "0 < JPY_monthly <= days*48",
+        false,
+        "jpy=0 cap=1488"
+      ],
+      [
+        "JPY 量级合理 (500~4000)",
+        false,
+        "jpy=0"
+      ],
+      [
+        "0 < XAU_monthly <= days*48",
+        false,
+        "xau=0 cap=1488"
+      ]
+    ],
+    "jb": {
+      "USDJPYm": 1010
+    },
+    "cap": 1488,
+    "det": {
+      "SELFTEST iBars jpy=15510 xau=14664": "SELFTEST series jpy=[2023.01.01 22:00 .. 2024.03.31 23:30]"
+    }
+  }
+]
