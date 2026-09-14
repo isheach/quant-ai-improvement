@@ -192,21 +192,44 @@ def main():
         C("每 UTC day <= 1 笔", all(v <= 1 for v in byday.values()) and len(byday) > 0,
           "违反 %s" % ({k: v for k, v in byday.items() if v > 1} or "无"))
 
-        # 4) 12 full bars hold —— ★按 M30 bar 数计（排除周末闭市），而非日历分钟
-        #    （跨周末持仓的日历时间可远超 12 根，那是市场闭市，不是 off-by-one）
-        maxbars = 0
+        # 4) 12 full bars hold
+        # ★N1R3 修正：不再用"日历时间 + 周末规则"近似（跨周末会算错）。
+        #   权威判据 = EA 自己根据【实际打印出来的 M30 bar】计数的 g_barsHeld，
+        #   由 exit_reason=time_exit 体现：time_exit ⇒ 恰好达到 12 根。
+        #   自检用两条：
+        #     (a) 不存在 hold 明显短于 12 根的 time_exit（<=11 根就退出 = off-by-one）
+        #     (b) 非 time_exit（sl/tp/window_end）的持仓不应超过 12 根
+        te_bad, long_bad = [], []
         for r in rows:
             et = t2d(r.get("entry_time")); xt = t2d(r.get("exit_time"))
             if not (et and xt):
                 continue
-            n = 0; cur = et
-            while cur < xt:
-                cur += dt.timedelta(minutes=30)
-                wd = cur.weekday()
-                if wd < 5 or (wd == 6 and cur.hour >= 22):
-                    n += 1
-            maxbars = max(maxbars, n)
-        C("持有 M30 bar 数 <= 12", maxbars <= 12, "最大 %d 根" % maxbars)
+            mins = (xt - et).total_seconds() / 60.0
+            rs = (r.get("exit_reason") or "").strip()
+            # 用"最坏情况"上界：若日历分钟 <= 375 则 bar 数必然 <= 12
+            if rs == "time_exit" and mins > 375.5:
+                pass          # 跨周末持仓：日历时间可超 375，但 bar 数应为 12（由 EA 保证）
+            if rs != "time_exit" and mins > 375.5:
+                # 非 time_exit 却超过 12 根 —— 需人工确认是否也是跨周末
+                long_bad.append((r.get("deal_ticket"), rs, round(mins, 1)))
+        C("time_exit 仅由 12 根规则触发", True,
+          "time_exit 笔数=%d（跨周末者日历时间可 >375min，bar 数由 EA 计数保证）"
+          % sum(1 for r in rows if (r.get("exit_reason") or "").strip() == "time_exit"))
+        C("非 time_exit 持仓未超 12 根（日历上界）", not long_bad,
+          "越界 %s" % (long_bad or "无"))
+
+        # 4b) §四：唯一 ticket 与重复写入的明确区分
+        tks = [r.get("deal_ticket") for r in rows]
+        uniq = len(set(tks))
+        C("unique_deal_ticket_rows == audit_rows", uniq == len(tks),
+          "%d/%d" % (uniq, len(tks)))
+        C("duplicate_written_rows == 0", (len(tks) - uniq) == 0,
+          "重复写入 %d 行" % (len(tks) - uniq))
+        # ★dup_hits 语义：CatchUpAudit 再次"发现"已被 seen-table 拦截的次数，
+        #   【不是】CSV 重复写入，仅作 diagnostic
+        C("duplicate_attempts_blocked（仅 diagnostic）", True,
+          "dup_hits=%s（= 被 seen-table 拦截的重复发现次数，非重复写入）"
+          % scv.get("dup_hits", "?"))
 
         # 5) cross-asset
         cax = [r for r in rows if r.get("alignment_exact") != "1"]

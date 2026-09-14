@@ -1,2 +1,2 @@
 run_tag,written_deals,dup_hits,audit_failed,fatal,fatal_reason,ocp_mismatch,formula_diag_out,risk_cap_breach,trades,wins,long,short,active_positions,rej_sigma,rej_atr_insufficient,rej_atr_regime,rej_xau_missing,rej_xau_fail,rej_minlot,rej_riskcap,rej_ocp,skip_no_signal,skip_day_traded,server_utc_offset,reason
-DS260914_XAMR30_SMOKE_WINTER,14,14,0,0,,0,0,0,14,8,8,6,0,0,0,56,12,21,0,0,0,415,474,0,1
+DS260914_XAMR30_SMOKE_WINTER,12,12,0,0,,0,0,0,12,6,7,5,0,0,0,74,14,27,0,0,0,446,421,0,1
