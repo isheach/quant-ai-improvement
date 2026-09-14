@@ -1,6 +1,6 @@
 # JSB30 · N0 护栏与输入名检查报告
 
-- 时间：2026-09-14 11:54:51
+- 时间：2026-09-14 12:55:54
 - input 权威源：**SOURCE(dsh_JSB30.mq5)**
 
 | # | 检查项 | 结果 | 明细 |
@@ -72,7 +72,7 @@
 | 65 | DS260914_JSB30_V3_VALID · 必需字段齐备 | PASS | 缺: |
 | 66 | DS260914_JSB30_V3_VALID · 禁止项=false | PASS | grid/martingale/trailing 均 false |
 | 67 | run_id 全局唯一 | PASS | 6 条 / 6 唯一 |
-| 68 | run_id 与既有 tag 不冲突 | PASS | 既有 674 个 tag，冲突 无 |
+| 68 | run_id 与既有 tag 不冲突 | PASS | 既有 694 个 tag，冲突 无 |
 | 69 | 报告名不复用 | PASS | 无同名报告 |
 | 70 | 审计目录不复用 | PASS | 无同名目录 |
 | 71 | 变体 V2 只改 range_end/TP | PASS | 差异: ['inp_range_end_utc_hour'] |

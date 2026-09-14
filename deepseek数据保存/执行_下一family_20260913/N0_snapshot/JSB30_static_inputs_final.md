@@ -1,4 +1,4 @@
-# `JSB30` 静态输入表（Final · N0）
+﻿# `JSB30` 静态输入表（Final · N0）
 
 - 生成者：DeepSeek-执行者
 - 生成时间：2026-09-14（Asia/Shanghai）
@@ -72,6 +72,10 @@ InpUseDynamicDstOffset     true     # 按交易周动态推导，禁止整段固
 InpExpectedServerOffsetMin 2
 InpExpectedServerOffsetMax 3
 
+--- ★N1R 新增：OCP 与独立公式一致性容差 ---
+InpOcpTolUsd               0.05     # 绝对容差（USD）
+InpOcpTolRelPct            2.5      # 相对容差（%）；判据 = max(绝对, 相对%×|OCP|)
+
 --- 审计与控制 ---
 InpWriteAudit              true
 InpWriteRejectAudit        true
@@ -86,7 +90,8 @@ InpUseMartingale           false
 InpUseTrailingWin          false
 ```
 
-**★以上 33 个 input 必须在 `dsh_JSB30.mq5` 的源码 input 清单中【全部真实存在】。
+**★以上 33 个 input 必须在 `dsh_JSB30.mq5` 的源码 input 清单中【全部真实存在】。**
+**★N1R 新增 2 个（OCP 容差），源码 input 总数 = 32。**
 任何 INI 里出现源码不存在的 input → `fail-close`（拒绝启动）。**
 
 ---
@@ -137,3 +142,4 @@ InpUseTrailingWin          false
 未做    : 编译、MT5 运行、参数扫描、VALID
 状态    : preregistered_final / no_mt5_authorization_yet（N0 护栏通过后进 N1）
 ```
+

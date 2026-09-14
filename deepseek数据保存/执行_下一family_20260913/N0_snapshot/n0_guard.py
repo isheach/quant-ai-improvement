@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 N0 护栏与输入名检查（GPT JSB30 裁定 §3）
@@ -57,6 +57,7 @@ DECLARED_INPUTS = [
     "InpRiskPct", "InpMinLotMaxRiskPct", "InpAllowMinLotOvershoot",
     "InpAllowLong", "InpAllowShort",
     "InpUseDynamicDstOffset", "InpExpectedServerOffsetMin", "InpExpectedServerOffsetMax",
+    "InpOcpTolUsd", "InpOcpTolRelPct",
     "InpWriteAudit", "InpWriteRejectAudit", "InpRunTimeSelfcheck",
     "InpLatencyMs", "InpLatencyTicks", "InpVerboseLog",
     "InpUseGrid", "InpUseMartingale", "InpUseTrailingWin",
@@ -243,3 +244,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

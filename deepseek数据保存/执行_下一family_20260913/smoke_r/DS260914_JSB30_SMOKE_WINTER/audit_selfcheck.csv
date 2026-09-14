@@ -1,0 +1,2 @@
+run_tag,written_deals,dup_hits,audit_failed,offset_undetermined,offset_fail_count,offset_fail_reason,trades,wins,active_positions,skip_range_notready,skip_range_toonarrow,skip_nobreak,skip_daytraded,skip_badwindow,rej_risk,rej_offset,ocp_mismatch,reason
+DS260914_JSB30_SMOKE_WINTER,13,13,0,0,0,,13,6,0,0,0,100,2176,0,0,0,0,1

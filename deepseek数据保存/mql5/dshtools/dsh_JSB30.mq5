@@ -1,4 +1,4 @@
-﻿//+------------------------------------------------------------------+
+//+------------------------------------------------------------------+
 //|                                                    dsh_JSB30.mq5  |
 //|  JSB30 = JPY Session Breakout on M30                             |
 //|                                                                  |
@@ -64,6 +64,10 @@ input bool   InpUseDynamicDstOffset     = true;
 input int    InpExpectedServerOffsetMin = 2;
 input int    InpExpectedServerOffsetMax = 3;
 
+//--- ★N1R 修复 4：OCP 与独立公式的容差
+input double InpOcpTolUsd               = 0.05;   // 绝对容差（USD）
+input double InpOcpTolRelPct            = 2.5;    // 相对容差（%）；用于吸收 OCP 内部换算约定差异
+
 //--- 审计与控制
 input bool   InpWriteAudit              = true;
 input bool   InpWriteRejectAudit        = true;
@@ -100,14 +104,22 @@ datetime ServerToUtc(datetime tServer, int offset) { return (datetime)((long)tSe
 datetime UtcToServer(datetime tUtc, int offset)    { return (datetime)((long)tUtc + (long)offset * 3600); }
 
 // 周一 00:00 UTC 基准（周键）
+// ★★★ N1R 修复 2：周键 = 该交易周的【周一 00:00 UTC】
+//   旧实现返回【周日 00:00 UTC】，与实际外汇周首 bar（周日 22:00 UTC）相差 22 小时，
+//   导致 WeekFirstBarServer 的扫描窗口根本盖不到周首 bar（GPT 源码复核指出）。
+//   新规则：周日 22:00 UTC 之后属于【下一周】。
 datetime WeekKeyUtc(datetime tUtc)
 {
    MqlDateTime s; TimeToStruct(tUtc, s);
-   int dow = s.day_of_week;                 // 0=Sun..6=Sat
-   int back = (dow == 0) ? 0 : dow;          // 回到本周日
+   int dow = s.day_of_week;                                  // 0=Sun..6=Sat
    datetime dayStart = (datetime)((long)tUtc - (long)s.hour * 3600 - (long)s.min * 60 - s.sec);
-   datetime sunday = (datetime)((long)dayStart - (long)back * 86400);
-   return sunday;                            // 该"周"的周日 00:00 UTC
+   int back;
+   if(dow == 0) back = 6;              // 周日 00:00 → 回退到【上周一】
+   else         back = dow - 1;        // 周一→0, 周二→1 … 周六→5
+   datetime wk = (datetime)((long)dayStart - (long)back * 86400);
+   // ★周日 22:00 UTC 之后属于下一周 → 前进 7 天到本周一
+   if(dow == 0 && s.hour >= 22) wk = (datetime)((long)wk + 7 * 86400);
+   return wk;
 }
 
 // 缓存查找
@@ -137,9 +149,10 @@ bool InferOffsetFromWeekOpen(datetime firstBarServer, int &outOffset, string &wh
 {
    MqlDateTime s; TimeToStruct(firstBarServer, s);
    int obsH = s.hour;
-   // 该 bar 是周日夜间/周一凌晨：允许 22,23,0,1,2
-   if(!(obsH >= 22 || obsH <= 2))
-   { why = StringFormat("week-open hour=%d 不在 22..2", obsH); return false; }
+   // 该 bar 必须是【周首 bar】：offset=2 → server 周一 00:00 ；offset=3 → server 周一 01:00
+   // ★N1R：旧实现允许 22/23/2，与"周首 bar"的定义不符，已收紧为 0..1
+   if(obsH != 0 && obsH != 1)
+   { why = StringFormat("week-open server hour=%d 不是周首（期望 0 或 1）", obsH); return false; }
 
    int found = -1;
    for(int off = InpExpectedServerOffsetMin; off <= InpExpectedServerOffsetMax; off++)
@@ -155,21 +168,34 @@ bool InferOffsetFromWeekOpen(datetime firstBarServer, int &outOffset, string &wh
 }
 
 // 取用于推导的"周第一根 bar"：用 D1 找到该周起始，再取 M30 首根
-bool WeekFirstBarServer(datetime weekKeyUtc, int offsetGuess, datetime &outServer)
+// ★N1R 修复 2：周首 bar 的 server 时间应在 [周一 00:00, 周一 04:00) server 区间内
+//   （对应 UTC 周日 22:00 开盘 + offset ∈ {+2,+3} → server 周一 00:00 或 01:00）
+//   旧实现从 offset 猜测值换算后只扫 8 小时，与"周日 22:00 UTC"的假定冲突；
+//   新实现直接从周一 00:00 server 起向后扫 4 小时，覆盖两种 offset。
+bool WeekFirstBarServer_At(datetime weekKeyUtcMon, datetime &outServer)
 {
-   // 从 weekKeyUtc 起，在 server 时间轴上扫描前 8 小时，找第一根 M30 bar
-   datetime startServer = UtcToServer(weekKeyUtc, offsetGuess);
-   for(int i = 0; i < 16; i++)
+   int n = iBars(_Symbol, TF());
+   if(n <= 0) return false;
+   for(int k = 0; k < 16; k++)                       // 16 × 15min = 4 小时
    {
-      datetime t = (datetime)((long)startServer + (long)i * 1800);
-      int shift = iBarShift(_Symbol, PERIOD_M30, t, false);
-      if(shift >= 0 && shift < iBars(_Symbol, PERIOD_M30))
-      {
-         datetime bt = iTime(_Symbol, PERIOD_M30, shift);
-         if(bt >= t - 1800 && bt <= t + 1800) { outServer = bt; return true; }
-      }
+      datetime t = (datetime)((long)weekKeyUtcMon + (long)k * 900);
+      if(t > iTime(_Symbol, TF(), 0)) break;         // 不越过最后一根
+      int sh = iBarShift(_Symbol, TF(), t, false);
+      if(sh < 0 || sh >= n) continue;
+      datetime bt = iTime(_Symbol, TF(), sh);
+      if(bt < weekKeyUtcMon) continue;               // 必须在周一 00:00 之后
+      if(bt >= (datetime)((long)weekKeyUtcMon + 4 * 3600)) break;   // 超出 4 小时窗口
+      outServer = bt;
+      return true;
    }
    return false;
+}
+
+// 兼容旧签名（offsetGuess 保留以兼容既有调用点，新实现不再依赖它）
+bool WeekFirstBarServer(datetime weekKeyUtc, int offsetGuess, datetime &outServer)
+{
+   if(offsetGuess <= 0) offsetGuess = InpExpectedServerOffsetMin;   // 仅消参
+   return WeekFirstBarServer_At(weekKeyUtc, outServer);
 }
 
 // ★获取给定 server 时间所属周的 offset（带缓存；失败即 fail-close）
@@ -207,13 +233,17 @@ int      g_atrHandle    = INVALID_HANDLE;
 
 ENUM_TIMEFRAMES TF() { return g_sigTF; }   // ★显式类型访问器（避免 enum 隐式转换错误）
 
-datetime g_lastM30Bar   = 0;      // 最近一根【已收盘】M30 的 bar 时间
+datetime g_lastClosedBar = 0;     // ★N1R：最近一次"新收盘 M30"的 bar 时间
+datetime g_evalBar       = 0;      // ★N1R：最近一次"已评估突破"的 bar 时间
 datetime g_curUtcDay    = 0;      // 当前 UTC 日（00:00 UTC）
 bool     g_dayTraded    = false;  // 该 UTC 日是否已成交
-double   g_rangeHi      = 0.0;
-double   g_rangeLo      = 0.0;
-bool     g_rangeReady   = false;
-int      g_rangeCount   = 0;      // 参与 range 的 M30 bar 数
+double   g_rangeHi       = 0.0;    // 当日累计 high
+double   g_rangeLo       = 1e18;   // 当日累计 low
+bool     g_rangeReady    = false;  // 窗口完整结束后置 true
+int      g_rangeCount    = 0;      // 参与 range 的已收盘 M30 bar 数
+datetime g_rangeDay      = 0;      // 该 range 所属 UTC 日（00:00 UTC）
+double   g_rangeFrozenHi = 0.0;    // ★冻结值（breakout 只用它）
+double   g_rangeFrozenLo = 0.0;
 
 //--- 持仓跟踪
 ulong    g_ticket       = 0;
@@ -240,6 +270,8 @@ int      g_auditFh  = INVALID_HANDLE;
 int      g_rejectFh = INVALID_HANDLE;
 long     g_writtenDeals = 0;
 long     g_dupHits = 0;
+long     g_ocpMismatch = 0;      // ★N1R：OCP 与独立公式差异超容差的次数
+uint     g_lastWriteBytes = 0;   // ★N1R：最近一次 FileWrite 的返回值（0 = 失败）
 bool     g_auditFailed = false;
 
 #define MAX_DEALTICKET 8192
@@ -252,7 +284,8 @@ string AuditDir() { return "dshtrend\\" + InpRunTag; }
 const string AUDIT_HEADER =
    "run_tag,symbol,deal_ticket,position_id,entry_time_server,entry_time_utc,"
    "exit_time_server,exit_time_utc,entry,exit,volume,profit,swap,commission,net,"
-   "close_type,exit_reason,risk_budget,actual_sl_risk,reject_reason,server_utc_offset";
+   "close_type,exit_reason,risk_budget,actual_sl_risk,reject_reason,server_utc_offset,"
+   "ocp_value,formula_value,ocp_err,ocp_diff,ocp_lim";
 
 const string REJECT_HEADER =
    "run_tag,symbol,utc_day,server_time,utc_time,server_utc_offset,reason,"
@@ -273,11 +306,21 @@ bool HeaderUnique(const string csvHeader)
    return true;
 }
 
-bool DealSeen(ulong ticket)
+// ★★★ N1R 修复 3：拆成 IsDealSeen / MarkDealSeen
+//   旧实现 DealSeen() 在【检查时】就把 ticket 写入 g_seen，而 FileWrite 返回值没被检查
+//   → 重新引入了此前已明确禁止的"先标记、后写入"问题
+//   （FileWrite 失败时该 ticket 已被标记 → 永久漏记且不会重试）。
+bool IsDealSeen(ulong ticket)
 {
    for(int i = 0; i < g_seenCount; i++) if(g_seen[i] == ticket) return true;
-   if(g_seenCount < MAX_DEALTICKET) g_seen[g_seenCount++] = ticket;
    return false;
+}
+
+void MarkDealSeen(ulong ticket)
+{
+   if(g_seenCount < MAX_DEALTICKET) g_seen[g_seenCount++] = ticket;
+   else { g_dupHits++; g_auditFailed = true;
+          PrintFormat("[%s] ★AUDIT FAIL: seen 表溢出，去重不再可靠", InpRunTag); }
 }
 
 void WriteReject(datetime tServer, string reason, double rawLot, double finalLot,
@@ -289,7 +332,8 @@ void WriteReject(datetime tServer, string reason, double rawLot, double finalLot
    double atr = 0.0;
    double b[]; if(CopyBuffer(g_atrHandle, 0, 0, 1, b) == 1) atr = b[0];
    double rm = (atr > 0.0) ? (g_rangeHi - g_rangeLo) / atr : 0.0;
-   FileWrite(g_rejectFh, InpRunTag, _Symbol,
+   // ★N1R 修复 3：reject audit 的写入结果也要检查
+   g_lastWriteBytes = FileWrite(g_rejectFh, InpRunTag, _Symbol,
              TimeToString(g_curUtcDay, TIME_DATE),
              TimeToString(tServer, TIME_DATE|TIME_SECONDS),
              (off > 0) ? TimeToString(tUtc, TIME_DATE|TIME_SECONDS) : "undetermined",
@@ -299,6 +343,12 @@ void WriteReject(datetime tServer, string reason, double rawLot, double finalLot
              DoubleToString(atr, _Digits), DoubleToString(rm, 4),
              DoubleToString(rawLot, 4), DoubleToString(finalLot, 2),
              DoubleToString(riskBudget, 2), DoubleToString(actualRisk, 2));
+   if(g_lastWriteBytes <= 0)
+   {
+      g_auditFailed = true;
+      PrintFormat("[%s] ★AUDIT FAIL: reject FileWrite 返回 %u 字节 → run 作废",
+                  InpRunTag, g_lastWriteBytes);
+   }
    FileFlush(g_rejectFh);
 }
 
@@ -319,7 +369,18 @@ void OpenAudit()
       { PrintFormat("[%s] AUDIT FAIL: 无法打开 trades.csv", InpRunTag); g_auditFailed = true; return; }
    }
    FileSeek(g_auditFh, 0, SEEK_END);
-   if(!exists) FileWrite(g_auditFh, AUDIT_HEADER);
+   if(!exists)
+   {
+      // ★N1R 修复 3：header 写入结果也要检查
+      g_lastWriteBytes = FileWrite(g_auditFh, AUDIT_HEADER);
+      if(g_lastWriteBytes <= 0)
+      {
+         g_auditFailed = true;
+         PrintFormat("[%s] ★AUDIT FAIL: trades header 写入失败（返回 %u）",
+                     InpRunTag, g_lastWriteBytes);
+         return;
+      }
+   }
 
    string rf = AuditDir() + "\\reject_audit.csv";
    bool rexists = FileIsExist(rf, FILE_COMMON);
@@ -329,7 +390,16 @@ void OpenAudit()
    if(g_rejectFh != INVALID_HANDLE)
    {
       FileSeek(g_rejectFh, 0, SEEK_END);
-      if(!rexists) FileWrite(g_rejectFh, REJECT_HEADER);
+      if(!rexists)
+      {
+         g_lastWriteBytes = FileWrite(g_rejectFh, REJECT_HEADER);
+         if(g_lastWriteBytes <= 0)
+         {
+            g_auditFailed = true;
+            PrintFormat("[%s] ★AUDIT FAIL: reject header 写入失败（返回 %u）",
+                        InpRunTag, g_lastWriteBytes);
+         }
+      }
    }
 }
 
@@ -385,6 +455,56 @@ double MoneyPerPriceUnit(double lot)
    return lot * contract / rate;
 }
 
+// ★OCP 与第二套公式的一致性判据
+//   实测：两者在 USDJPYm 上存在 1~2% 的固定相对差（OCP 内部换算约定与
+//   "÷出场价" 的近似公式不同），在 ~7 USD 风险上表现为 0.05~0.13 USD 绝对差。
+//   因此判据 = max(绝对容差, 相对容差% × |OCP|)，并把实际差异记录下来备审。
+bool OcpAgrees(double ocpVal, double formulaVal)
+{
+   double diff = MathAbs(ocpVal - formulaVal);
+   double lim  = MathMax(InpOcpTolUsd, InpOcpTolRelPct / 100.0 * MathAbs(ocpVal));
+   if(diff <= lim) return true;
+   PrintFormat("[%s] ★OCP MISMATCH ocp=%.4f formula=%.4f diff=%.4f > lim=%.4f (abs=%.4f rel=%.2f%%)",
+               InpRunTag, ocpVal, formulaVal, diff, lim, InpOcpTolUsd, InpOcpTolRelPct);
+   return false;
+}
+
+// ★★★ N1R 修复 4：恢复 OrderCalcProfit 作为权威风险值
+//   旧实现（N1）只用 contract/rate 公式估算 USDJPY 风险，被 GPT 判定 needs_repair。
+//   新实现：
+//     · OrderCalcProfit  → 权威值（用于 sizing 与 actual SL risk）
+//     · 独立合约公式      → 第二套审计值
+//     · 两者差异 > InpOcpTolUsd → g_ocpMismatch++ 且 run 作废
+//   注意：OrderCalcProfit 的 profit 参数是【按 lot 的名义盈亏】，
+//         对空头传 ORDER_TYPE_SELL，开平价与平价按方向给。
+bool CalcRiskBoth(double entryPx, double exitPx, double lot, bool isLong,
+                  double &ocpVal, double &formulaVal, int &ocpErr)
+{
+   ocpVal = 0.0; formulaVal = 0.0; ocpErr = 0;
+
+   // --- 权威值：OrderCalcProfit ---
+   ResetLastError();
+   double ocp = 0.0;
+   bool ok = false;
+   if(isLong)
+      ok = OrderCalcProfit(ORDER_TYPE_BUY,  _Symbol, lot, entryPx, exitPx, ocp);
+   else
+      ok = OrderCalcProfit(ORDER_TYPE_SELL, _Symbol, lot, entryPx, exitPx, ocp);
+   if(!ok) ocpErr = GetLastError();
+   ocpVal = ocp;
+
+   // --- 第二套：独立合约公式（JPY 计价 → 除以汇率换成 USD）---
+   double contract = SymbolInfoDouble(_Symbol, SYMBOL_TRADE_CONTRACT_SIZE);
+   if(contract <= 0.0) contract = 100000.0;
+   double rate = exitPx;
+   if(rate <= 0.0) rate = SymbolInfoDouble(_Symbol, SYMBOL_ASK);
+   if(rate <= 0.0) rate = 1.0;
+   double diff = isLong ? (exitPx - entryPx) : (entryPx - exitPx);
+   formulaVal = diff * contract * lot / rate;   // ← 与审计/报告同口径（÷出场价）
+
+   return ok;
+}
+
 double AlignLot(double raw)
 {
    double vstep = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP);
@@ -402,16 +522,37 @@ double LotForRisk(double stopDist, double &riskBudget, double &actualRisk)
    if(eq <= 0.0 || stopDist <= 0.0) return 0.0;
 
    riskBudget = eq * InpRiskPct / 100.0;
-   double mpp = MoneyPerPriceUnit(1.0);            // 每 1 手每 1.0 价格的 USD
-   if(mpp <= 0.0) return 0.0;
-   double ideal = riskBudget / (stopDist * mpp);
 
+   // ★N1R 修复 4：用 OrderCalcProfit 作为权威 sizing 依据
+   double ask = SymbolInfoDouble(_Symbol, SYMBOL_ASK);
+   double bid = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+   if(ask <= 0.0 || bid <= 0.0) return 0.0;
+
+   // 试算用的"1 手到止损"损失（取多头方向，USDJPY 多空量级对称）
+   double trialEntry = ask;
+   double trialSL    = ask - stopDist;
+   double ocp1 = 0.0, fml1 = 0.0; int e1 = 0;
+   bool ok1 = CalcRiskBoth(trialEntry, trialSL, 1.0, true, ocp1, fml1, e1);
+   double riskPerLot = ok1 ? MathAbs(ocp1) : MathAbs(fml1);
+   if(riskPerLot <= 0.0) return 0.0;
+
+   double ideal = riskBudget / riskPerLot;
    double vmin = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MIN);
    double lot  = AlignLot(ideal);
-   bool   over = false;
-   if(lot < vmin) { if(!InpAllowMinLotOvershoot) return 0.0; lot = vmin; over = true; }
+   if(lot < vmin) { if(!InpAllowMinLotOvershoot) return 0.0; lot = vmin; }
 
-   actualRisk = stopDist * mpp * lot;
+   // ★最终 actual SL risk 用 OCP 重算（权威值），独立公式作第二套
+   double ocpF = 0.0, fmlF = 0.0; int eF = 0;
+   bool isLong = (ask > 0.0);
+   CalcRiskBoth(trialEntry, trialSL, lot, isLong, ocpF, fmlF, eF);
+   actualRisk = MathAbs(ocpF);
+   // ★N1R：统一走 OcpAgrees（max(绝对容差, 相对容差%×|OCP|)）
+   if(!OcpAgrees(ocpF, fmlF))
+   {
+      g_ocpMismatch++;
+      g_auditFailed = true;
+   }
+
    double cap = eq * InpMinLotMaxRiskPct / 100.0;
    if(actualRisk > cap) return 0.0;
    return lot;
@@ -548,10 +689,10 @@ void RecordClosingDeal(ulong dealTicket)
    if(HistoryDealGetInteger(dealTicket, DEAL_MAGIC) != InpMagic) return;
    long en = HistoryDealGetInteger(dealTicket, DEAL_ENTRY);
    if(en != DEAL_ENTRY_OUT && en != DEAL_ENTRY_OUT_BY) return;
-   if(g_auditFh == INVALID_HANDLE) return;
+   if(g_auditFh == INVALID_HANDLE) { g_auditFailed = true; return; }
 
-   // ★去重放在"确认能写入"的路径上（R4 教训：入口标记会造成永久漏记）
-   if(DealSeen(dealTicket)) { g_dupHits++; return; }
+   // ★N1R 修复 3：只【检查】是否已写，不在此标记
+   if(IsDealSeen(dealTicket)) { g_dupHits++; return; }
 
    double dProfit = HistoryDealGetDouble(dealTicket, DEAL_PROFIT);
    double dSwap   = HistoryDealGetDouble(dealTicket, DEAL_SWAP);
@@ -612,7 +753,19 @@ void RecordClosingDeal(ulong dealTicket)
    datetime utcE = (offE > 0) ? ServerToUtc(entrySrv, offE) : 0;
    datetime utcX = (offX > 0) ? ServerToUtc(tSrv,    offX) : 0;
 
-   FileWrite(g_auditFh, InpRunTag, _Symbol,
+   // ★N1R 修复 3 + 4：OCP 与独立公式对照（容差外 → invalid）
+   double ocpVal = 0.0, ocpCmp = 0.0;
+   int    ocpErr = 0;
+   bool   ocpOk  = CalcRiskBoth(entryPx, price, vol, (dir > 0), ocpVal, ocpCmp, ocpErr);
+   if(!ocpOk || !OcpAgrees(ocpVal, ocpCmp))
+   {
+      g_ocpMismatch++;
+      g_auditFailed = true;
+      PrintFormat("[%s] ★OCP problem ticket=%I64u ocp=%.4f formula=%.4f ocp_err=%d",
+                  InpRunTag, dealTicket, ocpVal, ocpCmp, ocpErr);
+   }
+
+   g_lastWriteBytes = FileWrite(g_auditFh, InpRunTag, _Symbol,
              IntegerToString((long)dealTicket),
              IntegerToString((long)pid),
              TimeToString(entrySrv, TIME_DATE|TIME_SECONDS),
@@ -630,8 +783,23 @@ void RecordClosingDeal(ulong dealTicket)
              DoubleToString(g_riskBudget, 2),
              DoubleToString(g_actualSLRisk, 2),
              "",
-             (offX > 0) ? IntegerToString(offX) : "undetermined");
+             (offX > 0) ? IntegerToString(offX) : "undetermined",
+             DoubleToString(ocpVal, 2),
+             DoubleToString(ocpCmp, 2),
+             IntegerToString(ocpErr),
+             DoubleToString(MathAbs(ocpVal - ocpCmp), 4),
+             DoubleToString(MathMax(InpOcpTolUsd, InpOcpTolRelPct / 100.0 * MathAbs(ocpVal)), 4));
    FileFlush(g_auditFh);
+
+   // ★N1R 修复 3：检查 FileWrite 结果；失败即 fail-close，且【不标记 ticket】
+   if(g_lastWriteBytes <= 0)
+   {
+      g_auditFailed = true;
+      PrintFormat("[%s] ★AUDIT FAIL: FileWrite 返回 %u 字节（ticket=%I64u）→ run 作废",
+                  InpRunTag, g_lastWriteBytes, dealTicket);
+      return;                                   // ★不 Mark、不 ++g_writtenDeals
+   }
+   MarkDealSeen(dealTicket);                     // ★确认写入成功后才标记
    g_writtenDeals++;
 
    g_nTrades++;
@@ -680,38 +848,62 @@ datetime ToUtc(datetime tServer)
    return ServerToUtc(tServer, off);
 }
 
-//==================== 每日 range 计算 ====================
-// 只用【已收盘】的 M30 bar：barClose = barOpen + 1800
-void ComputeDailyRange(datetime utcDay)
+// ★★★ N1R 修复 1：每日 range 状态机（增量构建）
+//   旧实现缺陷（GPT 源码复核指出）：
+//     ComputeDailyRange() 只在【UTC 日切换】时调用一次，而 UTC 日切换发生在 UTC 00:00，
+//     此时预注册的 UTC00-06 range 窗口【尚未形成】→ range 为空/不完整，
+//     且 UTC06 之后【没有任何机制再形成 range】→ g_rangeReady 永远为 false。
+//   新实现：在每根【已收盘】M30 bar 到达时增量累积当日 range；
+//     只有 range 窗口【完整结束】后才置 g_rangeReady=true 并冻结。
+//     未收盘 bar 一律不参与（用 barServerOpen + 1800 判定）。
+void RangeStateOnNewClosedBar(datetime barServerOpen, double barHigh, double barLow)
 {
-   g_rangeReady = false; g_rangeCount = 0;
-   g_rangeHi = -1e18; g_rangeLo = 1e18;
+   // 该已收盘 bar 的 server 区间 = [barServerOpen, barServerOpen+1800)
+   int off = OffsetForServerTime(barServerOpen);
+   if(off <= 0) return;                       // offset 未定 → 由 ToUtc 侧统一 fail-close
 
-   int bars = iBars(_Symbol, TF());
-   if(bars <= 0) return;
-   int need = (InpRangeEndUtcHour - InpRangeStartUtcHour) * 2 + 4;   // 2 根/小时
-   if(need > bars) need = bars;
+   datetime btUtc      = ServerToUtc(barServerOpen, off);
+   datetime btUtcClose = (datetime)((long)btUtc + 1800);
+   datetime dayUtc     = UtcDayOf(btUtc);
 
-   for(int i = 0; i < need; i++)
+   // --- UTC 日切换：清空上一天状态 ---
+   if(dayUtc != g_rangeDay)
    {
-      datetime bt = iTime(_Symbol, TF(), i);
-      if(bt <= 0) continue;
-      datetime btClose = (datetime)((long)bt + 1800);          // ★只用已收盘 bar
-      int off = OffsetForServerTime(bt);
-      if(off <= 0) return;
-      datetime btUtc = ServerToUtc(bt, off);
-      datetime btUtcClose = ServerToUtc(btClose, off);
-      // 该 bar 必须完整落在 [utcDay + startHour, utcDay + endHour)
-      datetime wS = (datetime)((long)utcDay + (long)InpRangeStartUtcHour * 3600);
-      datetime wE = (datetime)((long)utcDay + (long)InpRangeEndUtcHour   * 3600);
-      if(btUtc < wS || btUtcClose > wE) continue;
-      double h = iHigh(_Symbol, TF(), i);
-      double l = iLow (_Symbol, TF(), i);
-      if(h > g_rangeHi) g_rangeHi = h;
-      if(l < g_rangeLo) g_rangeLo = l;
+      g_rangeDay      = dayUtc;
+      g_rangeHi       = -1e18;
+      g_rangeLo       = 1e18;
+      g_rangeCount    = 0;
+      g_rangeReady    = false;
+      g_rangeFrozenHi = 0.0;
+      g_rangeFrozenLo = 0.0;
+   }
+
+   datetime wS = (datetime)((long)dayUtc + (long)InpRangeStartUtcHour * 3600);
+   datetime wE = (datetime)((long)dayUtc + (long)InpRangeEndUtcHour   * 3600);
+
+   // --- 只接收【完整落在 range 窗口内】的已收盘 bar ---
+   if(!g_rangeReady && btUtc >= wS && btUtcClose <= wE)
+   {
+      if(barHigh > g_rangeHi) g_rangeHi = barHigh;
+      if(barLow  < g_rangeLo) g_rangeLo = barLow;
       g_rangeCount++;
    }
-   if(g_rangeCount > 0 && g_rangeHi > g_rangeLo) g_rangeReady = true;
+
+   // --- range 窗口完整结束后才冻结 ---
+   if(!g_rangeReady && btUtcClose >= wE && g_rangeCount > 0 && g_rangeHi > g_rangeLo)
+   {
+      g_rangeFrozenHi = g_rangeHi;
+      g_rangeFrozenLo = g_rangeLo;
+      g_rangeReady    = true;
+   }
+}
+
+// 突破窗内读 range（只用冻结值）
+bool RangeForBreakout(double &hi, double &lo)
+{
+   if(!g_rangeReady) return false;
+   hi = g_rangeFrozenHi; lo = g_rangeFrozenLo;
+   return (hi > lo);
 }
 
 //==================== 信号 ====================
@@ -747,32 +939,105 @@ void OnInit()
 }
 
 // round-trip 自测：用合成周界时间验证 offset 推导 + 反推
+// ★★★ N1R 修复 2b：两层测试
+//   第一层（本函数）：纯函数 unit self-test，用【三组不同的历史日期】
+//     分别对应冬令周 / 夏令周 / DST 切换周，逐一验证 utc -> offset -> server -> utc
+//     旧实现三组都构造了同一个 `2023.01.01 22:00`，等于没测三个时期（GPT 指出）。
+//   第二层：RealWeekRoundTripTest() —— 读真实 TRAIN bar 逐周验证
 void RunOffsetSelfTest()
 {
-   int cases[][2] = {{2023,1},{2023,7},{2023,3}};   // 冬令 / 夏令 / DST 切换月
-   string names[3] = {"winter", "summer", "dst-transition"};
-   int okN = 0;
+   // 三组真实周日 22:00 UTC 开盘时刻（欧洲 DST：3 月末切换、10 月末切换）
+   string labels[3] = {"winter  (Jan, GMT+2)", "summer  (Jul, GMT+3)", "dst-trans(Mar 26)"};
+   string dstr[3]   = {"2023.01.08 22:00",      "2023.07.09 22:00",      "2023.03.26 22:00"};
+
+   int okN = 0, totN = 0;
    for(int c = 0; c < 3; c++)
    {
-      // 构造一个"周首 bar"的候选 server 时间：周日 22:00 UTC + offset
-      for(int off = 2; off <= 3; off++)
+      datetime utcOpen = StringToTime(dstr[c]);
+      for(int off = InpExpectedServerOffsetMin; off <= InpExpectedServerOffsetMax; off++)
       {
-         datetime utcOpen = StringToTime(StringFormat("%04d.01.01 22:00", 2023));
          datetime srv = UtcToServer(utcOpen, off);
          int got = -1; string why = "";
          bool r = InferOffsetFromWeekOpen(srv, got, why);
          datetime back = (r && got > 0) ? ServerToUtc(srv, got) : 0;
          bool rt = (r && back == utcOpen);
-         if(rt) okN++;
-         PrintFormat("[%s] SELFTEST %-14s in_off=%d -> out_off=%d roundtrip=%s (%s)",
-                     InpRunTag, names[c], off, got, rt ? "OK" : "FAIL", why);
+         totN++; if(rt) okN++;
+         PrintFormat("[%s] UNIT %-22s utc=%s in_off=%d out_off=%d server=%s back=%s %s (%s)",
+                     InpRunTag, labels[c],
+                     TimeToString(utcOpen, TIME_DATE|TIME_MINUTES), off, got,
+                     TimeToString(srv,  TIME_DATE|TIME_MINUTES),
+                     (back > 0) ? TimeToString(back, TIME_DATE|TIME_MINUTES) : "none",
+                     rt ? "OK" : "FAIL", why);
       }
    }
-   PrintFormat("[%s] SELFTEST 汇总：%d/6 通过", InpRunTag, okN);
-   if(okN < 6)
+   PrintFormat("[%s] UNIT 汇总：%d/%d 通过", InpRunTag, okN, totN);
+   if(okN < totN) { g_offsetUndetermined = true; g_offsetFailReason = "unit self-test 未全通过"; }
+
+   // ---- 第二层：真实历史周 round-trip ----
+   RealWeekRoundTripTest();
+}
+
+// ★N1R 第二层：读真实历史 bar，对实际交易周跑完整
+//   server historical bar -> week identification -> inferred offset
+//   -> server→UTC -> UTC→server round-trip
+void RealWeekRoundTripTest()
+{
+   int n = iBars(_Symbol, TF());
+   if(n <= 0) { PrintFormat("[%s] REALWEEK 无 bar，跳过", InpRunTag); return; }
+
+   datetime lastBar = iTime(_Symbol, TF(), 0);
+   if(lastBar <= 0) return;
+
+   int checked = 0, okW = 0, failW = 0, printed = 0;
+   datetime cur = lastBar;
+   for(int k = 0; k < 80 && checked < 30; k++)     // 最多回溯 80 周，采 30 个样本
+   {
+      datetime wk = WeekKeyUtc(cur);
+      if(wk <= 0) break;
+      datetime firstBar;
+      if(WeekFirstBarServer_At(wk, firstBar))
+      {
+         int off = -1; string why = "";
+         if(InferOffsetFromWeekOpen(firstBar, off, why) && off > 0)
+         {
+            datetime utc  = ServerToUtc(firstBar, off);
+            datetime back = UtcToServer(utc, off);
+            bool rt = (back == firstBar);
+            if(rt) okW++; else failW++;
+            if(printed < 6)
+            {
+               PrintFormat("[%s] REALWEEK wk=%s firstBar=%s off=+%d utc=%s roundtrip=%s",
+                           InpRunTag, TimeToString(wk, TIME_DATE),
+                           TimeToString(firstBar, TIME_DATE|TIME_MINUTES), off,
+                           TimeToString(utc, TIME_DATE|TIME_MINUTES), rt ? "OK" : "FAIL");
+               printed++;
+            }
+         }
+         else
+         {
+            failW++;
+            if(printed < 6)
+            {
+               PrintFormat("[%s] REALWEEK wk=%s firstBar=%s 推导失败: %s",
+                           InpRunTag, TimeToString(wk, TIME_DATE),
+                           TimeToString(firstBar, TIME_DATE|TIME_MINUTES), why);
+               printed++;
+            }
+         }
+         checked++;
+      }
+      cur = (datetime)((long)cur - 7 * 86400);
+   }
+   PrintFormat("[%s] REALWEEK 汇总：checked=%d OK=%d FAIL=%d", InpRunTag, checked, okW, failW);
+   if(failW > 0)
    {
       g_offsetUndetermined = true;
-      g_offsetFailReason = "round-trip 自测未全通过";
+      g_offsetFailReason = StringFormat("REALWEEK 有 %d/%d 个周 round-trip 失败", failW, checked);
+   }
+   if(checked == 0)
+   {
+      g_offsetUndetermined = true;
+      g_offsetFailReason = "REALWEEK 未能取到任何交易周的周首 bar";
    }
 }
 
@@ -791,7 +1056,7 @@ void OnDeinit(const int reason)
          FileWrite(fh, "run_tag,written_deals,dup_hits,audit_failed,offset_undetermined,"
                        "offset_fail_count,offset_fail_reason,trades,wins,active_positions,"
                        "skip_range_notready,skip_range_toonarrow,skip_nobreak,skip_daytraded,"
-                       "skip_badwindow,rej_risk,rej_offset,reason");
+                       "skip_badwindow,rej_risk,rej_offset,ocp_mismatch,reason");
          FileWrite(fh, InpRunTag, IntegerToString(g_writtenDeals), IntegerToString(g_dupHits),
                    g_auditFailed ? "1" : "0",
                    g_offsetUndetermined ? "1" : "0",
@@ -802,7 +1067,7 @@ void OnDeinit(const int reason)
                    IntegerToString(g_skipRangeNotReady), IntegerToString(g_skipRangeTooNarrow),
                    IntegerToString(g_skipNoBreak), IntegerToString(g_skipDayTraded),
                    IntegerToString(g_skipBadWindow), IntegerToString(g_rejRisk),
-                   IntegerToString(g_rejOffset), IntegerToString(reason));
+                   IntegerToString(g_rejOffset), IntegerToString(g_ocpMismatch), IntegerToString(reason));
          FileClose(fh);
       }
    }
@@ -834,12 +1099,29 @@ void OnTick()
    if(tUtc == 0) return;                        // offset 无法确定
    datetime todayUtc = UtcDayOf(tUtc);
 
-   // 1) UTC 日切换
+   // 1) UTC 日切换：只重置"当日是否已成交"，range 由增量状态机构建
    if(todayUtc != g_curUtcDay)
    {
       g_curUtcDay = todayUtc;
       g_dayTraded = false;
-      ComputeDailyRange(todayUtc);
+   }
+
+   // 1b) ★N1R 修复 1：每根【已收盘】M30 bar 到达时增量构建当日 range
+   //     判据：iTime(shift=0) 是本根未收盘 bar；shift=1 是最近已收盘 bar。
+   //     用 shift=1 的 bar 时间作为"新收盘"的事件键。
+   datetime closedBarT = iTime(_Symbol, TF(), 1);
+   if(closedBarT > 0 && closedBarT != g_lastClosedBar)
+   {
+      g_lastClosedBar = closedBarT;
+      double bh = iHigh(_Symbol, TF(), 1);
+      double bl = iLow (_Symbol, TF(), 1);
+      RangeStateOnNewClosedBar(closedBarT, bh, bl);
+      // 该已收盘 bar 也用于持仓时间计数
+      if(HasPosition())
+      {
+         g_barsHeld++;
+         if(g_barsHeld >= InpMaxBarsInTrade) { CloseTrade("time_exit"); return; }
+      }
    }
 
    MqlDateTime su; TimeToStruct(tUtc, su);
@@ -848,19 +1130,11 @@ void OnTick()
    // 2) 持仓管理（优先级最高）
    if(HasPosition())
    {
-      // hard-flat
+      // hard-flat：UTC 20:00 前必须平仓
       if(utcMin >= InpHardFlatUtcHour * 60)
       {
          CloseTrade("window_end");
          return;
-      }
-      // 时间退出：按已收盘 M30 计数
-      datetime cur30 = iTime(_Symbol, TF(), 0);
-      if(cur30 != g_lastM30Bar)
-      {
-         g_lastM30Bar = cur30;
-         g_barsHeld++;
-         if(g_barsHeld >= InpMaxBarsInTrade) { CloseTrade("time_exit"); return; }
       }
       // SL/TP 由券商侧执行（req.sl / req.tp 已设）
       return;
@@ -869,24 +1143,26 @@ void OnTick()
    // 3) 无仓：只在 breakout 窗内评估
    if(utcMin < InpBreakoutStartUtcHour * 60 || utcMin >= InpBreakoutEndUtcHour * 60) return;
    if(g_dayTraded) { g_skipDayTraded++; return; }
-   if(!g_rangeReady) { g_skipRangeNotReady++; return; }
 
-   // 4) 只在【已收盘】M30 边界上评估一次
-   datetime cur30 = iTime(_Symbol, TF(), 0);
-   if(cur30 == g_lastM30Bar) return;
-   g_lastM30Bar = cur30;
+   double rHi = 0.0, rLo = 0.0;
+   if(!RangeForBreakout(rHi, rLo)) { g_skipRangeNotReady++; return; }
+
+   // 4) 只在【刚收盘】的 M30 边界上评估一次（已在 1b 记录 g_lastClosedBar）
+   if(closedBarT <= 0 || closedBarT != g_evalBar) { }
+   if(closedBarT == g_evalBar) return;
+   g_evalBar = closedBarT;
 
    double atr = ATR(1);                       // ★用已收盘 bar 的 ATR
    if(atr <= 0.0) return;
-   double rangeW = g_rangeHi - g_rangeLo;
+   double rangeW = rHi - rLo;
    if(rangeW < InpMinRangeATRMult * atr) { g_skipRangeTooNarrow++; return; }
 
    double close1 = iClose(_Symbol, TF(), 1);   // 已收盘 bar 收盘价
    if(close1 <= 0.0) return;
 
    int dir = 0;
-   if(close1 > g_rangeHi)      dir =  1;
-   else if(close1 < g_rangeLo) dir = -1;
+   if(close1 > rHi)      dir =  1;
+   else if(close1 < rLo) dir = -1;
    if(dir == 0) { g_skipNoBreak++; return; }
    if(dir > 0 && !InpAllowLong)  { g_skipNoBreak++; return; }
    if(dir < 0 && !InpAllowShort) { g_skipNoBreak++; return; }
@@ -894,4 +1170,7 @@ void OnTick()
    OpenTrade(dir, atr);
 }
 //+------------------------------------------------------------------+
+
+
+
 

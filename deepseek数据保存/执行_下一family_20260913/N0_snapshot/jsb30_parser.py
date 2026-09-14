@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 JSB30 审计解析器（下游）
@@ -25,6 +25,8 @@ EXPECTED_TRADES_COLS = [
     "entry", "exit", "volume", "profit", "swap", "commission", "net",
     "close_type", "exit_reason", "risk_budget", "actual_sl_risk",
     "reject_reason", "server_utc_offset",
+    # ★N1R 新增：OrderCalcProfit 与独立合约公式的对照列
+    "ocp_value", "formula_value", "ocp_err", "ocp_diff", "ocp_lim",
 ]
 EXPECTED_REJECT_COLS = [
     "run_tag", "symbol", "utc_day", "server_time", "utc_time", "server_utc_offset",
@@ -110,3 +112,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
