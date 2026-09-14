@@ -17,9 +17,17 @@
 
 | Window | trades | time_exit | max full-held bars | checker |
 |---|---:|---:|---:|---|
-| WINTER | 12 | 1 | 12 | 25/25 PASS |
-| DSTTR | 10 | 0 | 5 | 25/25 PASS |
-| SUMMER | 15 | 1 | 12 | 25/25 PASS |
+| WINTER | 12 | 1 | 12 | 24/24 PASS |
+| DSTTR | 10 | 0 | 5 | 24/24 PASS |
+| SUMMER | 15 | 1 | 12 | 24/24 PASS |
+
+## Diagnostic-only fields
+
+| Window | duplicate_attempts_blocked |
+|---|---|
+| WINTER | dup_hits=12; recorded from audit_selfcheck.csv; excluded from PASS/FAIL checks |
+| DSTTR | dup_hits=10; recorded from audit_selfcheck.csv; excluded from PASS/FAIL checks |
+| SUMMER | dup_hits=15; recorded from audit_selfcheck.csv; excluded from PASS/FAIL checks |
 
 ## Independent time-exit evidence
 
@@ -70,7 +78,6 @@
 | 非 time_exit 持仓未超 12 根 | PASS | 越界=无 |
 | unique_deal_ticket_rows == audit_rows | PASS | 12/12 |
 | duplicate_written_rows == 0 | PASS | 重复=0 |
-| duplicate_attempts_blocked（仅 diagnostic） | PASS | dup_hits=12 |
 | 每 UTC day <= 1 笔 | PASS | 违反=无 |
 | 全部成交 alignment_exact=1 | PASS | 异常=0 |
 | cross_asset_missing_bar 的 xau_bar_time 为空 | PASS | 拒单=14, stale=0 |
@@ -100,7 +107,6 @@
 | 非 time_exit 持仓未超 12 根 | PASS | 越界=无 |
 | unique_deal_ticket_rows == audit_rows | PASS | 10/10 |
 | duplicate_written_rows == 0 | PASS | 重复=0 |
-| duplicate_attempts_blocked（仅 diagnostic） | PASS | dup_hits=10 |
 | 每 UTC day <= 1 笔 | PASS | 违反=无 |
 | 全部成交 alignment_exact=1 | PASS | 异常=0 |
 | cross_asset_missing_bar 的 xau_bar_time 为空 | PASS | 拒单=0, stale=0 |
@@ -130,7 +136,6 @@
 | 非 time_exit 持仓未超 12 根 | PASS | 越界=无 |
 | unique_deal_ticket_rows == audit_rows | PASS | 15/15 |
 | duplicate_written_rows == 0 | PASS | 重复=0 |
-| duplicate_attempts_blocked（仅 diagnostic） | PASS | dup_hits=15 |
 | 每 UTC day <= 1 笔 | PASS | 违反=无 |
 | 全部成交 alignment_exact=1 | PASS | 异常=0 |
 | cross_asset_missing_bar 的 xau_bar_time 为空 | PASS | 拒单=1, stale=0 |

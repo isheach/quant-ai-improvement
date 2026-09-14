@@ -226,7 +226,13 @@ def window_report(
     tickets = [row.get("deal_ticket", "") for row in rows]
     checks.append(check("unique_deal_ticket_rows == audit_rows", len(set(tickets)) == len(tickets), f"{len(set(tickets))}/{len(tickets)}"))
     checks.append(check("duplicate_written_rows == 0", len(set(tickets)) == len(tickets), f"重复={len(tickets) - len(set(tickets))}"))
-    checks.append(check("duplicate_attempts_blocked（仅 diagnostic）", True, f"dup_hits={selfcheck.get('dup_hits', '?')}"))
+    diagnostics = {
+        "duplicate_attempts_blocked": {
+            "dup_hits": selfcheck.get("dup_hits", "?"),
+            "recorded_from": "audit_selfcheck.csv",
+            "status": "diagnostic_only",
+        }
+    }
 
     by_day: dict[str, int] = {}
     for row in rows:
@@ -276,6 +282,7 @@ def window_report(
         "time_exit_count": len(time_exit_rows),
         "max_full_held_bars": max((row["full_held_bars"] for row in held_rows), default=0),
         "checks": checks,
+        "diagnostics": diagnostics,
         "held_bar_rows": held_rows,
         "html": {key: str(value) for key, value in html.items()},
     }
@@ -357,6 +364,13 @@ def write_report(raw: dict[str, object], windows: list[dict[str, object]]) -> No
             f"| {item['window']} | {item['trade_rows']} | {item['time_exit_count']} | "
             f"{item['max_full_held_bars']} | {sum(1 for c in item['checks'] if c['ok'])}/{len(item['checks'])} "
             f"{'PASS' if item_ok else 'FAIL'} |"
+        )
+    lines += ["", "## Diagnostic-only fields", "", "| Window | duplicate_attempts_blocked |", "|---|---|"]
+    for item in windows:
+        diagnostic = item.get("diagnostics", {}).get("duplicate_attempts_blocked", {})
+        lines.append(
+            f"| {item['window']} | dup_hits={diagnostic.get('dup_hits', '?')}; "
+            "recorded from audit_selfcheck.csv; excluded from PASS/FAIL checks |"
         )
     lines += ["", "## Independent time-exit evidence", ""]
     for row in time_exits:

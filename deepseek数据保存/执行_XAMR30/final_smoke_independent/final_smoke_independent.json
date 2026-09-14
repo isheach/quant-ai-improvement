@@ -100,11 +100,6 @@
           "detail": "重复=0"
         },
         {
-          "name": "duplicate_attempts_blocked（仅 diagnostic）",
-          "ok": true,
-          "detail": "dup_hits=12"
-        },
-        {
           "name": "每 UTC day <= 1 笔",
           "ok": true,
           "detail": "违反=无"
@@ -150,6 +145,13 @@
           "detail": "audit=-3.76, html=-3.76"
         }
       ],
+      "diagnostics": {
+        "duplicate_attempts_blocked": {
+          "dup_hits": "12",
+          "recorded_from": "audit_selfcheck.csv",
+          "status": "diagnostic_only"
+        }
+      },
       "held_bar_rows": [
         {
           "window": "WINTER",
@@ -454,11 +456,6 @@
           "detail": "重复=0"
         },
         {
-          "name": "duplicate_attempts_blocked（仅 diagnostic）",
-          "ok": true,
-          "detail": "dup_hits=10"
-        },
-        {
           "name": "每 UTC day <= 1 笔",
           "ok": true,
           "detail": "违反=无"
@@ -504,6 +501,13 @@
           "detail": "audit=-21.26, html=-21.26"
         }
       ],
+      "diagnostics": {
+        "duplicate_attempts_blocked": {
+          "dup_hits": "10",
+          "recorded_from": "audit_selfcheck.csv",
+          "status": "diagnostic_only"
+        }
+      },
       "held_bar_rows": [
         {
           "window": "DSTTR",
@@ -775,11 +779,6 @@
           "detail": "重复=0"
         },
         {
-          "name": "duplicate_attempts_blocked（仅 diagnostic）",
-          "ok": true,
-          "detail": "dup_hits=15"
-        },
-        {
           "name": "每 UTC day <= 1 笔",
           "ok": true,
           "detail": "违反=无"
@@ -825,6 +824,13 @@
           "detail": "audit=-25.26, html=-25.26"
         }
       ],
+      "diagnostics": {
+        "duplicate_attempts_blocked": {
+          "dup_hits": "15",
+          "recorded_from": "audit_selfcheck.csv",
+          "status": "diagnostic_only"
+        }
+      },
       "held_bar_rows": [
         {
           "window": "SUMMER",
@@ -1137,8 +1143,8 @@
       }
     ],
     "checks": {
-      "passed": 75,
-      "total": 75
+      "passed": 72,
+      "total": 72
     }
   }
 }
