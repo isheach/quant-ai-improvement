@@ -1,0 +1,1144 @@
+{
+  "FINAL_SMOKE_INDEPENDENT": "PASS",
+  "raw_identity": {
+    "manifest_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\doublecalc_raw_manifest.json",
+    "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_USDJPYm_M30.csv",
+    "expected_sha256": "B42DDBCA49C69DD2E23D8F5D22FFD53BAC6CBE452F095EECC7BD5DC458E05F47",
+    "expected_first": "2022.01.02 22:00:00",
+    "expected_last": "2023.08.01 23:30:00",
+    "expected_bar_count": 19778,
+    "manifest_sha256_matches_planner": true,
+    "exists": true,
+    "actual_sha256": "B42DDBCA49C69DD2E23D8F5D22FFD53BAC6CBE452F095EECC7BD5DC458E05F47",
+    "actual_first": "2022.01.02 22:00:00",
+    "actual_last": "2023.08.01 23:30:00",
+    "actual_bar_count": 19778,
+    "status": "PASS"
+  },
+  "windows": [
+    {
+      "window": "WINTER",
+      "directory": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\smoke\\DS260914_XAMR30_SMOKE_WINTER",
+      "trade_rows": 12,
+      "reject_rows": 115,
+      "time_exit_count": 1,
+      "max_full_held_bars": 12,
+      "checks": [
+        {
+          "name": "Bars>0",
+          "ok": true,
+          "detail": "Bars=29797"
+        },
+        {
+          "name": "Deposit=500",
+          "ok": true,
+          "detail": "500.00"
+        },
+        {
+          "name": "Symbol=USDJPYm",
+          "ok": true,
+          "detail": "USDJPYm"
+        },
+        {
+          "name": "HTML trades == 审计行数",
+          "ok": true,
+          "detail": "HTML=12 审计=12"
+        },
+        {
+          "name": "实际产生 closing deals",
+          "ok": true,
+          "detail": "expected=12, actual=12"
+        },
+        {
+          "name": "fatal=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "audit_failed=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "active_positions=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "入场时序 entry_bar = signal_bar+30min",
+          "ok": true,
+          "detail": "抽查=12, 违规=无"
+        },
+        {
+          "name": "入场时序 entry_time >= signal_close",
+          "ok": true,
+          "detail": "违规=无"
+        },
+        {
+          "name": "时序抽查（本窗口）",
+          "ok": true,
+          "detail": "12/12"
+        },
+        {
+          "name": "time_exit exactly 12 real M30 bars",
+          "ok": true,
+          "detail": "time_exit=1, bad=无"
+        },
+        {
+          "name": "非 time_exit 持仓未超 12 根",
+          "ok": true,
+          "detail": "越界=无"
+        },
+        {
+          "name": "unique_deal_ticket_rows == audit_rows",
+          "ok": true,
+          "detail": "12/12"
+        },
+        {
+          "name": "duplicate_written_rows == 0",
+          "ok": true,
+          "detail": "重复=0"
+        },
+        {
+          "name": "duplicate_attempts_blocked（仅 diagnostic）",
+          "ok": true,
+          "detail": "dup_hits=12"
+        },
+        {
+          "name": "每 UTC day <= 1 笔",
+          "ok": true,
+          "detail": "违反=无"
+        },
+        {
+          "name": "全部成交 alignment_exact=1",
+          "ok": true,
+          "detail": "异常=0"
+        },
+        {
+          "name": "cross_asset_missing_bar 的 xau_bar_time 为空",
+          "ok": true,
+          "detail": "拒单=14, stale=0"
+        },
+        {
+          "name": "atr_out_of_regime 的 xau 值为空",
+          "ok": true,
+          "detail": "拒单=74, stale=0"
+        },
+        {
+          "name": "DEAL_PROFIT↔OCP<=0.05",
+          "ok": true,
+          "detail": "超容差=无"
+        },
+        {
+          "name": "spread / SL / TP 字段齐备",
+          "ok": true,
+          "detail": "same frozen audit schema"
+        },
+        {
+          "name": "median spread/SL <= 30%",
+          "ok": true,
+          "detail": "median=0.0449"
+        },
+        {
+          "name": "median spread/TP <= 30%",
+          "ok": true,
+          "detail": "median=0.0562"
+        },
+        {
+          "name": "HTML净利 == 审计净利",
+          "ok": true,
+          "detail": "audit=-3.76, html=-3.76"
+        }
+      ],
+      "held_bar_rows": [
+        {
+          "window": "WINTER",
+          "deal_ticket": "3",
+          "position_id": "2",
+          "entry_time": "2023.01.03 01:00:00",
+          "exit_time": "2023.01.03 01:13:40",
+          "exit_reason": "sl",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "5",
+          "position_id": "4",
+          "entry_time": "2023.01.06 00:30:00",
+          "exit_time": "2023.01.06 00:53:40",
+          "exit_reason": "sl",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "7",
+          "position_id": "6",
+          "entry_time": "2023.01.11 03:00:00",
+          "exit_time": "2023.01.11 03:51:40",
+          "exit_reason": "tp",
+          "full_held_bars": 1,
+          "first_counted_bar_open": "2023.01.11 03:00:00",
+          "last_counted_bar_open": "2023.01.11 03:00:00",
+          "counted_bar_timestamps": [
+            "2023.01.11 03:00:00"
+          ]
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "9",
+          "position_id": "8",
+          "entry_time": "2023.01.12 00:00:00",
+          "exit_time": "2023.01.12 00:10:20",
+          "exit_reason": "sl",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "11",
+          "position_id": "10",
+          "entry_time": "2023.01.13 01:00:00",
+          "exit_time": "2023.01.13 01:23:40",
+          "exit_reason": "sl",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "13",
+          "position_id": "12",
+          "entry_time": "2023.01.16 03:30:00",
+          "exit_time": "2023.01.16 04:49:20",
+          "exit_reason": "tp",
+          "full_held_bars": 2,
+          "first_counted_bar_open": "2023.01.16 03:30:00",
+          "last_counted_bar_open": "2023.01.16 04:00:00",
+          "counted_bar_timestamps": [
+            "2023.01.16 03:30:00",
+            "2023.01.16 04:00:00"
+          ]
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "15",
+          "position_id": "14",
+          "entry_time": "2023.01.17 07:30:00",
+          "exit_time": "2023.01.17 07:50:40",
+          "exit_reason": "tp",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "17",
+          "position_id": "16",
+          "entry_time": "2023.01.20 06:30:00",
+          "exit_time": "2023.01.20 07:17:40",
+          "exit_reason": "tp",
+          "full_held_bars": 1,
+          "first_counted_bar_open": "2023.01.20 06:30:00",
+          "last_counted_bar_open": "2023.01.20 06:30:00",
+          "counted_bar_timestamps": [
+            "2023.01.20 06:30:00"
+          ]
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "19",
+          "position_id": "18",
+          "entry_time": "2023.01.23 15:30:00",
+          "exit_time": "2023.01.23 21:30:00",
+          "exit_reason": "time_exit",
+          "full_held_bars": 12,
+          "first_counted_bar_open": "2023.01.23 15:30:00",
+          "last_counted_bar_open": "2023.01.23 21:00:00",
+          "counted_bar_timestamps": [
+            "2023.01.23 15:30:00",
+            "2023.01.23 16:00:00",
+            "2023.01.23 16:30:00",
+            "2023.01.23 17:00:00",
+            "2023.01.23 17:30:00",
+            "2023.01.23 18:00:00",
+            "2023.01.23 18:30:00",
+            "2023.01.23 19:00:00",
+            "2023.01.23 19:30:00",
+            "2023.01.23 20:00:00",
+            "2023.01.23 20:30:00",
+            "2023.01.23 21:00:00"
+          ]
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "21",
+          "position_id": "20",
+          "entry_time": "2023.01.25 10:00:00",
+          "exit_time": "2023.01.25 10:32:40",
+          "exit_reason": "tp",
+          "full_held_bars": 1,
+          "first_counted_bar_open": "2023.01.25 10:00:00",
+          "last_counted_bar_open": "2023.01.25 10:00:00",
+          "counted_bar_timestamps": [
+            "2023.01.25 10:00:00"
+          ]
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "23",
+          "position_id": "22",
+          "entry_time": "2023.01.26 04:30:00",
+          "exit_time": "2023.01.26 04:47:40",
+          "exit_reason": "tp",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "WINTER",
+          "deal_ticket": "25",
+          "position_id": "24",
+          "entry_time": "2023.01.30 05:30:00",
+          "exit_time": "2023.01.30 07:12:40",
+          "exit_reason": "sl",
+          "full_held_bars": 3,
+          "first_counted_bar_open": "2023.01.30 05:30:00",
+          "last_counted_bar_open": "2023.01.30 06:30:00",
+          "counted_bar_timestamps": [
+            "2023.01.30 05:30:00",
+            "2023.01.30 06:00:00",
+            "2023.01.30 06:30:00"
+          ]
+        }
+      ],
+      "html": {
+        "Expert": "dsh_XAMR30",
+        "Symbol": "USDJPYm",
+        "Period": "M1 (2023.01.02 - 2023.01.31)",
+        "Inputs": "InpRunTag=DS260914_XAMR30_SMOKE_WINTER",
+        "Company": "Exness Technologies Ltd",
+        "Currency": "USD",
+        "Initial Deposit": "500.00",
+        "Leverage": "1:200",
+        "History Quality": "100%",
+        "Bars": "29797",
+        "Ticks": "117158",
+        "Symbols": "1",
+        "Total Net Profit": "-3.76",
+        "Balance Drawdown Absolute": "20.44",
+        "Equity Drawdown Absolute": "25.97",
+        "Gross Profit": "32.35",
+        "Balance Drawdown Maximal": "20.44 (4.09%)",
+        "Equity Drawdown Maximal": "30.10 (5.97%)",
+        "Gross Loss": "-36.11",
+        "Balance Drawdown Relative": "4.09% (20.44)",
+        "Equity Drawdown Relative": "5.97% (30.10)",
+        "Profit Factor": "0.90",
+        "Expected Payoff": "-0.31",
+        "Margin Level": "1620.13%",
+        "Recovery Factor": "-0.12",
+        "Sharpe Ratio": "-1.04",
+        "Z-Score": "0.30 (23.58%)",
+        "AHPR": "0.9994 (-0.06%)",
+        "LR Correlation": "0.35",
+        "OnTester result": "0",
+        "GHPR": "0.9994 (-0.06%)",
+        "LR Standard Error": "6.51",
+        "Total Trades": "12",
+        "Short Trades (won %)": "5 (60.00%)",
+        "Long Trades (won %)": "7 (42.86%)",
+        "Total Deals": "24",
+        "Profit Trades (% of total)": "6 (50.00%)",
+        "Loss Trades (% of total)": "6 (50.00%)",
+        "Correlation (Profits,MFE)": "0.79",
+        "Correlation (Profits,MAE)": "0.77",
+        "Correlation (MFE,MAE)": "0.4557",
+        "Minimal position holding time": "0:10:20",
+        "Maximal position holding time": "6:00:00",
+        "Average position holding time": "1:05:18",
+        "0.00": "-3.76"
+      }
+    },
+    {
+      "window": "DSTTR",
+      "directory": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\smoke\\DS260914_XAMR30_SMOKE_DSTTR",
+      "trade_rows": 10,
+      "reject_rows": 73,
+      "time_exit_count": 0,
+      "max_full_held_bars": 5,
+      "checks": [
+        {
+          "name": "Bars>0",
+          "ok": true,
+          "detail": "Bars=19862"
+        },
+        {
+          "name": "Deposit=500",
+          "ok": true,
+          "detail": "500.00"
+        },
+        {
+          "name": "Symbol=USDJPYm",
+          "ok": true,
+          "detail": "USDJPYm"
+        },
+        {
+          "name": "HTML trades == 审计行数",
+          "ok": true,
+          "detail": "HTML=10 审计=10"
+        },
+        {
+          "name": "实际产生 closing deals",
+          "ok": true,
+          "detail": "expected=10, actual=10"
+        },
+        {
+          "name": "fatal=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "audit_failed=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "active_positions=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "入场时序 entry_bar = signal_bar+30min",
+          "ok": true,
+          "detail": "抽查=10, 违规=无"
+        },
+        {
+          "name": "入场时序 entry_time >= signal_close",
+          "ok": true,
+          "detail": "违规=无"
+        },
+        {
+          "name": "时序抽查（本窗口）",
+          "ok": true,
+          "detail": "10/10"
+        },
+        {
+          "name": "time_exit exactly 12 real M30 bars",
+          "ok": true,
+          "detail": "time_exit=0, bad=无"
+        },
+        {
+          "name": "非 time_exit 持仓未超 12 根",
+          "ok": true,
+          "detail": "越界=无"
+        },
+        {
+          "name": "unique_deal_ticket_rows == audit_rows",
+          "ok": true,
+          "detail": "10/10"
+        },
+        {
+          "name": "duplicate_written_rows == 0",
+          "ok": true,
+          "detail": "重复=0"
+        },
+        {
+          "name": "duplicate_attempts_blocked（仅 diagnostic）",
+          "ok": true,
+          "detail": "dup_hits=10"
+        },
+        {
+          "name": "每 UTC day <= 1 笔",
+          "ok": true,
+          "detail": "违反=无"
+        },
+        {
+          "name": "全部成交 alignment_exact=1",
+          "ok": true,
+          "detail": "异常=0"
+        },
+        {
+          "name": "cross_asset_missing_bar 的 xau_bar_time 为空",
+          "ok": true,
+          "detail": "拒单=0, stale=0"
+        },
+        {
+          "name": "atr_out_of_regime 的 xau 值为空",
+          "ok": true,
+          "detail": "拒单=49, stale=0"
+        },
+        {
+          "name": "DEAL_PROFIT↔OCP<=0.05",
+          "ok": true,
+          "detail": "超容差=无"
+        },
+        {
+          "name": "spread / SL / TP 字段齐备",
+          "ok": true,
+          "detail": "same frozen audit schema"
+        },
+        {
+          "name": "median spread/SL <= 30%",
+          "ok": true,
+          "detail": "median=0.0417"
+        },
+        {
+          "name": "median spread/TP <= 30%",
+          "ok": true,
+          "detail": "median=0.0521"
+        },
+        {
+          "name": "HTML净利 == 审计净利",
+          "ok": true,
+          "detail": "audit=-21.26, html=-21.26"
+        }
+      ],
+      "held_bar_rows": [
+        {
+          "window": "DSTTR",
+          "deal_ticket": "3",
+          "position_id": "2",
+          "entry_time": "2023.03.20 07:00:00",
+          "exit_time": "2023.03.20 07:28:40",
+          "exit_reason": "sl",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "5",
+          "position_id": "4",
+          "entry_time": "2023.03.21 09:30:00",
+          "exit_time": "2023.03.21 10:42:20",
+          "exit_reason": "sl",
+          "full_held_bars": 2,
+          "first_counted_bar_open": "2023.03.21 09:30:00",
+          "last_counted_bar_open": "2023.03.21 10:00:00",
+          "counted_bar_timestamps": [
+            "2023.03.21 09:30:00",
+            "2023.03.21 10:00:00"
+          ]
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "7",
+          "position_id": "6",
+          "entry_time": "2023.03.22 08:00:00",
+          "exit_time": "2023.03.22 08:13:40",
+          "exit_reason": "tp",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "9",
+          "position_id": "8",
+          "entry_time": "2023.03.23 01:30:00",
+          "exit_time": "2023.03.23 02:52:20",
+          "exit_reason": "sl",
+          "full_held_bars": 2,
+          "first_counted_bar_open": "2023.03.23 01:30:00",
+          "last_counted_bar_open": "2023.03.23 02:00:00",
+          "counted_bar_timestamps": [
+            "2023.03.23 01:30:00",
+            "2023.03.23 02:00:00"
+          ]
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "11",
+          "position_id": "10",
+          "entry_time": "2023.03.24 01:30:00",
+          "exit_time": "2023.03.24 01:56:40",
+          "exit_reason": "tp",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "13",
+          "position_id": "12",
+          "entry_time": "2023.03.27 07:00:00",
+          "exit_time": "2023.03.27 07:39:20",
+          "exit_reason": "tp",
+          "full_held_bars": 1,
+          "first_counted_bar_open": "2023.03.27 07:00:00",
+          "last_counted_bar_open": "2023.03.27 07:00:00",
+          "counted_bar_timestamps": [
+            "2023.03.27 07:00:00"
+          ]
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "15",
+          "position_id": "14",
+          "entry_time": "2023.03.29 05:30:00",
+          "exit_time": "2023.03.29 05:57:40",
+          "exit_reason": "sl",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "17",
+          "position_id": "16",
+          "entry_time": "2023.03.31 01:00:00",
+          "exit_time": "2023.03.31 01:22:40",
+          "exit_reason": "tp",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "19",
+          "position_id": "18",
+          "entry_time": "2023.04.03 05:00:00",
+          "exit_time": "2023.04.03 06:10:40",
+          "exit_reason": "sl",
+          "full_held_bars": 2,
+          "first_counted_bar_open": "2023.04.03 05:00:00",
+          "last_counted_bar_open": "2023.04.03 05:30:00",
+          "counted_bar_timestamps": [
+            "2023.04.03 05:00:00",
+            "2023.04.03 05:30:00"
+          ]
+        },
+        {
+          "window": "DSTTR",
+          "deal_ticket": "21",
+          "position_id": "20",
+          "entry_time": "2023.04.04 20:30:00",
+          "exit_time": "2023.04.04 23:24:40",
+          "exit_reason": "sl",
+          "full_held_bars": 5,
+          "first_counted_bar_open": "2023.04.04 20:30:00",
+          "last_counted_bar_open": "2023.04.04 22:30:00",
+          "counted_bar_timestamps": [
+            "2023.04.04 20:30:00",
+            "2023.04.04 21:00:00",
+            "2023.04.04 21:30:00",
+            "2023.04.04 22:00:00",
+            "2023.04.04 22:30:00"
+          ]
+        }
+      ],
+      "html": {
+        "Expert": "dsh_XAMR30",
+        "Symbol": "USDJPYm",
+        "Period": "M1 (2023.03.20 - 2023.04.07)",
+        "Inputs": "InpRunTag=DS260914_XAMR30_SMOKE_DSTTR",
+        "Company": "Exness Technologies Ltd",
+        "Currency": "USD",
+        "Initial Deposit": "500.00",
+        "Leverage": "1:200",
+        "History Quality": "100%",
+        "Bars": "19862",
+        "Ticks": "78165",
+        "Symbols": "1",
+        "Total Net Profit": "-21.26",
+        "Balance Drawdown Absolute": "21.26",
+        "Equity Drawdown Absolute": "21.26",
+        "Gross Profit": "19.07",
+        "Balance Drawdown Maximal": "21.26 (4.25%)",
+        "Equity Drawdown Maximal": "25.72 (5.10%)",
+        "Gross Loss": "-40.33",
+        "Balance Drawdown Relative": "4.25% (21.26)",
+        "Equity Drawdown Relative": "5.10% (25.72)",
+        "Profit Factor": "0.47",
+        "Expected Payoff": "-2.13",
+        "Margin Level": "1921.20%",
+        "Recovery Factor": "-0.83",
+        "Sharpe Ratio": "-5.00",
+        "Z-Score": "1.19 (76.60%)",
+        "AHPR": "0.9957 (-0.43%)",
+        "LR Correlation": "-0.62",
+        "OnTester result": "0",
+        "GHPR": "0.9957 (-0.43%)",
+        "LR Standard Error": "4.56",
+        "Total Trades": "10",
+        "Short Trades (won %)": "6 (50.00%)",
+        "Long Trades (won %)": "4 (25.00%)",
+        "Total Deals": "20",
+        "Profit Trades (% of total)": "4 (40.00%)",
+        "Loss Trades (% of total)": "6 (60.00%)",
+        "Correlation (Profits,MFE)": "0.74",
+        "Correlation (Profits,MAE)": "0.95",
+        "Correlation (MFE,MAE)": "0.6566",
+        "Minimal position holding time": "0:13:40",
+        "Maximal position holding time": "2:54:40",
+        "Average position holding time": "0:55:52",
+        "0.00": "-21.26"
+      }
+    },
+    {
+      "window": "SUMMER",
+      "directory": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\smoke\\DS260914_XAMR30_SMOKE_SUMMER",
+      "trade_rows": 15,
+      "reject_rows": 98,
+      "time_exit_count": 1,
+      "max_full_held_bars": 12,
+      "checks": [
+        {
+          "name": "Bars>0",
+          "ok": true,
+          "detail": "Bars=28695"
+        },
+        {
+          "name": "Deposit=500",
+          "ok": true,
+          "detail": "500.00"
+        },
+        {
+          "name": "Symbol=USDJPYm",
+          "ok": true,
+          "detail": "USDJPYm"
+        },
+        {
+          "name": "HTML trades == 审计行数",
+          "ok": true,
+          "detail": "HTML=15 审计=15"
+        },
+        {
+          "name": "实际产生 closing deals",
+          "ok": true,
+          "detail": "expected=15, actual=15"
+        },
+        {
+          "name": "fatal=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "audit_failed=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "active_positions=0",
+          "ok": true,
+          "detail": "0"
+        },
+        {
+          "name": "入场时序 entry_bar = signal_bar+30min",
+          "ok": true,
+          "detail": "抽查=15, 违规=无"
+        },
+        {
+          "name": "入场时序 entry_time >= signal_close",
+          "ok": true,
+          "detail": "违规=无"
+        },
+        {
+          "name": "时序抽查（本窗口）",
+          "ok": true,
+          "detail": "15/15"
+        },
+        {
+          "name": "time_exit exactly 12 real M30 bars",
+          "ok": true,
+          "detail": "time_exit=1, bad=无"
+        },
+        {
+          "name": "非 time_exit 持仓未超 12 根",
+          "ok": true,
+          "detail": "越界=无"
+        },
+        {
+          "name": "unique_deal_ticket_rows == audit_rows",
+          "ok": true,
+          "detail": "15/15"
+        },
+        {
+          "name": "duplicate_written_rows == 0",
+          "ok": true,
+          "detail": "重复=0"
+        },
+        {
+          "name": "duplicate_attempts_blocked（仅 diagnostic）",
+          "ok": true,
+          "detail": "dup_hits=15"
+        },
+        {
+          "name": "每 UTC day <= 1 笔",
+          "ok": true,
+          "detail": "违反=无"
+        },
+        {
+          "name": "全部成交 alignment_exact=1",
+          "ok": true,
+          "detail": "异常=0"
+        },
+        {
+          "name": "cross_asset_missing_bar 的 xau_bar_time 为空",
+          "ok": true,
+          "detail": "拒单=1, stale=0"
+        },
+        {
+          "name": "atr_out_of_regime 的 xau 值为空",
+          "ok": true,
+          "detail": "拒单=66, stale=0"
+        },
+        {
+          "name": "DEAL_PROFIT↔OCP<=0.05",
+          "ok": true,
+          "detail": "超容差=无"
+        },
+        {
+          "name": "spread / SL / TP 字段齐备",
+          "ok": true,
+          "detail": "same frozen audit schema"
+        },
+        {
+          "name": "median spread/SL <= 30%",
+          "ok": true,
+          "detail": "median=0.0777"
+        },
+        {
+          "name": "median spread/TP <= 30%",
+          "ok": true,
+          "detail": "median=0.0972"
+        },
+        {
+          "name": "HTML净利 == 审计净利",
+          "ok": true,
+          "detail": "audit=-25.26, html=-25.26"
+        }
+      ],
+      "held_bar_rows": [
+        {
+          "window": "SUMMER",
+          "deal_ticket": "3",
+          "position_id": "2",
+          "entry_time": "2023.07.03 08:30:00",
+          "exit_time": "2023.07.03 08:59:40",
+          "exit_reason": "tp",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "5",
+          "position_id": "4",
+          "entry_time": "2023.07.05 11:00:00",
+          "exit_time": "2023.07.05 11:16:40",
+          "exit_reason": "tp",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "7",
+          "position_id": "6",
+          "entry_time": "2023.07.06 03:00:00",
+          "exit_time": "2023.07.06 04:05:40",
+          "exit_reason": "sl",
+          "full_held_bars": 2,
+          "first_counted_bar_open": "2023.07.06 03:00:00",
+          "last_counted_bar_open": "2023.07.06 03:30:00",
+          "counted_bar_timestamps": [
+            "2023.07.06 03:00:00",
+            "2023.07.06 03:30:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "9",
+          "position_id": "8",
+          "entry_time": "2023.07.07 07:00:00",
+          "exit_time": "2023.07.07 07:26:40",
+          "exit_reason": "sl",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "11",
+          "position_id": "10",
+          "entry_time": "2023.07.10 19:30:00",
+          "exit_time": "2023.07.11 00:11:40",
+          "exit_reason": "tp",
+          "full_held_bars": 9,
+          "first_counted_bar_open": "2023.07.10 19:30:00",
+          "last_counted_bar_open": "2023.07.10 23:30:00",
+          "counted_bar_timestamps": [
+            "2023.07.10 19:30:00",
+            "2023.07.10 20:00:00",
+            "2023.07.10 20:30:00",
+            "2023.07.10 21:00:00",
+            "2023.07.10 21:30:00",
+            "2023.07.10 22:00:00",
+            "2023.07.10 22:30:00",
+            "2023.07.10 23:00:00",
+            "2023.07.10 23:30:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "13",
+          "position_id": "12",
+          "entry_time": "2023.07.11 02:00:00",
+          "exit_time": "2023.07.11 02:33:40",
+          "exit_reason": "sl",
+          "full_held_bars": 1,
+          "first_counted_bar_open": "2023.07.11 02:00:00",
+          "last_counted_bar_open": "2023.07.11 02:00:00",
+          "counted_bar_timestamps": [
+            "2023.07.11 02:00:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "15",
+          "position_id": "14",
+          "entry_time": "2023.07.12 03:00:00",
+          "exit_time": "2023.07.12 05:48:40",
+          "exit_reason": "sl",
+          "full_held_bars": 5,
+          "first_counted_bar_open": "2023.07.12 03:00:00",
+          "last_counted_bar_open": "2023.07.12 05:00:00",
+          "counted_bar_timestamps": [
+            "2023.07.12 03:00:00",
+            "2023.07.12 03:30:00",
+            "2023.07.12 04:00:00",
+            "2023.07.12 04:30:00",
+            "2023.07.12 05:00:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "17",
+          "position_id": "16",
+          "entry_time": "2023.07.13 00:30:00",
+          "exit_time": "2023.07.13 00:43:40",
+          "exit_reason": "tp",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "19",
+          "position_id": "18",
+          "entry_time": "2023.07.14 00:00:00",
+          "exit_time": "2023.07.14 00:03:40",
+          "exit_reason": "sl",
+          "full_held_bars": 0,
+          "first_counted_bar_open": "",
+          "last_counted_bar_open": "",
+          "counted_bar_timestamps": []
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "21",
+          "position_id": "20",
+          "entry_time": "2023.07.19 03:00:00",
+          "exit_time": "2023.07.19 04:20:40",
+          "exit_reason": "sl",
+          "full_held_bars": 2,
+          "first_counted_bar_open": "2023.07.19 03:00:00",
+          "last_counted_bar_open": "2023.07.19 03:30:00",
+          "counted_bar_timestamps": [
+            "2023.07.19 03:00:00",
+            "2023.07.19 03:30:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "23",
+          "position_id": "22",
+          "entry_time": "2023.07.20 13:30:00",
+          "exit_time": "2023.07.20 14:09:40",
+          "exit_reason": "sl",
+          "full_held_bars": 1,
+          "first_counted_bar_open": "2023.07.20 13:30:00",
+          "last_counted_bar_open": "2023.07.20 13:30:00",
+          "counted_bar_timestamps": [
+            "2023.07.20 13:30:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "25",
+          "position_id": "24",
+          "entry_time": "2023.07.21 17:00:00",
+          "exit_time": "2023.07.23 23:00:00",
+          "exit_reason": "time_exit",
+          "full_held_bars": 12,
+          "first_counted_bar_open": "2023.07.21 17:00:00",
+          "last_counted_bar_open": "2023.07.23 22:30:00",
+          "counted_bar_timestamps": [
+            "2023.07.21 17:00:00",
+            "2023.07.21 17:30:00",
+            "2023.07.21 18:00:00",
+            "2023.07.21 18:30:00",
+            "2023.07.21 19:00:00",
+            "2023.07.21 19:30:00",
+            "2023.07.21 20:00:00",
+            "2023.07.21 20:30:00",
+            "2023.07.23 21:00:00",
+            "2023.07.23 21:30:00",
+            "2023.07.23 22:00:00",
+            "2023.07.23 22:30:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "27",
+          "position_id": "26",
+          "entry_time": "2023.07.25 16:30:00",
+          "exit_time": "2023.07.25 17:17:40",
+          "exit_reason": "tp",
+          "full_held_bars": 1,
+          "first_counted_bar_open": "2023.07.25 16:30:00",
+          "last_counted_bar_open": "2023.07.25 16:30:00",
+          "counted_bar_timestamps": [
+            "2023.07.25 16:30:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "29",
+          "position_id": "28",
+          "entry_time": "2023.07.26 07:00:00",
+          "exit_time": "2023.07.26 08:05:40",
+          "exit_reason": "sl",
+          "full_held_bars": 2,
+          "first_counted_bar_open": "2023.07.26 07:00:00",
+          "last_counted_bar_open": "2023.07.26 07:30:00",
+          "counted_bar_timestamps": [
+            "2023.07.26 07:00:00",
+            "2023.07.26 07:30:00"
+          ]
+        },
+        {
+          "window": "SUMMER",
+          "deal_ticket": "31",
+          "position_id": "30",
+          "entry_time": "2023.07.27 03:00:00",
+          "exit_time": "2023.07.27 04:02:40",
+          "exit_reason": "tp",
+          "full_held_bars": 2,
+          "first_counted_bar_open": "2023.07.27 03:00:00",
+          "last_counted_bar_open": "2023.07.27 03:30:00",
+          "counted_bar_timestamps": [
+            "2023.07.27 03:00:00",
+            "2023.07.27 03:30:00"
+          ]
+        }
+      ],
+      "html": {
+        "Expert": "dsh_XAMR30",
+        "Symbol": "USDJPYm",
+        "Period": "M1 (2023.07.03 - 2023.07.31)",
+        "Inputs": "InpRunTag=DS260914_XAMR30_SMOKE_SUMMER",
+        "Company": "Exness Technologies Ltd",
+        "Currency": "USD",
+        "Initial Deposit": "500.00",
+        "Leverage": "1:200",
+        "History Quality": "100%",
+        "Bars": "28695",
+        "Ticks": "112995",
+        "Symbols": "1",
+        "Total Net Profit": "-25.26",
+        "Balance Drawdown Absolute": "30.84",
+        "Equity Drawdown Absolute": "35.14",
+        "Gross Profit": "33.34",
+        "Balance Drawdown Maximal": "42.63 (8.33%)",
+        "Equity Drawdown Maximal": "48.12 (9.38%)",
+        "Gross Loss": "-58.60",
+        "Balance Drawdown Relative": "8.33% (42.63)",
+        "Equity Drawdown Relative": "9.38% (48.12)",
+        "Profit Factor": "0.57",
+        "Expected Payoff": "-1.68",
+        "Margin Level": "1085.87%",
+        "Recovery Factor": "-0.52",
+        "Sharpe Ratio": "-5.00",
+        "Z-Score": "0.73 (53.46%)",
+        "AHPR": "0.9966 (-0.34%)",
+        "LR Correlation": "-0.94",
+        "OnTester result": "0",
+        "GHPR": "0.9965 (-0.35%)",
+        "LR Standard Error": "5.27",
+        "Total Trades": "15",
+        "Short Trades (won %)": "4 (25.00%)",
+        "Long Trades (won %)": "11 (45.45%)",
+        "Total Deals": "30",
+        "Profit Trades (% of total)": "6 (40.00%)",
+        "Loss Trades (% of total)": "9 (60.00%)",
+        "Correlation (Profits,MFE)": "0.77",
+        "Correlation (Profits,MAE)": "0.89",
+        "Correlation (MFE,MAE)": "0.6840",
+        "Minimal position holding time": "0:03:40",
+        "Maximal position holding time": "6:00:00",
+        "Average position holding time": "1:26:25",
+        "-0.38": "-24.88"
+      }
+    }
+  ],
+  "summary": {
+    "trades": 37,
+    "time_exit_count": 2,
+    "hold_bar_checks": 37,
+    "hold_bar_pass": 37,
+    "max_full_held_bars": 12,
+    "weekend_trade": [
+      {
+        "window": "SUMMER",
+        "deal_ticket": "25",
+        "position_id": "24",
+        "entry_time": "2023.07.21 17:00:00",
+        "exit_time": "2023.07.23 23:00:00",
+        "exit_reason": "time_exit",
+        "full_held_bars": 12,
+        "first_counted_bar_open": "2023.07.21 17:00:00",
+        "last_counted_bar_open": "2023.07.23 22:30:00",
+        "counted_bar_timestamps": [
+          "2023.07.21 17:00:00",
+          "2023.07.21 17:30:00",
+          "2023.07.21 18:00:00",
+          "2023.07.21 18:30:00",
+          "2023.07.21 19:00:00",
+          "2023.07.21 19:30:00",
+          "2023.07.21 20:00:00",
+          "2023.07.21 20:30:00",
+          "2023.07.23 21:00:00",
+          "2023.07.23 21:30:00",
+          "2023.07.23 22:00:00",
+          "2023.07.23 22:30:00"
+        ]
+      }
+    ],
+    "checks": {
+      "passed": 75,
+      "total": 75
+    }
+  }
+}

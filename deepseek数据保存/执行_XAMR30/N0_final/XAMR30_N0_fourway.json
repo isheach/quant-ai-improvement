@@ -1,0 +1,926 @@
+{
+  "N0_FOURWAY": "PASS",
+  "NO_MT5_ECONOMIC_EXECUTION": true,
+  "strategy_source_sha256": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C",
+  "strategy_canonical_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+  "strategy_deployed_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+  "parsed_source_inputs": 31,
+  "planned_runs": 6,
+  "fourway_mismatch_count": 0,
+  "forbidden_date_overlaps": 0,
+  "availability_mask_check": {
+    "check": "exact XAU availability precedes InpCrossAssetFilter branch",
+    "pass": true,
+    "positions": {
+      "exact_declaration": 35170,
+      "exact_match": 35363,
+      "missing_branch": 35801,
+      "filter_branch": 36419
+    }
+  },
+  "global_checks": [
+    {
+      "name": "strategy source hash",
+      "pass": true,
+      "detail": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C"
+    },
+    {
+      "name": "canonical strategy EX5 hash",
+      "pass": true,
+      "detail": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2"
+    },
+    {
+      "name": "deployed strategy EX5 hash",
+      "pass": true,
+      "detail": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2"
+    },
+    {
+      "name": "source input parse nonempty",
+      "pass": true,
+      "detail": "31"
+    },
+    {
+      "name": "source input names unique",
+      "pass": true,
+      "detail": "31"
+    },
+    {
+      "name": "planned manifest exists",
+      "pass": true,
+      "detail": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\公共部分\\XAMR30_planned_runs.jsonl"
+    },
+    {
+      "name": "planned run count = 6",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "name": "planned run tags unique",
+      "pass": true,
+      "detail": "run tags"
+    },
+    {
+      "name": "planned report paths unique",
+      "pass": true,
+      "detail": "reports"
+    },
+    {
+      "name": "planned audit dirs unique",
+      "pass": true,
+      "detail": "audit dirs"
+    },
+    {
+      "name": "source/static table exists",
+      "pass": true,
+      "detail": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\公共部分\\XAMR30_static_inputs_final.md"
+    },
+    {
+      "name": "static input count exact",
+      "pass": true,
+      "detail": "source=31 static=31"
+    },
+    {
+      "name": "DATA_FREEZE = PASS",
+      "pass": true,
+      "detail": "Data Freeze report"
+    },
+    {
+      "name": "TRAIN start month = 2018-01",
+      "pass": true,
+      "detail": "Data Freeze report"
+    },
+    {
+      "name": "FINAL_SMOKE_INDEPENDENT = PASS",
+      "pass": true,
+      "detail": "PASS"
+    },
+    {
+      "name": "independent smoke hold checks = 37/37",
+      "pass": true,
+      "detail": "{\"trades\": 37, \"time_exit_count\": 2, \"hold_bar_checks\": 37, \"hold_bar_pass\": 37, \"max_full_held_bars\": 12, \"weekend_trade\": [{\"window\": \"SUMMER\", \"deal_ticket\": \"25\", \"position_id\": \"24\", \"entry_time\": \"2023.07.21 17:00:00\", \"exit_time\": \"2023.07.23 23:00:00\", \"exit_reason\": \"time_exit\", \"full_held_bars\": 12, \"first_counted_bar_open\": \"2023.07.21 17:00:00\", \"last_counted_bar_open\": \"2023.07.23 22:30:00\", \"counted_bar_timestamps\": [\"2023.07.21 17:00:00\", \"2023.07.21 17:30:00\", \"2023.07.21 18:00:00\", \"2023.07.21 18:30:00\", \"2023.07.21 19:00:00\", \"2023.07.21 19:30:00\", \"2023.07.21 20:00:00\", \"2023.07.21 20:30:00\", \"2023.07.23 21:00:00\", \"2023.07.23 21:30:00\", \"2023.07.23 22:00:00\", \"2023.07.23 22:30:00\"]}], \"checks\": {\"passed\": 75, \"total\": 75}}"
+    },
+    {
+      "name": "SIGNAL_DOUBLECALC_R2 = PASS",
+      "pass": true,
+      "detail": "PASS"
+    },
+    {
+      "name": "exact XAU availability mask before filter branch",
+      "pass": true,
+      "detail": "{\"exact_declaration\": 35170, \"exact_match\": 35363, \"missing_branch\": 35801, \"filter_branch\": 36419}"
+    },
+    {
+      "name": "all TRAIN configs otherwise identical",
+      "pass": true,
+      "detail": "fixed inputs/tester core"
+    },
+    {
+      "name": "all VALID configs otherwise identical",
+      "pass": true,
+      "detail": "fixed inputs/tester core"
+    },
+    {
+      "name": "V1 TRAIN/VALID inputs identical",
+      "pass": true,
+      "detail": "only date/identity changes"
+    },
+    {
+      "name": "V2 TRAIN/VALID inputs identical",
+      "pass": true,
+      "detail": "only date/identity changes"
+    },
+    {
+      "name": "V3 TRAIN/VALID inputs identical",
+      "pass": true,
+      "detail": "only date/identity changes"
+    },
+    {
+      "name": "TRAIN records = 3",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "VALID conditional records = 3",
+      "pass": true,
+      "detail": "3"
+    }
+  ],
+  "run_results": [
+    {
+      "run_id": "DS260914_XAMR30_V1_TRAIN",
+      "variant": "V1",
+      "role": "TRAIN",
+      "ini_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V1_TRAIN.ini",
+      "checks": [
+        {
+          "name": "source/static name set exact",
+          "pass": true,
+          "detail": "source=31 static=31"
+        },
+        {
+          "name": "static/manifest name set exact",
+          "pass": true,
+          "detail": "source=31 manifest=31"
+        },
+        {
+          "name": "static/INI name set exact",
+          "pass": true,
+          "detail": "source=31 ini=31"
+        },
+        {
+          "name": "INI values parse by source types",
+          "pass": true,
+          "detail": "typed parse"
+        },
+        {
+          "name": "INI/manifest resolved values exact",
+          "pass": true,
+          "detail": "all source inputs"
+        },
+        {
+          "name": "source/static type and default exact",
+          "pass": true,
+          "detail": "source-derived table"
+        },
+        {
+          "name": "all fixed inputs equal source defaults",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "variant overrides only whitelist",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "V1 exact dynamic values",
+          "pass": true,
+          "detail": "{\"InpZThreshold\": 1.5, \"InpCrossAssetFilter\": true}"
+        },
+        {
+          "name": "Tester Expert frozen",
+          "pass": true,
+          "detail": "actual=dshtrend\\dsh_XAMR30 expected=dshtrend\\dsh_XAMR30"
+        },
+        {
+          "name": "Tester Symbol frozen",
+          "pass": true,
+          "detail": "actual=USDJPYm expected=USDJPYm"
+        },
+        {
+          "name": "Tester Period frozen",
+          "pass": true,
+          "detail": "actual=M30 expected=M30"
+        },
+        {
+          "name": "Tester Model frozen",
+          "pass": true,
+          "detail": "actual=2 expected=2"
+        },
+        {
+          "name": "Tester Optimization frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester Deposit frozen",
+          "pass": true,
+          "detail": "actual=500 expected=500"
+        },
+        {
+          "name": "Tester Currency frozen",
+          "pass": true,
+          "detail": "actual=USD expected=USD"
+        },
+        {
+          "name": "Tester Leverage frozen",
+          "pass": true,
+          "detail": "actual=1:200 expected=1:200"
+        },
+        {
+          "name": "Tester Visual frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester FromDate matches manifest",
+          "pass": true,
+          "detail": "actual=2018.01.01 expected=2018.01.01"
+        },
+        {
+          "name": "Tester ToDate matches manifest",
+          "pass": true,
+          "detail": "actual=2024.05.31 expected=2024.05.31"
+        },
+        {
+          "name": "Tester Report matches manifest",
+          "pass": true,
+          "detail": "actual=DS260914_XAMR30_V1_TRAIN expected=DS260914_XAMR30_V1_TRAIN"
+        },
+        {
+          "name": "planned INI exists",
+          "pass": true,
+          "detail": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V1_TRAIN.ini"
+        },
+        {
+          "name": "economic execution flag is NOT_RUN",
+          "pass": true,
+          "detail": "NOT_RUN"
+        },
+        {
+          "name": "forbidden-date overlap = 0",
+          "pass": true,
+          "detail": "none"
+        }
+      ],
+      "mismatch_count": 0
+    },
+    {
+      "run_id": "DS260914_XAMR30_V2_TRAIN",
+      "variant": "V2",
+      "role": "TRAIN",
+      "ini_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V2_TRAIN.ini",
+      "checks": [
+        {
+          "name": "source/static name set exact",
+          "pass": true,
+          "detail": "source=31 static=31"
+        },
+        {
+          "name": "static/manifest name set exact",
+          "pass": true,
+          "detail": "source=31 manifest=31"
+        },
+        {
+          "name": "static/INI name set exact",
+          "pass": true,
+          "detail": "source=31 ini=31"
+        },
+        {
+          "name": "INI values parse by source types",
+          "pass": true,
+          "detail": "typed parse"
+        },
+        {
+          "name": "INI/manifest resolved values exact",
+          "pass": true,
+          "detail": "all source inputs"
+        },
+        {
+          "name": "source/static type and default exact",
+          "pass": true,
+          "detail": "source-derived table"
+        },
+        {
+          "name": "all fixed inputs equal source defaults",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "variant overrides only whitelist",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "V2 exact dynamic values",
+          "pass": true,
+          "detail": "{\"InpZThreshold\": 1.5, \"InpCrossAssetFilter\": false}"
+        },
+        {
+          "name": "Tester Expert frozen",
+          "pass": true,
+          "detail": "actual=dshtrend\\dsh_XAMR30 expected=dshtrend\\dsh_XAMR30"
+        },
+        {
+          "name": "Tester Symbol frozen",
+          "pass": true,
+          "detail": "actual=USDJPYm expected=USDJPYm"
+        },
+        {
+          "name": "Tester Period frozen",
+          "pass": true,
+          "detail": "actual=M30 expected=M30"
+        },
+        {
+          "name": "Tester Model frozen",
+          "pass": true,
+          "detail": "actual=2 expected=2"
+        },
+        {
+          "name": "Tester Optimization frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester Deposit frozen",
+          "pass": true,
+          "detail": "actual=500 expected=500"
+        },
+        {
+          "name": "Tester Currency frozen",
+          "pass": true,
+          "detail": "actual=USD expected=USD"
+        },
+        {
+          "name": "Tester Leverage frozen",
+          "pass": true,
+          "detail": "actual=1:200 expected=1:200"
+        },
+        {
+          "name": "Tester Visual frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester FromDate matches manifest",
+          "pass": true,
+          "detail": "actual=2018.01.01 expected=2018.01.01"
+        },
+        {
+          "name": "Tester ToDate matches manifest",
+          "pass": true,
+          "detail": "actual=2024.05.31 expected=2024.05.31"
+        },
+        {
+          "name": "Tester Report matches manifest",
+          "pass": true,
+          "detail": "actual=DS260914_XAMR30_V2_TRAIN expected=DS260914_XAMR30_V2_TRAIN"
+        },
+        {
+          "name": "planned INI exists",
+          "pass": true,
+          "detail": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V2_TRAIN.ini"
+        },
+        {
+          "name": "economic execution flag is NOT_RUN",
+          "pass": true,
+          "detail": "NOT_RUN"
+        },
+        {
+          "name": "forbidden-date overlap = 0",
+          "pass": true,
+          "detail": "none"
+        }
+      ],
+      "mismatch_count": 0
+    },
+    {
+      "run_id": "DS260914_XAMR30_V3_TRAIN",
+      "variant": "V3",
+      "role": "TRAIN",
+      "ini_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V3_TRAIN.ini",
+      "checks": [
+        {
+          "name": "source/static name set exact",
+          "pass": true,
+          "detail": "source=31 static=31"
+        },
+        {
+          "name": "static/manifest name set exact",
+          "pass": true,
+          "detail": "source=31 manifest=31"
+        },
+        {
+          "name": "static/INI name set exact",
+          "pass": true,
+          "detail": "source=31 ini=31"
+        },
+        {
+          "name": "INI values parse by source types",
+          "pass": true,
+          "detail": "typed parse"
+        },
+        {
+          "name": "INI/manifest resolved values exact",
+          "pass": true,
+          "detail": "all source inputs"
+        },
+        {
+          "name": "source/static type and default exact",
+          "pass": true,
+          "detail": "source-derived table"
+        },
+        {
+          "name": "all fixed inputs equal source defaults",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "variant overrides only whitelist",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "V3 exact dynamic values",
+          "pass": true,
+          "detail": "{\"InpZThreshold\": 2.0, \"InpCrossAssetFilter\": true}"
+        },
+        {
+          "name": "Tester Expert frozen",
+          "pass": true,
+          "detail": "actual=dshtrend\\dsh_XAMR30 expected=dshtrend\\dsh_XAMR30"
+        },
+        {
+          "name": "Tester Symbol frozen",
+          "pass": true,
+          "detail": "actual=USDJPYm expected=USDJPYm"
+        },
+        {
+          "name": "Tester Period frozen",
+          "pass": true,
+          "detail": "actual=M30 expected=M30"
+        },
+        {
+          "name": "Tester Model frozen",
+          "pass": true,
+          "detail": "actual=2 expected=2"
+        },
+        {
+          "name": "Tester Optimization frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester Deposit frozen",
+          "pass": true,
+          "detail": "actual=500 expected=500"
+        },
+        {
+          "name": "Tester Currency frozen",
+          "pass": true,
+          "detail": "actual=USD expected=USD"
+        },
+        {
+          "name": "Tester Leverage frozen",
+          "pass": true,
+          "detail": "actual=1:200 expected=1:200"
+        },
+        {
+          "name": "Tester Visual frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester FromDate matches manifest",
+          "pass": true,
+          "detail": "actual=2018.01.01 expected=2018.01.01"
+        },
+        {
+          "name": "Tester ToDate matches manifest",
+          "pass": true,
+          "detail": "actual=2024.05.31 expected=2024.05.31"
+        },
+        {
+          "name": "Tester Report matches manifest",
+          "pass": true,
+          "detail": "actual=DS260914_XAMR30_V3_TRAIN expected=DS260914_XAMR30_V3_TRAIN"
+        },
+        {
+          "name": "planned INI exists",
+          "pass": true,
+          "detail": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V3_TRAIN.ini"
+        },
+        {
+          "name": "economic execution flag is NOT_RUN",
+          "pass": true,
+          "detail": "NOT_RUN"
+        },
+        {
+          "name": "forbidden-date overlap = 0",
+          "pass": true,
+          "detail": "none"
+        }
+      ],
+      "mismatch_count": 0
+    },
+    {
+      "run_id": "DS260914_XAMR30_V1_VALID",
+      "variant": "V1",
+      "role": "VALID",
+      "ini_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V1_VALID.ini",
+      "checks": [
+        {
+          "name": "source/static name set exact",
+          "pass": true,
+          "detail": "source=31 static=31"
+        },
+        {
+          "name": "static/manifest name set exact",
+          "pass": true,
+          "detail": "source=31 manifest=31"
+        },
+        {
+          "name": "static/INI name set exact",
+          "pass": true,
+          "detail": "source=31 ini=31"
+        },
+        {
+          "name": "INI values parse by source types",
+          "pass": true,
+          "detail": "typed parse"
+        },
+        {
+          "name": "INI/manifest resolved values exact",
+          "pass": true,
+          "detail": "all source inputs"
+        },
+        {
+          "name": "source/static type and default exact",
+          "pass": true,
+          "detail": "source-derived table"
+        },
+        {
+          "name": "all fixed inputs equal source defaults",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "variant overrides only whitelist",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "V1 exact dynamic values",
+          "pass": true,
+          "detail": "{\"InpZThreshold\": 1.5, \"InpCrossAssetFilter\": true}"
+        },
+        {
+          "name": "Tester Expert frozen",
+          "pass": true,
+          "detail": "actual=dshtrend\\dsh_XAMR30 expected=dshtrend\\dsh_XAMR30"
+        },
+        {
+          "name": "Tester Symbol frozen",
+          "pass": true,
+          "detail": "actual=USDJPYm expected=USDJPYm"
+        },
+        {
+          "name": "Tester Period frozen",
+          "pass": true,
+          "detail": "actual=M30 expected=M30"
+        },
+        {
+          "name": "Tester Model frozen",
+          "pass": true,
+          "detail": "actual=2 expected=2"
+        },
+        {
+          "name": "Tester Optimization frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester Deposit frozen",
+          "pass": true,
+          "detail": "actual=500 expected=500"
+        },
+        {
+          "name": "Tester Currency frozen",
+          "pass": true,
+          "detail": "actual=USD expected=USD"
+        },
+        {
+          "name": "Tester Leverage frozen",
+          "pass": true,
+          "detail": "actual=1:200 expected=1:200"
+        },
+        {
+          "name": "Tester Visual frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester FromDate matches manifest",
+          "pass": true,
+          "detail": "actual=2024.06.01 expected=2024.06.01"
+        },
+        {
+          "name": "Tester ToDate matches manifest",
+          "pass": true,
+          "detail": "actual=2025.05.31 expected=2025.05.31"
+        },
+        {
+          "name": "Tester Report matches manifest",
+          "pass": true,
+          "detail": "actual=DS260914_XAMR30_V1_VALID expected=DS260914_XAMR30_V1_VALID"
+        },
+        {
+          "name": "planned INI exists",
+          "pass": true,
+          "detail": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V1_VALID.ini"
+        },
+        {
+          "name": "economic execution flag is NOT_RUN",
+          "pass": true,
+          "detail": "NOT_RUN"
+        },
+        {
+          "name": "forbidden-date overlap = 0",
+          "pass": true,
+          "detail": "none"
+        }
+      ],
+      "mismatch_count": 0
+    },
+    {
+      "run_id": "DS260914_XAMR30_V2_VALID",
+      "variant": "V2",
+      "role": "VALID",
+      "ini_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V2_VALID.ini",
+      "checks": [
+        {
+          "name": "source/static name set exact",
+          "pass": true,
+          "detail": "source=31 static=31"
+        },
+        {
+          "name": "static/manifest name set exact",
+          "pass": true,
+          "detail": "source=31 manifest=31"
+        },
+        {
+          "name": "static/INI name set exact",
+          "pass": true,
+          "detail": "source=31 ini=31"
+        },
+        {
+          "name": "INI values parse by source types",
+          "pass": true,
+          "detail": "typed parse"
+        },
+        {
+          "name": "INI/manifest resolved values exact",
+          "pass": true,
+          "detail": "all source inputs"
+        },
+        {
+          "name": "source/static type and default exact",
+          "pass": true,
+          "detail": "source-derived table"
+        },
+        {
+          "name": "all fixed inputs equal source defaults",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "variant overrides only whitelist",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "V2 exact dynamic values",
+          "pass": true,
+          "detail": "{\"InpZThreshold\": 1.5, \"InpCrossAssetFilter\": false}"
+        },
+        {
+          "name": "Tester Expert frozen",
+          "pass": true,
+          "detail": "actual=dshtrend\\dsh_XAMR30 expected=dshtrend\\dsh_XAMR30"
+        },
+        {
+          "name": "Tester Symbol frozen",
+          "pass": true,
+          "detail": "actual=USDJPYm expected=USDJPYm"
+        },
+        {
+          "name": "Tester Period frozen",
+          "pass": true,
+          "detail": "actual=M30 expected=M30"
+        },
+        {
+          "name": "Tester Model frozen",
+          "pass": true,
+          "detail": "actual=2 expected=2"
+        },
+        {
+          "name": "Tester Optimization frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester Deposit frozen",
+          "pass": true,
+          "detail": "actual=500 expected=500"
+        },
+        {
+          "name": "Tester Currency frozen",
+          "pass": true,
+          "detail": "actual=USD expected=USD"
+        },
+        {
+          "name": "Tester Leverage frozen",
+          "pass": true,
+          "detail": "actual=1:200 expected=1:200"
+        },
+        {
+          "name": "Tester Visual frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester FromDate matches manifest",
+          "pass": true,
+          "detail": "actual=2024.06.01 expected=2024.06.01"
+        },
+        {
+          "name": "Tester ToDate matches manifest",
+          "pass": true,
+          "detail": "actual=2025.05.31 expected=2025.05.31"
+        },
+        {
+          "name": "Tester Report matches manifest",
+          "pass": true,
+          "detail": "actual=DS260914_XAMR30_V2_VALID expected=DS260914_XAMR30_V2_VALID"
+        },
+        {
+          "name": "planned INI exists",
+          "pass": true,
+          "detail": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V2_VALID.ini"
+        },
+        {
+          "name": "economic execution flag is NOT_RUN",
+          "pass": true,
+          "detail": "NOT_RUN"
+        },
+        {
+          "name": "forbidden-date overlap = 0",
+          "pass": true,
+          "detail": "none"
+        }
+      ],
+      "mismatch_count": 0
+    },
+    {
+      "run_id": "DS260914_XAMR30_V3_VALID",
+      "variant": "V3",
+      "role": "VALID",
+      "ini_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V3_VALID.ini",
+      "checks": [
+        {
+          "name": "source/static name set exact",
+          "pass": true,
+          "detail": "source=31 static=31"
+        },
+        {
+          "name": "static/manifest name set exact",
+          "pass": true,
+          "detail": "source=31 manifest=31"
+        },
+        {
+          "name": "static/INI name set exact",
+          "pass": true,
+          "detail": "source=31 ini=31"
+        },
+        {
+          "name": "INI values parse by source types",
+          "pass": true,
+          "detail": "typed parse"
+        },
+        {
+          "name": "INI/manifest resolved values exact",
+          "pass": true,
+          "detail": "all source inputs"
+        },
+        {
+          "name": "source/static type and default exact",
+          "pass": true,
+          "detail": "source-derived table"
+        },
+        {
+          "name": "all fixed inputs equal source defaults",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "variant overrides only whitelist",
+          "pass": true,
+          "detail": "bad=none"
+        },
+        {
+          "name": "V3 exact dynamic values",
+          "pass": true,
+          "detail": "{\"InpZThreshold\": 2.0, \"InpCrossAssetFilter\": true}"
+        },
+        {
+          "name": "Tester Expert frozen",
+          "pass": true,
+          "detail": "actual=dshtrend\\dsh_XAMR30 expected=dshtrend\\dsh_XAMR30"
+        },
+        {
+          "name": "Tester Symbol frozen",
+          "pass": true,
+          "detail": "actual=USDJPYm expected=USDJPYm"
+        },
+        {
+          "name": "Tester Period frozen",
+          "pass": true,
+          "detail": "actual=M30 expected=M30"
+        },
+        {
+          "name": "Tester Model frozen",
+          "pass": true,
+          "detail": "actual=2 expected=2"
+        },
+        {
+          "name": "Tester Optimization frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester Deposit frozen",
+          "pass": true,
+          "detail": "actual=500 expected=500"
+        },
+        {
+          "name": "Tester Currency frozen",
+          "pass": true,
+          "detail": "actual=USD expected=USD"
+        },
+        {
+          "name": "Tester Leverage frozen",
+          "pass": true,
+          "detail": "actual=1:200 expected=1:200"
+        },
+        {
+          "name": "Tester Visual frozen",
+          "pass": true,
+          "detail": "actual=0 expected=0"
+        },
+        {
+          "name": "Tester FromDate matches manifest",
+          "pass": true,
+          "detail": "actual=2024.06.01 expected=2024.06.01"
+        },
+        {
+          "name": "Tester ToDate matches manifest",
+          "pass": true,
+          "detail": "actual=2025.05.31 expected=2025.05.31"
+        },
+        {
+          "name": "Tester Report matches manifest",
+          "pass": true,
+          "detail": "actual=DS260914_XAMR30_V3_VALID expected=DS260914_XAMR30_V3_VALID"
+        },
+        {
+          "name": "planned INI exists",
+          "pass": true,
+          "detail": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V3_VALID.ini"
+        },
+        {
+          "name": "economic execution flag is NOT_RUN",
+          "pass": true,
+          "detail": "NOT_RUN"
+        },
+        {
+          "name": "forbidden-date overlap = 0",
+          "pass": true,
+          "detail": "none"
+        }
+      ],
+      "mismatch_count": 0
+    }
+  ],
+  "R2_status": "PASS",
+  "FINAL_SMOKE_INDEPENDENT": "PASS"
+}
