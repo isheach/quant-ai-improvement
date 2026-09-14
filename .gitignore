@@ -62,3 +62,6 @@ desktop.ini
 
 # 构建脚本
 _build_repo.py
+
+# 私有 Planner 会话配置（不得提交到公开仓库）
+.codex/planner.json
