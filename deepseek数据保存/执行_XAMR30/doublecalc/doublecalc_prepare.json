@@ -1,0 +1,95 @@
+{
+  "provenance": {
+    "status": "PASS",
+    "source_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\mql5\\dshtools\\dsh_XAMR30.mq5",
+    "source_sha256": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C",
+    "canonical_ex5_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\dsh_XAMR30_N1R3.ex5",
+    "canonical_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "deployed_ex5_path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\53785E099C927DB68A545C249CDBCE06\\MQL5\\Experts\\dshtrend\\dsh_XAMR30.ex5",
+    "deployed_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "expected_source_sha256": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C",
+    "expected_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "starting_head": "f5613d57234307d39459b4258e07c48ae6c1f8d5"
+  },
+  "sample_file": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\doublecalc\\selected_samples.csv",
+  "common_sample_file": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\selected_samples.csv",
+  "windows": {
+    "WINTER": {
+      "pool_valid": 963,
+      "candidate_pool": 319,
+      "control_pool": 644,
+      "candidate_selected": 20,
+      "control_selected": 10
+    },
+    "DSTTR": {
+      "pool_valid": 640,
+      "candidate_pool": 219,
+      "control_pool": 421,
+      "candidate_selected": 20,
+      "control_selected": 10
+    },
+    "SUMMER": {
+      "pool_valid": 961,
+      "candidate_pool": 405,
+      "control_pool": 556,
+      "candidate_selected": 20,
+      "control_selected": 10
+    }
+  },
+  "selected_total": 90,
+  "candidate_total": 60,
+  "control_total": 30,
+  "audit_bridge_total": 37,
+  "raw_manifest": {
+    "generated_at": "2026-09-14T21:04:16",
+    "source": {
+      "kind": "real MT5 Tester history",
+      "terminal": "C:\\Program Files\\MetaTrader 5 EXNESS\\terminal64.exe",
+      "server": "Exness-MT5Trial5",
+      "account": "277335900",
+      "export_method": "read-only dsh_XAMR30SignalProbe_v1 OnTester CopyRates(PERIOD_M30)",
+      "synthetic_symbol": false,
+      "csv_reinjection": false
+    },
+    "first_selected_timestamp": "2023.01.02 23:00:00",
+    "USDJPYm_bars_before_first_selected": 12526,
+    "USDJPYm_before_first_selected_requirement": 5000,
+    "USDJPYm_warmup_pass": true,
+    "files": [
+      {
+        "symbol": "USDJPYm",
+        "timeframe": "M30",
+        "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_USDJPYm_M30.csv",
+        "first": "2022.01.02 22:00:00",
+        "last": "2023.08.01 23:30:00",
+        "bar_count": 19778,
+        "size_bytes": 1839399,
+        "sha256": "B42DDBCA49C69DD2E23D8F5D22FFD53BAC6CBE452F095EECC7BD5DC458E05F47",
+        "fields": [
+          "timestamp",
+          "open",
+          "high",
+          "low",
+          "close"
+        ]
+      },
+      {
+        "symbol": "XAUUSDm",
+        "timeframe": "M30",
+        "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_XAUUSDm_M30.csv",
+        "first": "2022.01.02 23:00:00",
+        "last": "2023.08.01 23:30:00",
+        "bar_count": 18692,
+        "size_bytes": 1813169,
+        "sha256": "250CB6A479E27CEBDD9B352BC58C44381EDA8809B68B5641CE715D3D5309F962",
+        "fields": [
+          "timestamp",
+          "open",
+          "high",
+          "low",
+          "close"
+        ]
+      }
+    ]
+  }
+}

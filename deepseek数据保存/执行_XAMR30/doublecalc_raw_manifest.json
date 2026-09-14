@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-09-14T21:07:12",
+  "source": {
+    "kind": "real MT5 Tester history",
+    "terminal": "C:\\Program Files\\MetaTrader 5 EXNESS\\terminal64.exe",
+    "server": "Exness-MT5Trial5",
+    "account": "277335900",
+    "export_method": "read-only dsh_XAMR30SignalProbe_v1 OnTester CopyRates(PERIOD_M30)",
+    "synthetic_symbol": false,
+    "csv_reinjection": false
+  },
+  "first_selected_timestamp": "2023.01.02 23:00:00",
+  "USDJPYm_bars_before_first_selected": 12526,
+  "USDJPYm_before_first_selected_requirement": 5000,
+  "USDJPYm_warmup_pass": true,
+  "files": [
+    {
+      "symbol": "USDJPYm",
+      "timeframe": "M30",
+      "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_USDJPYm_M30.csv",
+      "first": "2022.01.02 22:00:00",
+      "last": "2023.08.01 23:30:00",
+      "bar_count": 19778,
+      "size_bytes": 1839399,
+      "sha256": "B42DDBCA49C69DD2E23D8F5D22FFD53BAC6CBE452F095EECC7BD5DC458E05F47",
+      "fields": [
+        "timestamp",
+        "open",
+        "high",
+        "low",
+        "close"
+      ]
+    },
+    {
+      "symbol": "XAUUSDm",
+      "timeframe": "M30",
+      "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_XAUUSDm_M30.csv",
+      "first": "2022.01.02 23:00:00",
+      "last": "2023.08.01 23:30:00",
+      "bar_count": 18692,
+      "size_bytes": 1813169,
+      "sha256": "250CB6A479E27CEBDD9B352BC58C44381EDA8809B68B5641CE715D3D5309F962",
+      "fields": [
+        "timestamp",
+        "open",
+        "high",
+        "low",
+        "close"
+      ]
+    }
+  ]
+}

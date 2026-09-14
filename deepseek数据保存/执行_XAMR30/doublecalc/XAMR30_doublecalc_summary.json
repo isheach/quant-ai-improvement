@@ -1,0 +1,188 @@
+{
+  "starting_head": "f5613d57234307d39459b4258e07c48ae6c1f8d5",
+  "provenance": {
+    "status": "PASS",
+    "source_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\mql5\\dshtools\\dsh_XAMR30.mq5",
+    "source_sha256": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C",
+    "canonical_ex5_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\dsh_XAMR30_N1R3.ex5",
+    "canonical_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "deployed_ex5_path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\53785E099C927DB68A545C249CDBCE06\\MQL5\\Experts\\dshtrend\\dsh_XAMR30.ex5",
+    "deployed_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "expected_source_sha256": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C",
+    "expected_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "starting_head": "f5613d57234307d39459b4258e07c48ae6c1f8d5"
+  },
+  "fixed_windows": {
+    "WINTER": {
+      "from": "2023.01.02 00:00:00",
+      "to_exclusive": "2023.02.01 00:00:00"
+    },
+    "DSTTR": {
+      "from": "2023.03.20 00:00:00",
+      "to_exclusive": "2023.04.08 00:00:00"
+    },
+    "SUMMER": {
+      "from": "2023.07.03 00:00:00",
+      "to_exclusive": "2023.08.01 00:00:00"
+    }
+  },
+  "sampling": {
+    "selected_total": 90,
+    "candidate": 60,
+    "control": 30,
+    "audit_bridge": 37,
+    "algorithm": "sort valid pool by timestamp; equally spaced positions round-half-up over the entire pool"
+  },
+  "raw_manifest": {
+    "generated_at": "2026-09-14T21:07:12",
+    "source": {
+      "kind": "real MT5 Tester history",
+      "terminal": "C:\\Program Files\\MetaTrader 5 EXNESS\\terminal64.exe",
+      "server": "Exness-MT5Trial5",
+      "account": "277335900",
+      "export_method": "read-only dsh_XAMR30SignalProbe_v1 OnTester CopyRates(PERIOD_M30)",
+      "synthetic_symbol": false,
+      "csv_reinjection": false
+    },
+    "first_selected_timestamp": "2023.01.02 23:00:00",
+    "USDJPYm_bars_before_first_selected": 12526,
+    "USDJPYm_before_first_selected_requirement": 5000,
+    "USDJPYm_warmup_pass": true,
+    "files": [
+      {
+        "symbol": "USDJPYm",
+        "timeframe": "M30",
+        "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_USDJPYm_M30.csv",
+        "first": "2022.01.02 22:00:00",
+        "last": "2023.08.01 23:30:00",
+        "bar_count": 19778,
+        "size_bytes": 1839399,
+        "sha256": "B42DDBCA49C69DD2E23D8F5D22FFD53BAC6CBE452F095EECC7BD5DC458E05F47",
+        "fields": [
+          "timestamp",
+          "open",
+          "high",
+          "low",
+          "close"
+        ]
+      },
+      {
+        "symbol": "XAUUSDm",
+        "timeframe": "M30",
+        "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_XAUUSDm_M30.csv",
+        "first": "2022.01.02 23:00:00",
+        "last": "2023.08.01 23:30:00",
+        "bar_count": 18692,
+        "size_bytes": 1813169,
+        "sha256": "250CB6A479E27CEBDD9B352BC58C44381EDA8809B68B5641CE715D3D5309F962",
+        "fields": [
+          "timestamp",
+          "open",
+          "high",
+          "low",
+          "close"
+        ]
+      }
+    ]
+  },
+  "python_mql": {
+    "all_rows_complete": false,
+    "field_pass_counts": {
+      "ema48": 90,
+      "residual": 90,
+      "sigma48": 90,
+      "atr14": 0,
+      "atr_p20": 0,
+      "atr_p80": 0,
+      "z_score": 90,
+      "xau_return": 90
+    },
+    "required_rows": 90,
+    "max_diffs": {
+      "ema48": 4.9539039537194185e-11,
+      "residual": 4.9559356618544825e-11,
+      "sigma48": 4.952993570839226e-11,
+      "atr14": 0.15300157478609555,
+      "atr_p20": 0.026890332207199955,
+      "atr_p80": 0.017025627938293347,
+      "z_score": 5.0025317221980004e-11,
+      "xau_return": 4.990534125271645e-11
+    },
+    "worst_row": {
+      "ema48": "DSTTR_C_04",
+      "residual": "DSTTR_C_04",
+      "sigma48": "WINTER_C_01",
+      "atr14": "WINTER_C_09",
+      "atr_p20": "SUMMER_K_06",
+      "atr_p80": "SUMMER_K_06",
+      "z_score": "SUMMER_C_03",
+      "xau_return": "WINTER_C_13"
+    },
+    "xau_exact_ohlc_pass": 90,
+    "discrete_pass_counts": {
+      "v1_candidate": 90,
+      "v3_candidate": 90,
+      "direction": 90,
+      "atr_regime_pass": 77,
+      "xau_filter_pass": 90
+    },
+    "mql_iatr_matches_sma_tr_rows": 90,
+    "mql_iatr_sma_tr_max_diff": 4.286368482375735e-11,
+    "mql_iatr_sma_tr_worst_row": "SUMMER_C_15"
+  },
+  "bridge": {
+    "rows": 37,
+    "all_pass": true,
+    "field_pass_counts": {
+      "ema48": 37,
+      "residual": 37,
+      "sigma48": 37,
+      "z_score": 37,
+      "atr14": 37,
+      "atr_p20": 37,
+      "atr_p80": 37,
+      "xau_open": 37,
+      "xau_close": 37,
+      "xau_return": 37
+    },
+    "max_diffs": {
+      "ema48": 0.0004705090999834738,
+      "residual": 0.0004705091000000161,
+      "sigma48": 0.0004962582999999965,
+      "z_score": 4.934200000139555e-06,
+      "atr14": 0.0005000000000000004,
+      "atr_p20": 0.0005000000000000004,
+      "atr_p80": 0.0005000000000000004,
+      "xau_open": 0.0,
+      "xau_close": 0.0,
+      "xau_return": 4.857999999999946e-07
+    },
+    "worst_row": {
+      "ema48": "AUDIT_DSTTR_15",
+      "residual": "AUDIT_DSTTR_15",
+      "sigma48": "AUDIT_DSTTR_17",
+      "z_score": "AUDIT_WINTER_7",
+      "atr14": "AUDIT_SUMMER_31",
+      "atr_p20": "AUDIT_SUMMER_31",
+      "atr_p80": "AUDIT_SUMMER_31",
+      "xau_open": "AUDIT_SUMMER_31",
+      "xau_close": "AUDIT_SUMMER_31",
+      "xau_return": "AUDIT_SUMMER_19"
+    }
+  },
+  "mismatch": {
+    "status": "EXPLAINED_SEMANTIC_CONFLICT",
+    "field": "atr14",
+    "row_id": "WINTER_K_01",
+    "timestamp": "2023.01.02 23:00:00",
+    "python_wilder": "0.125834693983",
+    "mql_iatr": "0.106",
+    "diff": "0.0198346939827",
+    "tolerance": 1e-06,
+    "mql_iatr_matches_simple_tr14_rows": 90,
+    "raw_context_rows": 60,
+    "raw_context_csv": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\doublecalc\\XAMR30_atr_mismatch_context_60.csv",
+    "raw_source": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_USDJPYm_M30.csv"
+  },
+  "SIGNAL_DOUBLECALC": "FAIL"
+}
