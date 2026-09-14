@@ -1,0 +1,8 @@
+﻿# XAMR30 EA 冻结哈希（编译完成但【未运行】）
+# 编译：0 errors / 0 warnings（MetaEditor64, MT5 build 6184）
+# 状态：closed / blocked_data_prerequisite（alignment 95.1% < 预注册门槛 99%）
+
+D63B2D6698138C3578C3822338E6D68F96149F9894BA6009385EFB0FF7C4453C  dsh_XAMR30.mq5   (34997 B)
+BEA547EA50D3FD95EF63E4E70EBC8A726AAC16AF961A37A6CC0FB3850173EA57  dsh_XAMR30.ex5   (45300 B)
+
+# 探针（只读）：dsh_XAMR30Align.mq5 / Align2.mq5 / Align3.mq5

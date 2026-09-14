@@ -1,0 +1,80 @@
+XAMR30 = closed / blocked_data_prerequisite（预注册 alignment 门槛未满足，未跑 TRAIN/VALID）
+
+=== 阶段状态 ===
+定名      = XAF30 -> XAMR30 (Cross-Asset Mean Reversion on M30)
+预注册    = 完成（Source of Truth: 公共部分/XAMR30_preregistration_final_20260914.md）
+EA 实现   = 完成并编译 0 errors / 0 warnings（★未运行）
+N0 数据   = 双品种对齐实测完成 -> 结论 blocked
+N1.5/N2/N3 = 未执行
+
+=== EA（已就绪，未运行）===
+dsh_XAMR30.mq5  34997 B  D63B2D6698138C3578C3822338E6D68F96149F9894BA6009385EFB0FF7C4453C
+dsh_XAMR30.ex5  45300 B  BEA547EA50D3FD95EF63E4E70EBC8A726AAC16AF961A37A6CC0FB3850173EA57
+已落实：fail-close / OCP 权威（失败不 fallback）/ DEAL_PROFIT↔OCP<=0.05 主判据 /
+        FileWrite 成功后登记 / unique header / ticket 去重 /
+        成交后用 POSITION_PRICE_OPEN+SL+volume 重算 real risk /
+        server_utc_offset 恒写 0 / 下一 bar 首 tick 入场 / 每日<=1 笔 / 12 根 M30 上限 /
+        z-score 用 bar t 之前 48 residual（不含 t）/ ATR percentile 用之前 500（nearest-rank P20/P80）/
+        exact M30 open timestamp 跨品种匹配（缺 bar 即 cross_asset_missing_bar 拒单）/
+        ★补齐 JSB30 缺口：spread_at_entry_points / initial_sl_distance_points /
+          initial_tp_distance_points / spread_over_sl / spread_over_tp 全部落盘
+
+=== N0 双品种对齐实测（关闭依据，三支只读 Tester 探针）===
+2023-01 窗口    : scanned=12474 match=11817 miss=657  alignment=94.7330%
+2024-01~06 窗口 : scanned=12382 match=11772 miss=610  alignment=95.0735%
+2024-03   窗口  : scanned=14451 match=13743 miss=708  alignment=95.1007%
+缺口诊断        : miss_within_xau_coverage=610  miss_beyond_xau_end=0  -> 真缺口（非尾部滞后）
+                  miss_runs=256
+缺口形态        : ★每个交易日固定缺失 22:00 与 22:30 UTC 两根
+                  XAU 每日首根恒为 23:00 UTC（JPY 为 22:00）
+量化解释        : 每天 48 根 M30，固定缺 2 根 = 4.1667%
+                  理论 alignment 上限 ≈95.83%，实测 95.05%~95.40% 完全吻合
+                  -> 缺口是确定性的、每日重复的
+
+=== 判定 ===
+预注册 §5：每个用于 TRAIN 的完整月份 alignment_ratio >= 99%
+实测 95.05% < 99%  -> 前置条件不满足 -> 无法冻结 TRAIN 起点 -> 不得进入 N2
+根因：XAUUSDm 的交易时段属性（黄金交易所每日结算/休市窗口），
+      与 USDJPYm 的交易时间存在结构性差异，不可通过任何数据操作消除
+★我未自行放宽预注册门槛（99%），未消耗任何 TRAIN/VALID 运行
+★与 JSB30 时期独立观测交叉验证一致（XAU M30 first=2023.01.02 23:00 vs JPY 22:00）
+
+=== 跨品种 effect bootstrap ===
+未执行（无 TRAIN 数据）
+
+=== 最终 candidate ===
+无。累计 8 个结构族 / 3 标的 / 约 8000+ 次回测，可交付候选 = 0。
+
+=== PROJECT_FEASIBILITY_REVIEW（按裁定 §14 提交，只做设计，未启动 MT5）===
+公共部分/PROJECT_FEASIBILITY_REVIEW_20260914.md
+
+失败收敛到 4 个机制：
+  ① 成本拖累      JSB30 三变体 2× 成本后一律转负；日元网格 7/7 窗口加交易低于不做交易
+  ② 最小手地板    JSB30 拒单率 9%~53%；理想手数常 < 0.01（500 USD 与 0.01 手不匹配）
+  ③ 尾部依赖      黄金前10大单占 R 的 87-165%；BTC C1 前10占净利 110.8%/232.1%
+  ④ 结构性负期望  JSB30 V1 胜率 36.9%、实际盈亏比 1.43 -> 期望 -0.10 R/笔
+                  8 项核心门槛只有"频率"与"跨度"稳定通过（只证明样本足够，不证明策略有效）
+
+核心判断：在当前约束（500 USD / 1:200 / 真实零售点差 / 0.01 最小手 / 禁用留白）下，
+          继续"换简单规则 family"缺乏实验依据 ——
+          7 个族已覆盖单标的日线与日内价格行为，剩下只是同信息不同参数的排列；
+          失败模式收敛而非分散，换 family 只是换一种方式撞同一面墙。
+
+建议 3 个下一层方向：
+  A 资金敏感性研究（500/1,000/2,000/5,000 USD 扫同一策略，区分"策略问题"还是"资金问题"）
+    —— 代价最低、信息量最大，我建议优先
+  B 从规则策略转向统计/ML 信号显著性检验（纯离线，不跑 MT5）
+  C 正式接受 no-deliverable 并固化 8000+ 次负面结果 + 12 条方法纪律 + 2 条元纪律
+
+=== 我主动登记的失误 ===
+第一次对齐探针想用"一次覆盖 2018-2024 的运行"统计逐月 bar 数，被 Tester 缓存特性污染：
+  请求 2018-2024 只得 2017-01~2018-01 的 9,260 根 M30，
+  逐月计数呈累积增长（9259 -> 10280 -> 11175 …），是缓存扩张而非月度统计
+识别后改用逐月窗口 + 逐根比较探针才得到可靠结论
+教训（与 JSB30 的 coverage 分母错误同源）：凡是"用 MT5 的 bar 计数做区间统计"，
+必须先确认该计数是否受缓存影响
+
+=== 遵守自检 ===
+未读取 exposed_oos / 未读取 user_holdout / 未参数扫描 / 未按结果补过滤器 /
+未做 long-only 或 short-only 事后筛选 / 未构造 V2+V3 / 未用自建 symbol / 未 CSV 回灌 /
+未修改任何历史旧 EA / 未真钱交易 / ★未自行放宽预注册门槛

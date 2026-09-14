@@ -1,0 +1,26 @@
+=== dsh_XAMR30Align2 ===
+run_tag=AL2_2023_01
+jpy=USDJPYm  xau=XAUUSDm
+server_minus_GMT_sec=0
+tester_time=2023.01.01 22:00:00
+M30 bars: jpy=12477 xau=11817
+jpy range: 2022.01.02 22:00 ~ 2023.01.01 22:00
+xau range: 2022.01.02 23:00 ~ 2022.12.30 21:30
+overlap  : 2022.01.02 23:00 ~ 2022.12.30 21:30
+
+--- per-bar check (jpy bars inside overlap, newest first, capped) ---
+  MISS jpy_ts=2022.12.29 22:30
+  MISS jpy_ts=2022.12.29 22:00
+  MISS jpy_ts=2022.12.28 22:30
+  MISS jpy_ts=2022.12.28 22:00
+  MISS jpy_ts=2022.12.27 22:30
+  MISS jpy_ts=2022.12.27 22:00
+  MISS jpy_ts=2022.12.26 22:30
+  MISS jpy_ts=2022.12.26 22:00
+  MISS jpy_ts=2022.12.26 21:30
+  MISS jpy_ts=2022.12.26 21:00
+  MISS jpy_ts=2022.12.26 20:30
+  MISS jpy_ts=2022.12.26 20:00
+
+SUMMARY jpy_bars_in_overlap=12474 match=11817 miss=657 alignment_ratio=94.7330%
+done

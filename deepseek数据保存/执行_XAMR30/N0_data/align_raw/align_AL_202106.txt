@@ -1,0 +1,17 @@
+=== dsh_XAMR30Align ===
+run_tag=AL_202106
+trade_symbol=USDJPYm
+info_symbol=XAUUSDm
+server=Exness-MT5Trial5
+build=6184
+server_minus_GMT_sec=0
+
+M30 bars: USDJPYm=17644  XAUUSDm=16726
+JPY M30 first=2020.01.02 00:00 last=2021.06.01 00:00
+XAU M30 first=2020.01.02 00:00 last=2021.06.01 00:00
+
+month | jpy_m30 | xau_match | align_ratio
+2020-01 | 0 | 0 | 0.0000%
+2020-02 | 0 | 0 | 0.0000%
+
+done

@@ -1,0 +1,16 @@
+=== dsh_XAMR30Align3 ===
+run_tag=AL3_2024H1  jpy=USDJPYm  xau=XAUUSDm
+tester_time=2024.01.01 22:00:00
+M30 bars jpy=12433 xau=11772
+jpy 2023.01.01 22:00 ~ 2024.01.01 22:00
+xau 2023.01.02 23:00 ~ 2023.12.29 21:30
+XAU 结束时间早于 JPY: 4350 分钟
+
+SUMMARY scanned=12382 match=11772 miss=610 alignment=95.0735%
+miss_runs=256 max_consecutive_miss=50
+first_miss(newest)=2023.12.28 22:30
+last_miss(oldest) =2023.01.03 22:00
+miss_within_xau_coverage=610  miss_beyond_xau_end=0
+
+VERDICT: XAU 覆盖范围内存在 MISS → 【真缺口】，跨品种对齐不可靠
+done
