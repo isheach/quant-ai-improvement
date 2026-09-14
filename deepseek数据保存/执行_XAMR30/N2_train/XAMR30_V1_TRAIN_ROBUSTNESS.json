@@ -1,0 +1,71 @@
+{
+  "bootstrap": "NOT_RUN",
+  "cost_stress_postprocessing": {
+    "base_cost_formula": "abs(ocp_expected_pl) * spread_over_sl + abs(swap) + abs(commission) per trade",
+    "base_cost_usd": 317.4301354,
+    "mt5_rerun": false,
+    "results": [
+      {
+        "cost_multiplier": 1.0,
+        "expectancy_usd": -0.47688367129135545,
+        "mt5_rerun": false,
+        "net": -446.84,
+        "postprocessing_only": true,
+        "profit_factor": 0.657307636263239
+      },
+      {
+        "cost_multiplier": 1.5,
+        "expectancy_usd": -0.6462700829242263,
+        "mt5_rerun": false,
+        "net": -605.5550677,
+        "postprocessing_only": true,
+        "profit_factor": 0.5685886599799062
+      },
+      {
+        "cost_multiplier": 2.0,
+        "expectancy_usd": -0.8156564945570971,
+        "mt5_rerun": false,
+        "net": -764.2701354,
+        "postprocessing_only": true,
+        "profit_factor": 0.4918893170542975
+      }
+    ]
+  },
+  "holdout": "NOT_RUN",
+  "integrity_gate": {
+    "checks": {
+      "active_positions_zero": true,
+      "all_alignment_exact": true,
+      "at_most_one_entry_per_utc_day": true,
+      "audit_failed_zero": true,
+      "audit_selfcheck_trades_equals_rows": true,
+      "audit_written_deals_equals_rows": true,
+      "fatal_zero": true,
+      "formula_diag_out_zero": true,
+      "frozen_ini_safe": true,
+      "holding_and_exit_schema_normal": true,
+      "html_net_reconciles_to_audit": true,
+      "html_total_trades_equals_audit_rows": true,
+      "no_oos_or_holdout_rows": true,
+      "ocp_mismatch_zero": true,
+      "required_fields_present": true,
+      "source_canonical_deployed_ini_unchanged": true,
+      "timestamps_parse": true,
+      "timestamps_within_train": true,
+      "unique_trade_tickets": true
+    },
+    "status": "PASS"
+  },
+  "loss_concentration": {
+    "net_without_worst10_losers": -369.55000000000007,
+    "worst10_loss_sum": -77.28999999999999,
+    "worst5_loss_sum": -40.96
+  },
+  "oos": "NOT_RUN",
+  "optimization": "NOT_RUN",
+  "winner_concentration": {
+    "net_without_top10_winners": -504.32000000000005,
+    "top10_of_gross_winners": 0.06706570058454969,
+    "top5_of_gross_winners": 0.03383620941113328
+  }
+}

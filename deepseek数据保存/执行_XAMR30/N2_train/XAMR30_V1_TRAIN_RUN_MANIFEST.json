@@ -1,0 +1,170 @@
+{
+  "account_or_connection_identifier": "INTENTIONALLY_OMITTED",
+  "branch": "run/xamr30-v1-train-r1",
+  "collision_gate": {
+    "action": "started once after clean collision check",
+    "prior_nonempty_tagged_artifact": false
+  },
+  "execution": {
+    "count": 1,
+    "end": "2026-09-15T01:14:30.0383000+08:00",
+    "mt5_rerun_after_run": false,
+    "start": "2026-09-15T01:14:11.8986349+08:00",
+    "terminal_exit_code": 0
+  },
+  "executor_commit": "f61c3fbac1ca56ffe2e92fd1c246a6f67e483fda",
+  "file_hashes_manifest": "XAMR30_V1_TRAIN_FILE_HASHES.sha256",
+  "frozen_config": {
+    "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N0_final\\resolved_INIs\\run_DS260914_XAMR30_V1_TRAIN.ini",
+    "safe_fields": {
+      "Currency": "USD",
+      "Deposit": "500",
+      "Expert": "dshtrend\\dsh_XAMR30",
+      "FromDate": "2018.01.01",
+      "InpCrossAssetFilter": "true",
+      "InpRunTag": "DS260914_XAMR30_V1_TRAIN",
+      "InpUseGrid": "false",
+      "InpUseMartingale": "false",
+      "InpUseTrailingWin": "false",
+      "InpZThreshold": "1.5",
+      "Leverage": "1:200",
+      "Model": "2",
+      "Optimization": "0",
+      "Period": "M30",
+      "ReplaceReport": "1",
+      "Report": "DS260914_XAMR30_V1_TRAIN",
+      "ShutdownTerminal": "1",
+      "Symbol": "USDJPYm",
+      "ToDate": "2024.05.31",
+      "Visual": "0"
+    },
+    "sha256": "3248FD8F94F1CF6FB55FF20D0068A3CF8BF2E942EA0C589C88F232DEA374D0B1"
+  },
+  "generated_evidence": {
+    "XAMR30_V1_TRAIN_DAILY_RETURNS.csv": {
+      "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N2_train\\XAMR30_V1_TRAIN_DAILY_RETURNS.csv",
+      "sha256": "089292CBCD47D730AF29D60F424BB432A68E2062480CAD33803D86EA83709FC1",
+      "size_bytes": 42213
+    },
+    "XAMR30_V1_TRAIN_METRICS.json": {
+      "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N2_train\\XAMR30_V1_TRAIN_METRICS.json",
+      "sha256": "38BA82F308BCD6A445C3899EF2177AF19E0E272B37D02A01ACBCE58A633CF5B9",
+      "size_bytes": 5320
+    },
+    "XAMR30_V1_TRAIN_MONTHLY.csv": {
+      "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N2_train\\XAMR30_V1_TRAIN_MONTHLY.csv",
+      "sha256": "10879E6ED308D9FE16B98BFC351E1ABEB7D2A913B83ED0341FAE7C176E3FB9D7",
+      "size_bytes": 1197
+    },
+    "XAMR30_V1_TRAIN_REPORT_PARSED.json": {
+      "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N2_train\\XAMR30_V1_TRAIN_REPORT_PARSED.json",
+      "sha256": "F56DE20FBC86A448FC5A3702737B368325C22484A580826FF427976D0BD82251",
+      "size_bytes": 1358
+    },
+    "XAMR30_V1_TRAIN_REVIEW.md": {
+      "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N2_train\\XAMR30_V1_TRAIN_REVIEW.md",
+      "sha256": "253D465ABBCF856333F2CC262E2A12C41CE16B1B792977EFB7FE520D7802D1A6",
+      "size_bytes": 4014
+    },
+    "XAMR30_V1_TRAIN_ROBUSTNESS.json": {
+      "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N2_train\\XAMR30_V1_TRAIN_ROBUSTNESS.json",
+      "sha256": "2F104AABACD623FA6BC424A908797D3134B99788A422E07BC35822B00DEBC87B",
+      "size_bytes": 2266
+    },
+    "XAMR30_V1_TRAIN_TRADE_LEDGER.csv": {
+      "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N2_train\\XAMR30_V1_TRAIN_TRADE_LEDGER.csv",
+      "sha256": "940A8A2C3DAFBBEF9C19A92335A60E00E029FAD0E521FCAF9573F215300855CC",
+      "size_bytes": 320857
+    },
+    "XAMR30_V1_TRAIN_YEARLY.csv": {
+      "path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\N2_train\\XAMR30_V1_TRAIN_YEARLY.csv",
+      "sha256": "2DAD5F990DB86264159532795B2DE30858DCA74113E662763177D94EBA181DEA",
+      "size_bytes": 138
+    }
+  },
+  "identity_hashes_after_run": {
+    "canonical_ex5": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "comparisons": {
+      "canonical_equals_deployed": true,
+      "canonical_unchanged": true,
+      "deployed_unchanged": true,
+      "frozen_ini_unchanged": true,
+      "source_unchanged": true
+    },
+    "deployed_ex5": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "frozen_ini": "3248FD8F94F1CF6FB55FF20D0068A3CF8BF2E942EA0C589C88F232DEA374D0B1",
+    "source_mq5": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C"
+  },
+  "integrity_gate": {
+    "checks": {
+      "active_positions_zero": true,
+      "all_alignment_exact": true,
+      "at_most_one_entry_per_utc_day": true,
+      "audit_failed_zero": true,
+      "audit_selfcheck_trades_equals_rows": true,
+      "audit_written_deals_equals_rows": true,
+      "fatal_zero": true,
+      "formula_diag_out_zero": true,
+      "frozen_ini_safe": true,
+      "holding_and_exit_schema_normal": true,
+      "html_net_reconciles_to_audit": true,
+      "html_total_trades_equals_audit_rows": true,
+      "no_oos_or_holdout_rows": true,
+      "ocp_mismatch_zero": true,
+      "required_fields_present": true,
+      "source_canonical_deployed_ini_unchanged": true,
+      "timestamps_parse": true,
+      "timestamps_within_train": true,
+      "unique_trade_tickets": true
+    },
+    "details": {
+      "audit_net": -446.84000000000003,
+      "audit_trade_rows": 937,
+      "html_total_trades": 937,
+      "max_entries_per_utc_day": 1,
+      "net_difference": 5.684341886080802e-14,
+      "net_tolerance": 0.44683999999999996,
+      "oos_rows": 0,
+      "report_net": -446.84,
+      "user_holdout_rows": 0
+    },
+    "status": "PASS"
+  },
+  "next_stage_authorization": "WAIT_FOR_PLANNER_REVIEW",
+  "raw_evidence_outside_git": {
+    "audit_selfcheck_csv": {
+      "exists": true,
+      "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\DS260914_XAMR30_V1_TRAIN\\audit_selfcheck.csv",
+      "row_count": 1,
+      "sha256": "8CCFA5360FFC052C5211F1D40A61B00854CF09924E80095D432772D4446EE907",
+      "size_bytes": 418
+    },
+    "reject_audit_csv": {
+      "exists": true,
+      "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\DS260914_XAMR30_V1_TRAIN\\reject_audit.csv",
+      "row_count": 13709,
+      "sha256": "3C91F4C66562983B05D925A16715BBF2688B81256B0ACA2920B617D84C098684",
+      "size_bytes": 2122703
+    },
+    "report_html": {
+      "exists": true,
+      "first_trade_timestamp": "2018-01-02 10:30:00",
+      "last_trade_timestamp": "2024-05-30 05:59:58",
+      "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\53785E099C927DB68A545C249CDBCE06\\DS260914_XAMR30_V1_TRAIN.htm",
+      "row_count": 937,
+      "sha256": "8C0FFB1F0D81AE6A58495EEED300880A29B2EE796293CE569B175B49B7942080",
+      "size_bytes": 1896816
+    },
+    "trades_csv": {
+      "exists": true,
+      "first_timestamp": "2018-01-02 10:30:00",
+      "last_timestamp": "2024-05-30 05:59:58",
+      "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\DS260914_XAMR30_V1_TRAIN\\trades.csv",
+      "row_count": 937,
+      "sha256": "940A8A2C3DAFBBEF9C19A92335A60E00E029FAD0E521FCAF9573F215300855CC",
+      "size_bytes": 320857
+    }
+  },
+  "run_tag": "DS260914_XAMR30_V1_TRAIN",
+  "status": "VALID"
+}

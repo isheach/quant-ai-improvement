@@ -1,0 +1,174 @@
+{
+  "cost_stress": [
+    {
+      "cost_multiplier": 1.0,
+      "expectancy_usd": -0.47688367129135545,
+      "mt5_rerun": false,
+      "net": -446.84,
+      "postprocessing_only": true,
+      "profit_factor": 0.657307636263239
+    },
+    {
+      "cost_multiplier": 1.5,
+      "expectancy_usd": -0.6462700829242263,
+      "mt5_rerun": false,
+      "net": -605.5550677,
+      "postprocessing_only": true,
+      "profit_factor": 0.5685886599799062
+    },
+    {
+      "cost_multiplier": 2.0,
+      "expectancy_usd": -0.8156564945570971,
+      "mt5_rerun": false,
+      "net": -764.2701354,
+      "postprocessing_only": true,
+      "profit_factor": 0.4918893170542975
+    }
+  ],
+  "frozen_ini_safe_fields": {
+    "Currency": "USD",
+    "Deposit": "500",
+    "Expert": "dshtrend\\dsh_XAMR30",
+    "FromDate": "2018.01.01",
+    "InpCrossAssetFilter": "true",
+    "InpRunTag": "DS260914_XAMR30_V1_TRAIN",
+    "InpUseGrid": "false",
+    "InpUseMartingale": "false",
+    "InpUseTrailingWin": "false",
+    "InpZThreshold": "1.5",
+    "Leverage": "1:200",
+    "Model": "2",
+    "Optimization": "0",
+    "Period": "M30",
+    "ReplaceReport": "1",
+    "Report": "DS260914_XAMR30_V1_TRAIN",
+    "ShutdownTerminal": "1",
+    "Symbol": "USDJPYm",
+    "ToDate": "2024.05.31",
+    "Visual": "0"
+  },
+  "integrity": {
+    "active_positions_zero": true,
+    "all_alignment_exact": true,
+    "at_most_one_entry_per_utc_day": true,
+    "audit_failed_zero": true,
+    "audit_selfcheck_trades_equals_rows": true,
+    "audit_written_deals_equals_rows": true,
+    "fatal_zero": true,
+    "formula_diag_out_zero": true,
+    "frozen_ini_safe": true,
+    "holding_and_exit_schema_normal": true,
+    "html_net_reconciles_to_audit": true,
+    "html_total_trades_equals_audit_rows": true,
+    "no_oos_or_holdout_rows": true,
+    "ocp_mismatch_zero": true,
+    "required_fields_present": true,
+    "source_canonical_deployed_ini_unchanged": true,
+    "timestamps_parse": true,
+    "timestamps_within_train": true,
+    "unique_trade_tickets": true
+  },
+  "integrity_details": {
+    "alignment_bad_rows": 0,
+    "audit_net": -446.84000000000003,
+    "audit_trade_rows": 937,
+    "html_total_trades": 937,
+    "max_entries_per_utc_day": 1,
+    "missing_required_values": 0,
+    "missing_trade_fields": [],
+    "net_difference": 5.684341886080802e-14,
+    "net_tolerance": 0.44683999999999996,
+    "report_net": -446.84,
+    "time_exit_rows": 6,
+    "trade_timestamps": {
+      "first_entry": "2018-01-02 10:30:00",
+      "last_exit": "2024-05-30 05:59:58"
+    }
+  },
+  "reject_counts": {
+    "atr_out_of_regime": 8046,
+    "cross_asset_filter_fail": 3698,
+    "cross_asset_missing_bar": 274,
+    "min_lot_risk_reject": 1691
+  },
+  "report_metrics": {
+    "active_span_days": 2339,
+    "average_loser": -2.5516829745596867,
+    "average_winner": 2.0119014084507043,
+    "close_type_distribution": {
+      "full": 937
+    },
+    "commission_total": 0.0,
+    "exit_reason_distribution": {
+      "sl": 506,
+      "time_exit": 6,
+      "tp": 425
+    },
+    "expectancy_r": -0.09333522070984437,
+    "expectancy_usd": -0.4768836712913554,
+    "first_trade": "2018-01-02 10:30:00",
+    "history_quality": "99%",
+    "history_quality_is_recorded_not_suppressed": true,
+    "holding_bar_distribution": "NOT_COMPUTABLE_FROM_FROZEN_AUDIT",
+    "holding_time_seconds": {
+      "max": 185398.0,
+      "median": 3597.0,
+      "min": 1797.0,
+      "p95": 14397.0
+    },
+    "last_trade": "2024-05-30 05:59:58",
+    "long": {
+      "count": 404,
+      "net": -216.72
+    },
+    "official_equity_drawdown": {
+      "absolute": 449.36,
+      "maximal": "451.73 (89.92%)",
+      "relative": "89.92% (451.73)"
+    },
+    "payoff_ratio": 0.788460568381491,
+    "profit_factor": 0.66,
+    "r_definition": "R_i = net_i / abs(ocp_expected_pl_i), nonzero OCP rows only",
+    "r_rows_missing_or_zero_ocp": 0,
+    "r_rows_used": 937,
+    "reject_reason_counts": {
+      "atr_out_of_regime": 8046,
+      "cross_asset_filter_fail": 3698,
+      "cross_asset_missing_bar": 274,
+      "min_lot_risk_reject": 1691
+    },
+    "report_total_net_profit": -446.84,
+    "return_pct_on_initial_deposit": -89.368,
+    "short": {
+      "count": 533,
+      "net": -230.12
+    },
+    "spread_over_sl": {
+      "median": 0.1351,
+      "p95": 0.265666
+    },
+    "spread_over_tp": {
+      "median": 0.16888,
+      "p95": 0.33208
+    },
+    "swap_total": -9.48,
+    "total_trades": 937,
+    "trades_per_year": 146.13119128949617,
+    "win_rate_pct": 45.46424759871932
+  },
+  "run_status": "VALID",
+  "run_tag": "DS260914_XAMR30_V1_TRAIN",
+  "source_hashes_after_run": {
+    "canonical_ex5": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "comparisons": {
+      "canonical_equals_deployed": true,
+      "canonical_unchanged": true,
+      "deployed_unchanged": true,
+      "frozen_ini_unchanged": true,
+      "source_unchanged": true
+    },
+    "deployed_ex5": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "frozen_ini": "3248FD8F94F1CF6FB55FF20D0068A3CF8BF2E942EA0C589C88F232DEA374D0B1",
+    "source_mq5": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C"
+  }
+}
