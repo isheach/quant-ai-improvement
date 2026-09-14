@@ -1,0 +1,31 @@
+JSB30 N1R：四项修复完成 + N1.5R 69/69 通过 + N1.6 provenance 冲突定位
+
+N1R 四项修复（编译 0 errors / 0 warnings）：
+1. 每日 range 状态机 -> RangeStateOnNewClosedBar() 增量构建，窗口完整结束后才冻结
+   （旧实现只在 UTC 日切换调用，而那时 range 窗口尚未形成 -> g_rangeReady 永远 false）
+2. 真实 DST/offset 链 -> WeekKeyUtc 改为周一 00:00 UTC；WeekFirstBarServer 扫 4 小时；
+   InferOffsetFromWeekOpen 收紧为 server hour ∈ {0,1} 反推 offset ∈ {2,3}
+   两层测试：UNIT 三组不同日期 6/6 + REALWEEK 真实历史周 checked=30 OK=30 FAIL=0
+3. 审计写入顺序 -> 拆 IsDealSeen / MarkDealSeen；FileWrite 成功后才标记与计数
+   reject audit 与两张 header 的写入同样检查返回值
+4. 恢复 OrderCalcProfit -> 权威风险值（sizing 与 actual SL risk）；独立合约公式降为
+   第二套审计值；审计新增 ocp_value/formula_value/ocp_err/ocp_diff/ocp_lim 五列
+
+N1.5R：预先固定的三窗口 69/69 通过，实际 closing deal 合计 42 笔
+  WINTER 2023.01.02~01.31（13 笔）· DSTTR 2023.03.20~04.07（12 笔）· SUMMER 2023.07.03~07.31（17 笔）
+  HTML Total Trades == 审计行数；净利差 0.00；每 UTC 日 <=1 笔；无 UTC20 后持仓
+  ticket 无重复；profit+swap+commission=net；ocp_mismatch=0；audit_failed=0；active_positions=0
+  dataset_role = engineering_smoke，盈利数字未用于任何策略判断
+
+N1.6：MEMORY.md 的 3,471,032 定位到 mt5workers/w01/.../specs.json
+  （dsh_ProbeSpecs.mq5 用 SeriesInfoInteger(SERIES_BARS_COUNT)，即 MT5 声明值）
+  同期 dsh_ExportRates 实际导出仅 500,009 行（2025.05.08 起）
+  -> 是「MT5 声明值」vs「实际可回测值」，非数据矛盾；相差 6.9 倍、起点相差 11 年
+  已接受 ticks 措辞更正：Model=2 下 73x4=292 / 75x4=300 / 572x4=2288，一律以 M1 bar 覆盖率判断
+
+冻结：source 0F03F57C4AB06FD0B16C31F40B48EFBAA5D91E80F00BCC017DE04E7ABD17C108
+      ex5    C3C7FA72AFA50139B0F6F2C99312CB43598F88E28CAA784BC34229642B1AD15D
+旧版留档（未覆盖）：dsh_JSB30_v1_N1_needs_repair.mq5；N1 哈希 E3E80B29... / 7559C19F...
+
+N0 guard 重跑 78/78（verified_recheck，新增 InpOcpTolUsd / InpOcpTolRelPct 已登记）
+N2 未启动（按要求）

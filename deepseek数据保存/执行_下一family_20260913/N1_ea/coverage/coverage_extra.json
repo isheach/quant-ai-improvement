@@ -1,0 +1,38 @@
+[
+  {
+    "tag": "2017Q1b",
+    "frm": "2017.02.06",
+    "to": "2017.02.10",
+    "bars": 4,
+    "ticks": 16,
+    "coverage_norm_pct": 0.07,
+    "verdict": "server_unavailable"
+  },
+  {
+    "tag": "2017Q2b",
+    "frm": "2017.05.08",
+    "to": "2017.05.12",
+    "bars": 5759,
+    "ticks": 23019,
+    "coverage_norm_pct": 99.98,
+    "verdict": "normal_continuous"
+  },
+  {
+    "tag": "2018Q1b",
+    "frm": "2018.02.05",
+    "to": "2018.02.09",
+    "bars": 5760,
+    "ticks": 23036,
+    "coverage_norm_pct": 100.0,
+    "verdict": "normal_continuous"
+  },
+  {
+    "tag": "2024Q1b",
+    "frm": "2024.02.05",
+    "to": "2024.02.09",
+    "bars": 5754,
+    "ticks": 22940,
+    "coverage_norm_pct": 99.9,
+    "verdict": "normal_continuous"
+  }
+]

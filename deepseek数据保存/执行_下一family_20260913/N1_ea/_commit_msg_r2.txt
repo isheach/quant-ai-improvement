@@ -1,0 +1,86 @@
+JSB30 最终结果：closed / blocked_failed（三变体 TRAIN 全失败，VALID 运行数 0）
+
+=== 阶段状态 ===
+N0      = verified_recheck（guard 78/78 · 四方一致 6/6）
+N1R2    = frozen（编译 0 errors / 0 warnings）
+N1.5R2  = engineering_verified（三窗口工程 smoke 全部产生真实成交）
+N1.6R   = data_provenance_verified（逐季度 coverage 表 · TRAIN 起点冻结）
+N1.7    = preflight pass（四方一致 · 日期护栏 · 未碰 exposed_oos/user_holdout）
+N2      = 完成（V1/V2/V3 TRAIN 串行）
+N3      = not_run（无 TRAIN 通过者 → VALID 运行数 = 0）
+
+=== A. 服务器时间最终裁定：server_utc_offset = 0 ===
+第一层（实时终端）：TimeCurrent/TimeTradeServer/TimeGMT 连续 5 次采样，server_minus_GMT_sec = 0
+第二层（Tester 历史）：四时段 2023-01/03/07/11 × 40 周 = 160 个交易周，server_minus_GMT_sec 恒为 0
+                        周首 bar 恒为周一 00:00；周末 bar 恒为周日 23:59
+                        M1 缓存起点 2022.01.02 22:10（周日）
+与 Exness 官方口径一致（服务器 UTC+0；DST 改变的是 trading session）
+→ 整套 +2/+3 动态时区转换已从策略运行依赖中删除（ServerToUtc/UtcToServer 改为恒等）
+★确证 GPT 的推断：旧代码用「周日固定 22:00 UTC 开市」反推 offset，
+  而实测周首 bar 是周一 00:00 → 00−22 ≡ 2 小时被误判为 +2
+  —— 用错误假设反推假设本身的循环论证
+
+=== B–F. N1R2 五项修复 ===
+B  LotForRisk(dir,...)：long 用 Ask→Ask−SL、short 用 Bid→Bid+SL 分别计算
+   OCP 为唯一权威；OCP 失败【不 fallback 到公式】→ reject + ocp_err + audit_failed + fail-close
+   最终 lot 用 OCP 重算 actual risk；成交后用 POSITION_PRICE_OPEN/POSITION_SL/volume 再算 real_sl_risk
+C  主判据改为 |MT5 DEAL_PROFIT − OrderCalcProfit| <= 0.05
+   ★删除我自主选择的 InpOcpTolRelPct=2.5%；独立公式降为 diagnostic-only
+   source/static/INI/manifest/guard/parser 六处同步
+D  rangeCount == expected（V1/V3=12、V2=6）才允许冻结，否则当天不交易
+   审计记 range_count/expected_range_count；实测 V1 短窗 skip_range_incomplete=17
+E  OnTick 开头统一 fail-close gate；实证有效（前两次长窗口运行因自检失败而 trades=0）
+F  静态输入表改为由源码自动生成；新增 n0_fourway.py 强制四方集合与取值一致
+   ★该检查真实捕获两处漂移（静态表缺 4 项多 1 项；数值比较 bug）
+
+=== N1.6R 历史覆盖冻结 ===
+方法：Tester-only（Strategy Tester + 真实 USDJPYm + Model=2 + FromDate）
+★更正分母缺陷：旧分母「工作日日期数×1440」使正常周上限仅 80%、90% 阈值物理不可达
+  新分母 = 实测完整交易周 M1 bar 上限 5760
+逐季度：2014Q1~2016Q3 全部 0.00%~0.07%（server_unavailable）
+        2017Q1 非假日补测 0.07%（死区）；2017Q2 骤升至 99.98%
+        2017Q3~2023Q4 = 95.43%~100.00%；2024Q1 非假日补测 99.90%
+★冻结 TRAIN = 2018-01-01 ~ 2024-05-31
+
+=== N2 三个 TRAIN（同一冻结 EX5，仅预注册差异）===
+V1  净利 −377.81  PF 0.84  官方权益DD 77.40%  1143 笔  178.2/年  去前10 −485.23
+V2  净利 −406.81  PF 0.84  官方权益DD 82.55%  1293 笔  201.6/年  去前10 −514.10
+V3  净利 −424.20  PF 0.73  官方权益DD 85.16%  1066 笔  166.2/年  去前10 −494.08
+每个变体至少触发 7 项停止条件 → 全部 closed，VALID 运行数 = 0
+
+=== 审计链全部通过（策略失败，非审计失败）===
+ocp_mismatch=0 · audit_failed=0 · risk_cap_breach=0 · fatal=0
+HTML Trades == 审计行数 · HTML 净利 == 审计净利 · profit+swap+comm=net
+每 UTC 日 <=1 笔 · 无 UTC20 后持仓 · active_positions=0 · 四方一致 6/6 · N0 guard 78/78
+
+=== ★结构性结论（本轮最有价值的产出）===
+V1 实测：胜率 36.9%（422/1143）、平均盈利 +4.66、平均亏损 −3.25、实际盈亏比 1.43
+期望 = 0.369×1.43 − 0.631×1.0 = −0.10 R/笔
+TP 设为 1.5R 但实际盈亏比只有 1.43，而突破类结构胜率只有 36.9%
+⇒ 结构性负期望，不是参数问题；1143 笔 × 6.4 年 × 跨度 99.8% ⇒ 真负 edge
+
+=== 冻结哈希（N1R2 v3，实际用于 N2）===
+source  B15D6550A8AFBE101AD661DA0AEB819BC88E946ED760FBFCA5C65CE59D88A267  (40889 B)
+ex5     7BD34140655427D9B39CCBCA22F4A61A0833F8E176E34A9ADDEFFA86FD02ECF2  (46338 B)
+编译    0 errors / 0 warnings（MetaEditor64, MT5 build 6184）
+历史留档：N1R2 v2 / v1、N1R、N1 全部保留，未覆盖
+
+=== 我主动登记的缺陷 ===
+★REALWEEK 自检两个 bug 导致两次长窗口运行被误 fail-close（trades=0）：
+  (a) iBarShift(wk,false) 在 wk 之后无 bar 时会返回【上一周】的 bar
+  (b) 硬断言"周首 bar 必须在周日/周一"过严 —— 圣诞周（2017-12-25）市场顺延到周二即被判失败
+  讽刺的是这恰好证明 fail-close 按设计工作
+  教训：自检断言必须区分【真不变量】与【市场行为】
+
+=== NEXT FAMILY（离线设计，未编译未运行）===
+公共部分/NEXT_FAMILY_design_memo_20260914.md
+XAF30 = 跨品种信息源（XAUUSDm 做美元方向确认，仍只交易 USDJPYm）
+        唯一"既未覆盖、又能在 $500 下单标的执行"的维度
+盈亏比设计从 1.5R 换到 0.8R（高胜率/小盈亏比）
+三个预注册变体含控制组 XAF30_V2（关闭跨品种过滤）用于证伪跨品种信息假设
+★项目级观察：8000+ 次回测、三标的、六结构族，目前无一产生可交付正期望
+
+=== 禁止事项遵守 ===
+未读取 exposed_oos / 未读取 user_holdout / 未参数扫描 / 未按 TRAIN 结果补过滤器
+未做 long-only 或 short-only 事后筛选 / 未构造 V2+V3 / 未用自建 symbol / 未 CSV 回灌
+未修改任何历史旧 EA / 未真钱交易

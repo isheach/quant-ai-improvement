@@ -1,0 +1,2 @@
+run_tag,written_deals,dup_hits,audit_failed,fatal,fatal_reason,ocp_mismatch,formula_diag_out,risk_cap_breach,trades,wins,active_positions,skip_range_notready,skip_range_incomplete,skip_range_toonarrow,skip_nobreak,skip_daytraded,rej_risk,rej_ocp,server_utc_offset,reason
+DS260914_JSB30_V3_TRAIN,1066,1066,0,0,,0,0,0,1066,463,0,1418,2007,0,7769,192991,562,0,0,1

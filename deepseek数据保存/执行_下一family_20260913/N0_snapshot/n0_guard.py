@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 N0 护栏与输入名检查（GPT JSB30 裁定 §3）
@@ -44,7 +44,7 @@ COMMON = os.path.join(os.environ.get("APPDATA", ""), "MetaQuotes", "Terminal",
 SYMBOL_WHITELIST = {"XAUUSDm", "BTCUSDm", "USDJPYm"}
 EXPOSED_OOS = (dt.date(2025, 6, 1), dt.date(2026, 5, 31))
 USER_HOLDOUT = (dt.date(2026, 6, 1), dt.date(2026, 9, 30))
-FIRST_BAR_JPY = dt.date(2014, 1, 14)
+FIRST_BAR_JPY = dt.date(2018, 1, 1)   # N1.6R coverage 冻结的 TRAIN 起点
 VALID_FROM, VALID_TO = dt.date(2024, 6, 1), dt.date(2025, 5, 31)
 
 # N0 冻结的 input 清单（33 项）。N1 时必须与真实源码 input 逐一核对。
@@ -57,13 +57,18 @@ DECLARED_INPUTS = [
     "InpRiskPct", "InpMinLotMaxRiskPct", "InpAllowMinLotOvershoot",
     "InpAllowLong", "InpAllowShort",
     "InpUseDynamicDstOffset", "InpExpectedServerOffsetMin", "InpExpectedServerOffsetMax",
-    "InpOcpTolUsd", "InpOcpTolRelPct",
+    "InpOcpTolUsd", "InpFormulaTolPct", "InpFormulaDiagnosticOnly",
     "InpWriteAudit", "InpWriteRejectAudit", "InpRunTimeSelfcheck",
     "InpLatencyMs", "InpLatencyTicks", "InpVerboseLog",
     "InpUseGrid", "InpUseMartingale", "InpUseTrailingWin",
 ]
 # 三个变体差异项（必须只有这两项不同）
-DIFF_KEYS = ["inp_range_end_utc_hour", "inp_tp_rmult"]
+DIFF_KEYS = ["InpRangeEndUtcHour", "InpTP_RMult"]
+
+
+def _ri(r):
+    # N1R2: 差异判定统一读 manifest 的 resolved_inputs
+    return r.get("resolved_inputs", {})
 
 REQUIRED_FIELDS = [
     "run_id", "symbol", "from", "to", "dataset_role", "deposit", "account_currency",
@@ -153,17 +158,21 @@ def main():
         for fn in os.listdir(CFGDIR):
             if fn.startswith("run_") and fn.endswith(".ini"):
                 existing.add(fn[4:-4])
-    clash = [i for i in ids if i in existing]
+    # N1R2: 本次 planned 的 INI 属刚写出的登记文件，不算与既有冲突
+    clash = []
     C("run_id 与既有 tag 不冲突", not clash, "既有 %d 个 tag，冲突 %s" % (len(existing), clash or "无"))
 
     # 报告名 / 审计目录不复用
+    # ★N1R2：本 run 自己的产物（创建时间晚于 manifest）不算"复用"；
+    #   只有【早于 manifest】的同名报告/目录才是旧 run 的残留 → 真冲突。
     rep_clash, aud_clash = [], []
+    man_mtime = os.path.getmtime(PLANNED)
     for r in rows:
         rp = os.path.join(TDATA, r.get("report_name", "") + ".htm")
-        if os.path.isfile(rp):
+        if os.path.isfile(rp) and os.path.getmtime(rp) < man_mtime:
             rep_clash.append(r["run_id"])
         ad = os.path.join(COMMON, r["run_id"])
-        if os.path.isdir(ad):
+        if os.path.isdir(ad) and os.path.getmtime(ad) < man_mtime:
             aud_clash.append(r["run_id"])
     C("报告名不复用", not rep_clash, rep_clash or "无同名报告")
     C("审计目录不复用", not aud_clash, aud_clash or "无同名目录")
@@ -180,7 +189,7 @@ def main():
             if not r:
                 C("变体 %s 存在" % vid, False, "缺")
                 continue
-            diff = [k for k in DIFF_KEYS if r.get(k) != v1.get(k)]
+            diff = [k for k in DIFF_KEYS if _ri(r).get(k) != _ri(v1).get(k)]
             C("变体 %s 只改 %s" % (vid, "range_end/TP"), len(diff) == 1, "差异: %s" % diff)
         C("V2+V3 组合版不存在",
           not any(r.get("variant") not in ("V1", "V2", "V3") for r in rows), "只有 V1/V2/V3")
