@@ -1,0 +1,19 @@
+﻿# XAMR30 EA 冻结哈希（N1R2 · 编译 0/0 · N1.5 smoke 60/60）
+# 编译：0 errors / 0 warnings（MetaEditor64, MT5 build 6184）
+#
+# === N1R2 FINAL（当前有效）===
+B5AB9F56432BA80E806C5B6655376D3AF372A0F26D0505203B03BCDFF98190BC  dsh_XAMR30.mq5   (41800 B)
+EB12B60584FD3404A4A4533F45285152D381B7262DB48965A382DCBD6D881A6E  dsh_XAMR30.ex5   (48538 B)
+#
+# === N1 pre-smoke needs_repair（留档，不覆盖）===
+# D63B2D6698138C3578C3822338E6D68F96149F9894BA6009385EFB0FF7C4453C  dsh_XAMR30.mq5   (34997 B)
+# BEA547EA50D3FD95EF63E4E70EBC8A726AAC16AF961A37A6CC0FB3850173EA57  dsh_XAMR30.ex5   (45300 B)
+#
+# N1R 修复内容：
+#  1. pending 入场状态机（g_pendingBar==closedBar 永不成立 → 0 交易）
+#     改为：新 bar 首 tick 用 shift=1 算信号 → 同一 tick 立即下单
+#  2. 12-bar 持有 off-by-one（static lastCnt + g_barsHeld 会把入场前 closedBar 计入）
+#     改为：g_lastHeldClosedBar + closeTime > g_entryTime 才计数
+#  3. 审计列数与表头错位（结构性根因）→ 改为数组式写入 + AUDIT_COLS 断言
+#  4. 补 swap/commission/net 三列（使 HTML 净利可对账）
+#  5. 时序审计字段 signal_bar_open/close_time + entry_bar_open_time

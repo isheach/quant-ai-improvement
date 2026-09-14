@@ -1,0 +1,95 @@
+XAMR30 prereg-v2 建立 + N1R 两处逻辑 bug 修复 + N1.5 smoke 60/60 通过
+
+=== 一、接受 v1 alignment gate 的 supersede ===
+GPT 复核认定 v1 的 99% 全时段 gate「测错了对象」——经复核成立：
+  v1 分母 = USDJPYm 的 M30 bar 数，而 USDJPY session 比 XAU 更宽
+  XAU 每交易日固定缺 22:00/22:30 UTC 两根（黄金交易所结算窗口）
+  -> 95% 反映的是"两品种 session 不同"，而非"已有 XAU bar 无法对齐"
+
+按 §2.1 建立两个分离指标并实测（2023.01 窗口，逐根判定）：
+  info_availability_ratio        = 11,817 / 12,474 =  94.73%   （仅描述性，不再 fail gate）
+  common_session_alignment_ratio = 11,817 / 11,817 = 100.0000% （以 XAU 为分母）
+  duplicate timestamps = 0 ; non-monotonic = 0
+
+v1 保留不覆盖：
+  公共部分/XAMR30_preregistration_final_20260914.md
+  状态 = blocked_data_prerequisite + superseded_before_any_economic_test
+  （未跑 TRAIN、未跑 VALID、未见任何策略收益，修改仅针对数据资格定义）
+
+新建 Source of Truth：
+  公共部分/XAMR30_preregistration_v2_20260914.md
+  信号结构 / z / TP / SL / risk / V1V2V3 全部保持 v1 不变
+
+=== 二、§2.2 控制组纪律已核实 ===
+EvaluateSignalBar 中 exact XAU 匹配（步骤 3）先于 filter（步骤 5），函数对所有变体共用
+-> V2 也必须要求 exact XAU bar 存在；V2 只关闭方向过滤作用
+-> V1/V2 交易时间集合相同，bootstrap 可比
+（结构已正确，本次保持不变）
+
+=== 三、N1R 两处 bug 修复（按 GPT 诊断，已实测确认）===
+① pending 入场状态机
+   旧：g_pendingBar = t，检查 g_pendingBar == closedBar(=t+1) → t != t+1 永不成立 → 0 交易
+        （前两轮实测确实 trades=0，与 GPT 判断完全一致）
+   新：删除 pending 延迟；新 bar 首 tick 用 shift=1 算信号 → 同一 tick 立即按真实 Ask/Bid 下单
+② 12-bar 持有 off-by-one
+   旧：static lastCnt + g_barsHeld 会把入场前的 closedBar 计入
+   新：g_lastHeldClosedBar + g_entryTime，只有 closeTime > entryTime 才 barsHeld++
+③ ★另发现并修复反复出现的结构性根因
+   审计 FileWrite 参数个数(36) 与表头列数(38) 不一致 → CSV 从第 7 列起整体错位
+   （entry_time 被读成 z_score 等）——这是前几轮"字段全是垃圾值"的真正原因
+   修复：数组式写入 + AUDIT_COLS 常量断言；列数不符即 AUDIT SCHEMA FAIL + fail-close
+         → 使列漂移在结构上不可能再发生
+④ 补 swap / commission / net 三列（共 41 列），使 HTML 净利可对账
+⑤ 新增时序审计字段 signal_bar_open_time / signal_bar_close_time / entry_bar_open_time
+
+=== 四、编译与冻结 ===
+编译：0 errors / 0 warnings（MetaEditor64, MT5 build 6184）
+N1R2 FINAL：
+  source  B5AB9F56432BA80E806C5B6655376D3AF372A0F26D0505203B03BCDFF98190BC  (41800 B)
+  EX5     EB12B60584FD3404A4A4533F45285152D381B7262DB48965A382DCBD6D881A6E  (48538 B)
+N1 pre-smoke needs_repair（留档，不覆盖）：
+  D63B2D6698138C3578C3822338E6D68F96149F9894BA6009385EFB0FF7C4453C  (34997 B)
+  BEA547EA50D3FD95EF63E4E70EBC8A726AAC16AF961A37A6CC0FB3850173EA57  (45300 B)
+
+=== 五、N1.5 engineering smoke：60/60 全部通过（40 笔真实成交）===
+三固定窗口（只用 V1；profit/PF 不参与任何策略判断）：
+  WINTER 2023-01-02~01-31 · DSTTR 2023-03-20~04-07 · SUMMER 2023-07-03~07-31
+
+entry_bar_open_time = signal_bar_open_time + 30min   逐笔 40/40 ✅
+entry_time >= signal_bar_close_time                 逐笔 40/40 ✅
+持有 M30 bar 数 <= 12（最大 10 根，无 off-by-one）   ✅
+所有成交 alignment_exact = 1                        ✅
+cross_asset_missing_bar 拒单有记录                   ✅
+DEAL_PROFIT ↔ OCP <= 0.05                          ✅
+spread / SL / TP 字段齐备（JSB30 缺口已解决）        ✅
+median spread/SL  = 0.0420 / 0.0777  <= 30%        ✅
+median spread/TP  = 0.0525 / 0.0972  <= 30%        ✅
+每 UTC day <= 1 actual trade                        ✅
+audit rows = HTML trades                            ✅
+net reconciliation（12.09 = 12.09）                 ✅
+active_positions = 0 · fatal = 0 · audit_failed = 0 ✅
+
+=== 六、TRAIN start 冻结 ===
+机械规则（§2.3，不参考任何策略收益）：
+  2023.01 窗口 common_session_alignment_ratio = 100% >= 99%
+  且 JSB30 阶段已独立证明 2018-01-01 起 USDJPY M1 coverage 正常（>=99.9%）
+-> TRAIN start = 2018-01-01（首个 eligible bar 2018-01-02）
+   TRAIN = 2018-01-02 ~ 2024-05-31
+   VALID = 2024-06-01 ~ 2025-05-31
+
+=== 七、★如实登记的两项遗留（应在 N2 之前补齐，我未擅自跳过去跑 TRAIN）===
+1. GPT §五 要求的「独立 Python / MQL5 双算对账（>=50 个 signal candidate bar
+   逐项比较 EMA48 / residual / sigma48 / z / ATR14 / P20 / P80 /
+   XAU exact timestamp / XAU return）」【尚未执行】
+   当前 smoke 验证的是写入与对账链，不是信号数值的独立复算
+2. TRAIN start 的【逐月】common_session_alignment_ratio 表目前基于一个已验证窗口
+   （2023.01 = 100%）+ JSB30 阶段独立的 USDJPYm coverage 结论；
+   完整逐月表待补
+
+=== 八、待裁定 ===
+是先补齐上述两项遗留再进 N2，还是允许带着它们直接进 N2？
+（我倾向补齐后再跑，因为 N2 是 6.4 年 × 3 变体的一次性消耗）
+
+=== 未执行 ===
+N2 TRAIN / N3 VALID / §9 V1-V2 bootstrap 均未启动
+未读取 exposed_oos / 未读取 user_holdout / 未参数扫描
