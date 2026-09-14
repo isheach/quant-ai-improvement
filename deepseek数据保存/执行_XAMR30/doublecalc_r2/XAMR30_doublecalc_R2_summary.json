@@ -1,0 +1,134 @@
+{
+  "SIGNAL_DOUBLECALC_R2": "PASS",
+  "R1_result": "FAIL_REFERENCE_SPEC",
+  "strategy_provenance": {
+    "source_sha256": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C",
+    "canonical_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "deployed_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "expected_source_sha256": "CA5AD7339FE415CBC3BD2304B94C47E755B2A6292AA5A69FC1E34D5B7E72826C",
+    "expected_ex5_sha256": "F374890F28022FCB88FA55BD34CD5BCE82DFB93A6C4EA549A3ACF34A60F658B2",
+    "status": "PASS",
+    "data_freeze_status": "PASS"
+  },
+  "r1_sample_identity": {
+    "r1_selected_sample_sha256": "8CDCD0EAECC5629B3701D26B3A5E4225B562D95433F4FB2B6516677494B6D7FB",
+    "r1_machine_csv_sha256": "8787FE14B7C9C9439AC1367D86A87CEE9A4163237B5F908331F2BA0BF2F0584A",
+    "rows": 90,
+    "candidate": 60,
+    "control": 30,
+    "row_identity_pass": true,
+    "first_mismatch": null
+  },
+  "raw_data_identity": {
+    "status": "PASS",
+    "files": {
+      "USDJPYm": {
+        "symbol": "USDJPYm",
+        "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_USDJPYm_M30.csv",
+        "expected_sha256": "B42DDBCA49C69DD2E23D8F5D22FFD53BAC6CBE452F095EECC7BD5DC458E05F47",
+        "actual_sha256": "B42DDBCA49C69DD2E23D8F5D22FFD53BAC6CBE452F095EECC7BD5DC458E05F47",
+        "expected_first": "2022.01.02 22:00:00",
+        "actual_first": "2022.01.02 22:00:00",
+        "expected_last": "2023.08.01 23:30:00",
+        "actual_last": "2023.08.01 23:30:00",
+        "expected_bar_count": 19778,
+        "actual_bar_count": 19778,
+        "identity_pass": true
+      },
+      "XAUUSDm": {
+        "symbol": "XAUUSDm",
+        "path": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30DoubleCalc\\raw_XAUUSDm_M30.csv",
+        "expected_sha256": "250CB6A479E27CEBDD9B352BC58C44381EDA8809B68B5641CE715D3D5309F962",
+        "actual_sha256": "250CB6A479E27CEBDD9B352BC58C44381EDA8809B68B5641CE715D3D5309F962",
+        "expected_first": "2022.01.02 23:00:00",
+        "actual_first": "2022.01.02 23:00:00",
+        "expected_last": "2023.08.01 23:30:00",
+        "actual_last": "2023.08.01 23:30:00",
+        "expected_bar_count": 18692,
+        "actual_bar_count": 18692,
+        "identity_pass": true
+      }
+    },
+    "manifest_path": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进\\deepseek数据保存\\执行_XAMR30\\doublecalc_raw_manifest.json"
+  },
+  "probe_identity": {
+    "source_sha256": "A228535D882619D87CF19EF457E09D7EDE3250C0F9815F7C1D5936CDDC4526A5",
+    "expected_source_sha256": "A228535D882619D87CF19EF457E09D7EDE3250C0F9815F7C1D5936CDDC4526A5",
+    "ex5_sha256": "52459FFEB3DE05B934615A59CA4E0E3E0421F28A4464F7C16364F9918ECEC2DE",
+    "expected_ex5_sha256": "52459FFEB3DE05B934615A59CA4E0E3E0421F28A4464F7C16364F9918ECEC2DE",
+    "output_sha256": {
+      "WINTER": "33E55628F8D1E290E3AE3CFB5C8AD7B44143696770EFFBBE916FB915A10DDAF8",
+      "DSTTR": "5070986F4A701839302A9DB1062BB5B8F9FAADE0AB6170E2D345B38807CE10B9",
+      "SUMMER": "0EEA8357F2EEC5600BB8853E2FAA312FC9111B37E6F75AE9F2F20630E4314926"
+    }
+  },
+  "python_mql": {
+    "rows": 90,
+    "field_pass_counts": {
+      "ema48": 90,
+      "residual": 90,
+      "sigma48": 90,
+      "z_score": 90,
+      "atr14": 90,
+      "atr_p20": 90,
+      "atr_p80": 90,
+      "xau_return": 90
+    },
+    "flag_pass_counts": {
+      "v1_candidate": 90,
+      "v3_candidate": 90,
+      "direction": 90,
+      "atr_regime_pass": 90,
+      "xau_filter_pass": 90
+    },
+    "xau_exact_ohlc_pass": 90,
+    "max_diffs": {
+      "ema48": 4.9539039537194185e-11,
+      "residual": 4.9559356618544825e-11,
+      "sigma48": 4.952993570839226e-11,
+      "z_score": 5.0025317221980004e-11,
+      "atr14": 4.286368482375735e-11,
+      "atr_p20": 4.286020149901759e-11,
+      "atr_p80": 4.2862713378610806e-11,
+      "xau_return": 4.990534125271645e-11
+    },
+    "worst_row": {
+      "ema48": "DSTTR_C_04",
+      "residual": "DSTTR_C_04",
+      "sigma48": "WINTER_C_01",
+      "z_score": "SUMMER_C_03",
+      "atr14": "SUMMER_C_15",
+      "atr_p20": "SUMMER_C_12",
+      "atr_p80": "SUMMER_C_10",
+      "xau_return": "WINTER_C_13"
+    },
+    "reference_atr": "MT5_iATR_observed_SMA_TR14"
+  },
+  "bridge_inherited": {
+    "csv": "7992FBD5E8F9FB638E2E80393C35BA496EF15D482406BF60E0FA333F792075C1",
+    "json": "465E927DC70D9DBCFB57D3F93CE93836E562EAB87D951E813787B993FAE97AE3",
+    "csv_expected": "7992FBD5E8F9FB638E2E80393C35BA496EF15D482406BF60E0FA333F792075C1",
+    "json_expected": "465E927DC70D9DBCFB57D3F93CE93836E562EAB87D951E813787B993FAE97AE3",
+    "rows": 37,
+    "pass_rows": 37,
+    "inherited_pass": true
+  },
+  "unexplained_mismatch_count": 0,
+  "r1_report_sha256": "CC79257154464F17B668E9C81A9DF9503E6ABDDA92811BAC5EA801F54C38E9F8",
+  "clarification_sha256": "6D83C319ACAAF2CB78670EDFEE2372B5132D4ECD1A0EEC224E0E193C4C0D77E1",
+  "data_freeze_report_sha256": "20D2A06AD06E960B8C1C2CE8FD21F4030E2BD6455BB3785A5CC3C9C59FE61C82",
+  "strategy_ea_modified": "NO",
+  "economic_results_read": "NO",
+  "not_run": [
+    "N1R4",
+    "N0_four_way",
+    "V1_TRAIN",
+    "V2_TRAIN",
+    "V3_TRAIN",
+    "bootstrap",
+    "VALID",
+    "exposed_oos",
+    "user_holdout"
+  ],
+  "starting_head": "e2777abba28e6f65f84e74e28b4a69dd8f911703"
+}

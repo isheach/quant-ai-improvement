@@ -1,0 +1,9 @@
+{
+  "r1_selected_sample_sha256": "8CDCD0EAECC5629B3701D26B3A5E4225B562D95433F4FB2B6516677494B6D7FB",
+  "r1_machine_csv_sha256": "8787FE14B7C9C9439AC1367D86A87CEE9A4163237B5F908331F2BA0BF2F0584A",
+  "rows": 90,
+  "candidate": 60,
+  "control": 30,
+  "row_identity_pass": true,
+  "first_mismatch": null
+}
