@@ -1,4 +1,4 @@
-//+------------------------------------------------------------------+
+﻿//+------------------------------------------------------------------+
 //|                                                  dsh_XAMR30.mq5  |
 //|  XAMR30 = Cross-Asset Mean Reversion on M30                      |
 //|                                                                  |
@@ -79,8 +79,11 @@ void SetFatal(string why)
 datetime g_curUtcDay   = 0;
 bool     g_dayTraded   = false;
 datetime g_lastBar     = 0;      // 最近一次已处理的 signal bar（避免重复处理）
-datetime g_pendingBar  = 0;      // 已完成信号计算、待下一 bar 入场的 signal bar
-bool     g_pending     = false;
+datetime g_pendSignalBar = 0;    // ★N1R：已算出信号的 signal bar（= 下一 bar 的 shift=1）
+datetime g_entryTime   = 0;      // ★N1R：本笔成交时刻（用于 barsHeld 判定）
+datetime g_entryBarOpenTime = 0; // ★N1R：入场 bar 的 open time（= signal bar + 30min）
+datetime g_signalCloseTime  = 0; // ★N1R：signal bar 的收盘时刻
+datetime g_lastHeldClosedBar = 0;// ★N1R：最近一根已计入持有的收盘 bar
 int      g_pendDir     = 0;
 double   g_pendZ = 0, g_pendEma = 0, g_pendRes = 0, g_pendSig = 0, g_pendAtr = 0;
 double   g_pendP20 = 0, g_pendP80 = 0;
@@ -121,7 +124,7 @@ string AuditDir() { return "dshtrend\\" + InpRunTag; }
 
 const string AUDIT_HEADER =
    "run_tag,symbol,deal_ticket,position_id,"
-   "signal_bar_time,entry_time,exit_time,"
+   "signal_bar_open_time,signal_bar_close_time,entry_bar_open_time,entry_time,exit_time,"
    "z_score,ema48,residual,sigma48,"
    "atr14,atr_p20,atr_p80,"
    "xau_bar_time,xau_open,xau_close,xau_return,"
@@ -130,8 +133,13 @@ const string AUDIT_HEADER =
    "spread_at_entry_points,initial_sl_distance_points,initial_tp_distance_points,"
    "spread_over_sl,spread_over_tp,"
    "risk_budget,actual_initial_sl_risk,"
-   "ocp_expected_pl,deal_profit,formula_value,formula_diff,"
+   "ocp_expected_pl,deal_profit,swap,commission,net,formula_value,formula_diff,"
    "close_type,exit_reason,server_utc_offset";
+
+// ★N1R 修复 3：审计列数常量（用于"写入前断言"，使列漂移成为不可能）
+#define AUDIT_COLS 41
+#define REJECT_COLS 16
+
 
 const string REJECT_HEADER =
    "run_tag,symbol,utc_day,signal_bar_time,reason,"
@@ -462,14 +470,20 @@ bool OpenTrade(int dir, double atr)
    double rvol = PositionGetDouble(POSITION_VOLUME);
    g_riskBudget = rb; g_actualRisk = ar;
    g_spreadPtsAtEntry = sprdPts; g_slPts = slPts; g_tpPts = tpPts;
+   // ★N1R 修复 2：持有计数从 0 开始，且以【成交时刻】为基准；
+   //   g_lastHeldClosedBar 设为 signal bar（= 当前 shift=1），
+   //   使入场后第一根"新收盘 bar"必须满足 closeTime > entryTime 才计数。
    g_barsHeld = 0;
-   g_sigBarTime = g_pendingBar;
+   g_entryTime = TimeCurrent();
+   g_entryBarOpenTime = iTime(_Symbol, TF(), 0);          // 入场 bar 的 open time
+   g_lastHeldClosedBar = g_pendSignalBar;                 // signal bar 已收盘，但不计入持有
+   g_sigBarTime = g_pendSignalBar;
    g_sigZ = g_pendZ; g_sigEma = g_pendEma; g_sigRes = g_pendRes; g_sigSigma = g_pendSig;
    g_sigAtr = g_pendAtr; g_sigP20 = g_pendP20; g_sigP80 = g_pendP80;
    g_sigXauT = g_pendXauT; g_sigXauO = g_pendXauO; g_sigXauC = g_pendXauC; g_sigXauR = g_pendXauR;
    g_sigXauPass = g_pendXauPass; g_sigAlignExact = 1;
    g_dayTraded = true;
-   g_pending = false;
+
 
    // ★成交后用真实 POSITION 字段重算真实初始 SL 风险
    if(g_initSL > 0)
@@ -589,29 +603,66 @@ void RecordClosingDeal(ulong dk)
       SetFatal(StringFormat("DEAL_PROFIT 与 OCP 差 %.4f 超容差", ocpDiff));
    }
 
-   g_lastWriteBytes = FileWrite(g_auditFh, InpRunTag, _Symbol,
-             IntegerToString((long)dk), IntegerToString((long)pid),
-             TimeToString(g_sigBarTime, TIME_DATE|TIME_SECONDS),
-             TimeToString(entryT, TIME_DATE|TIME_SECONDS),
-             TimeToString(tS, TIME_DATE|TIME_SECONDS),
-             DoubleToString(g_sigZ, 5), DoubleToString(g_sigEma, _Digits),
-             DoubleToString(g_sigRes, _Digits), DoubleToString(g_sigSigma, _Digits),
-             DoubleToString(g_sigAtr, _Digits), DoubleToString(g_sigP20, _Digits),
-             DoubleToString(g_sigP80, _Digits),
-             (g_sigXauT > 0) ? TimeToString(g_sigXauT, TIME_DATE|TIME_MINUTES) : "",
-             DoubleToString(g_sigXauO, _Digits), DoubleToString(g_sigXauC, _Digits),
-             DoubleToString(g_sigXauR, 6),
-             InpCrossAssetFilter ? "1" : "0",
-             IntegerToString(g_sigXauPass), IntegerToString(g_sigAlignExact),
-             (dir > 0) ? "long" : "short",
-             DoubleToString(g_spreadPtsAtEntry, 1),
-             DoubleToString(g_slPts, 1), DoubleToString(g_tpPts, 1),
-             (g_slPts > 0) ? DoubleToString(g_spreadPtsAtEntry / g_slPts, 5) : "",
-             (g_tpPts > 0) ? DoubleToString(g_spreadPtsAtEntry / g_tpPts, 5) : "",
-             DoubleToString(g_riskBudget, 2), DoubleToString(g_actualRisk, 2),
-             DoubleToString(ocpV, 4), DoubleToString(dp, 4),
-             DoubleToString(fV, 4), DoubleToString(fDiff, 4),
-             closeType, reason, "0");
+   // ★N1R：数组式写入 + 列数断言（防止参数与表头错位）
+   string f[];
+   ArrayResize(f, 0);
+   #define ADD(x) { int _n = ArraySize(f); ArrayResize(f, _n + 1); f[_n] = (x); }
+   ADD(InpRunTag);
+   ADD(_Symbol);
+   ADD(IntegerToString((long)dk));
+   ADD(IntegerToString((long)pid));
+   ADD(TimeToString(g_sigBarTime, TIME_DATE|TIME_SECONDS));                          // 4 signal_bar_open_time
+   ADD(TimeToString(g_signalCloseTime, TIME_DATE|TIME_SECONDS));                     // 5 signal_bar_close_time
+   ADD(TimeToString((g_entryBarOpenTime > 0) ? g_entryBarOpenTime : entryT, TIME_DATE|TIME_SECONDS)); // 6 entry_bar_open_time
+   ADD(TimeToString((g_entryTime > 0) ? g_entryTime : entryT, TIME_DATE|TIME_SECONDS));               // 7 entry_time
+   ADD(TimeToString(tS, TIME_DATE|TIME_SECONDS));                                    // 8 exit_time
+   ADD(DoubleToString(g_sigZ, 5));                                                   // 9 z_score
+   ADD(DoubleToString(g_sigEma, _Digits));                                           // 10 ema48
+   ADD(DoubleToString(g_sigRes, _Digits));                                           // 11 residual
+   ADD(DoubleToString(g_sigSigma, _Digits));                                         // 12 sigma48
+   ADD(DoubleToString(g_sigAtr, _Digits));                                           // 13 atr14
+   ADD(DoubleToString(g_sigP20, _Digits));                                           // 14 atr_p20
+   ADD(DoubleToString(g_sigP80, _Digits));                                           // 15 atr_p80
+   ADD((g_sigXauT > 0) ? TimeToString(g_sigXauT, TIME_DATE|TIME_MINUTES) : "");      // 16 xau_bar_time
+   ADD(DoubleToString(g_sigXauO, _Digits));                                          // 17 xau_open
+   ADD(DoubleToString(g_sigXauC, _Digits));                                          // 18 xau_close
+   ADD(DoubleToString(g_sigXauR, 6));                                                // 19 xau_return
+   ADD(InpCrossAssetFilter ? "1" : "0");                                             // 20 cross_asset_filter_enabled
+   ADD(IntegerToString(g_sigXauPass));                                               // 21 cross_asset_filter_pass
+   ADD(IntegerToString(g_sigAlignExact));                                            // 22 alignment_exact
+   ADD((dir > 0) ? "long" : "short");                                                // 23 trade_direction
+   ADD(DoubleToString(g_spreadPtsAtEntry, 1));                                       // 24 spread_at_entry_points
+   ADD(DoubleToString(g_slPts, 1));                                                  // 25 initial_sl_distance_points
+   ADD(DoubleToString(g_tpPts, 1));                                                  // 26 initial_tp_distance_points
+   ADD((g_slPts > 0) ? DoubleToString(g_spreadPtsAtEntry / g_slPts, 5) : "");         // 27 spread_over_sl
+   ADD((g_tpPts > 0) ? DoubleToString(g_spreadPtsAtEntry / g_tpPts, 5) : "");         // 28 spread_over_tp
+   ADD(DoubleToString(g_riskBudget, 2));                                             // 29 risk_budget
+   ADD(DoubleToString(g_actualRisk, 2));                                             // 30 actual_initial_sl_risk
+   ADD(DoubleToString(ocpV, 4));                                                     // 31 ocp_expected_pl
+   ADD(DoubleToString(dp, 4));                                                       // 32 deal_profit
+   ADD(DoubleToString(ds, 2));                                                       // 33 swap
+   ADD(DoubleToString(dc, 2));                                                       // 34 commission
+   ADD(DoubleToString(net, 2));                                                      // 35 net
+   ADD(DoubleToString(fV, 4));                                                       // 36 formula_value
+   ADD(DoubleToString(fDiff, 4));                                                    // 37 formula_diff
+   ADD(closeType);                                                                   // 38 close_type
+   ADD(reason);                                                                      // 39 exit_reason
+   ADD("0");                                                                         // 40 server_utc_offset
+   #undef ADD
+
+   if(ArraySize(f) != AUDIT_COLS)
+   {
+      g_auditFailed = true;
+      PrintFormat("[%s] ★★AUDIT SCHEMA FAIL: 写入列数 %d != 表头 %d → 拒绝写入",
+                  InpRunTag, ArraySize(f), AUDIT_COLS);
+      SetFatal("审计列数与表头不一致");
+      return;
+   }
+   g_lastWriteBytes = FileWrite(g_auditFh, f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8],
+             f[9], f[10], f[11], f[12], f[13], f[14], f[15], f[16], f[17], f[18],
+             f[19], f[20], f[21], f[22], f[23], f[24], f[25], f[26], f[27], f[28],
+             f[29], f[30], f[31], f[32], f[33], f[34], f[35], f[36], f[37], f[38],
+             f[39], f[40]);
    FileFlush(g_auditFh);
 
    if(g_lastWriteBytes <= 0)
@@ -707,9 +758,9 @@ bool EvaluateSignalBar(int tShift)
    }
    else g_pendXauPass = 0;
 
+   g_pendSignalBar = jt;
+   g_signalCloseTime = (datetime)((long)jt + 1800);   // ★N1R：signal bar 收盘时刻
    g_pendDir = dir;
-   g_pendingBar = jt;
-   g_pending = true;
    return true;
 }
 
@@ -804,32 +855,51 @@ void OnTick()
    // ---- 持仓管理 ----
    if(HasPosition())
    {
-      // 最长持仓：12 根完整 M30
-      static datetime lastCnt = 0;
-      datetime cb = iTime(_Symbol, TF(), 1);
-      if(cb > 0 && cb != lastCnt)
+      // ★N1R 修复 2：持仓 bar 计数的正确定义
+      //   在 bar B 的第一 tick 入场时，B 本身【尚未完整结束】，
+      //   因此只有当一个"新收盘 bar"的 close time 严格晚于 entry_time 时，
+      //   才算作一根【完整持有】的 bar。
+      //   旧实现用 static lastCnt + g_barsHeld，会在入场后立刻把
+      //   入场前的那根 closedBar 记成已持有 → off-by-one（11.5h 而非 12h）。
+      datetime heldClosed = iTime(_Symbol, TF(), 1);
+      if(heldClosed > 0 && heldClosed != g_lastHeldClosedBar)
       {
-         lastCnt = cb; g_barsHeld++;
-         if(g_barsHeld >= InpMaxBarsInTrade) { CloseTrade("time_exit"); return; }
+         datetime heldCloseTime = (datetime)((long)heldClosed + 1800);   // 该 bar 的收盘时刻
+         if(heldCloseTime > g_entryTime)          // ★严格晚于成交时间才算完整持有
+         {
+            g_lastHeldClosedBar = heldClosed;
+            g_barsHeld++;
+            if(g_barsHeld >= InpMaxBarsInTrade) { CloseTrade("time_exit"); return; }
+         }
+         else
+         {
+            g_lastHeldClosedBar = heldClosed;     // 入场所在 bar：不计数
+         }
       }
       return;
    }
 
-   // ---- 新收盘 bar：评估信号 ----
+   // ---- 新收盘 bar：在【本 tick】评估信号并立即入场 ----
+   // ★N1R 修复 1：删除无效的 pending 延迟机制
+   //   旧逻辑：在 bar t 收盘的首 tick 算信号 → g_pendingBar = t；
+   //           之后检查 g_pendingBar == closedBar(=t+1) → t != t+1 → 永不触发 → 0 交易。
+   //   正确语义：新 M30 bar t+1 开始的首个 tick 时，shift=1 就是【刚完整收盘的 bar t】。
+   //            → 用 shift=1 算信号 → 若通过，就在【当前这个 tick】按真实 Ask/Bid 下单。
+   //   这正好满足"bar t 收盘之后、在下一 bar 第一个可交易 tick 入场"，无需再等一根。
    datetime closedBar = iTime(_Symbol, TF(), 1);
    if(closedBar <= 0 || closedBar == g_lastBar) return;
-
-   // ★待入场：上一根 signal bar 已算好 → 在本 bar 的第一个 tick 入场
-   if(g_pending && g_pendingBar == closedBar)
-   {
-      g_lastBar = closedBar;
-      if(g_dayTraded) { g_skipDayTraded++; g_pending = false; return; }
-      OpenTrade(g_pendDir, g_pendAtr);
-      return;
-   }
-
    g_lastBar = closedBar;
-   g_pending = false;
-   EvaluateSignalBar(1);
+
+   if(g_dayTraded) { g_skipDayTraded++; return; }
+
+   // EvaluateSignalBar 内部完成全部前置检查（z / ATR regime / exact XAU / filter）
+   // 并把完整 signal snapshot 存入 g_pend* 供审计
+   if(!EvaluateSignalBar(1)) return;
+
+   // ★同一 tick 立即入场（真实 Ask/Bid，无未来成交价）
+   OpenTrade(g_pendDir, g_pendAtr);
 }
 //+------------------------------------------------------------------+
+
+
+
