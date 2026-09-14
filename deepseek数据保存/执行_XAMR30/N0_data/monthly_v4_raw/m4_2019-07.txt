@@ -1,0 +1,5 @@
+finalization_event=OnTester
+probe_valid=1
+invalid_reason=
+month,requested_from,requested_to,probe_valid,invalid_reason,finalization_event,final_tester_time,JPY_M30_bars,XAU_M30_bars,exact_intersection,info_availability_ratio,common_session_alignment_ratio,GateA_status,GateB_status,jpy_dup,xau_dup,jpy_non_monotonic,xau_non_monotonic,first_jpy,last_jpy,first_xau,last_xau,outside_requested_month,methodA_jpy_count,methodB_jpy_count,methodA_xau_count,methodB_xau_count,methodA_methodB_jpy_equal,methodA_methodB_xau_equal,csA_jpy,csB_jpy,csA_xau,csB_xau,server_utc_offset,diagnostic_iBars_jpy,diagnostic_iBars_xau,series_first_jpy,series_last_jpy,series_first_xau,series_last_xau,diagnostic_last_bar_jpy
+M4Q_2019-07,2019.07.01,2019.08.01,1,,OnTester,2019.07.31 23:59:59,1108,1054,1054,95.1264,100.0000,PASS,PASS,0,0,0,0,2019.07.01 00:00,2019.07.31 23:30,2019.07.01 00:00,2019.07.31 23:30,0,1108,1108,1054,1054,1,1,589518098,589518098,804460928,804460928,0,19644,18533,2018.01.02 06:00,2019.07.31 23:30,2018.01.02 06:00,2019.07.31 23:30,2019.07.31 23:30
