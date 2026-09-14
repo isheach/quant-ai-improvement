@@ -1,0 +1,5 @@
+month,parser_valid,parser_invalid_reason,regression_status,probe_valid,finalization_event,JPY_M30_bars,XAU_M30_bars,exact_intersection,info_availability_ratio,common_session_alignment_ratio,GateA_status,GateB_status,methodA_methodB_jpy_equal,methodA_methodB_xau_equal,jpy_dup,xau_dup,jpy_non_monotonic,xau_non_monotonic,outside_requested_month,journal_jpy_bars,journal_xau_bars,check_failures
+2018-01,1,,PASS,1,OnTester,1021,972,972,95.2008,100.0000,PASS,PASS,1,1,0,0,0,0,0,1021,,
+2023-01,1,,PASS,1,OnTester,1060,963,963,90.8491,100.0000,PASS,PASS,1,1,0,0,0,0,0,1060,,
+2023-07,1,,PASS,1,OnTester,1014,965,965,95.1677,100.0000,PASS,PASS,1,1,0,0,0,0,0,1014,,
+2024-03,1,,PASS,1,OnTester,1010,922,922,91.2871,100.0000,PASS,PASS,1,1,0,0,0,0,0,1010,,

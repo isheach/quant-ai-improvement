@@ -1,0 +1,34 @@
+[
+  {
+    "month": "2018-01",
+    "journal_jpy_bars": 1021,
+    "filtered_monthly_jpy": 1021,
+    "diff": 0,
+    "parser_valid": true,
+    "parser_invalid_reason": ""
+  },
+  {
+    "month": "2023-01",
+    "journal_jpy_bars": 1060,
+    "filtered_monthly_jpy": 1060,
+    "diff": 0,
+    "parser_valid": true,
+    "parser_invalid_reason": ""
+  },
+  {
+    "month": "2023-07",
+    "journal_jpy_bars": 1014,
+    "filtered_monthly_jpy": 1014,
+    "diff": 0,
+    "parser_valid": true,
+    "parser_invalid_reason": ""
+  },
+  {
+    "month": "2024-03",
+    "journal_jpy_bars": 1010,
+    "filtered_monthly_jpy": 1010,
+    "diff": 0,
+    "parser_valid": true,
+    "parser_invalid_reason": ""
+  }
+]

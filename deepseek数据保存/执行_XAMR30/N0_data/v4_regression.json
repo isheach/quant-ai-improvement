@@ -1,0 +1,522 @@
+[
+  {
+    "tag": "2018-01",
+    "requested_from": "2018.01.01",
+    "requested_to": "2018.02.01",
+    "parser_valid": true,
+    "parser_invalid_reason": "",
+    "det": {
+      "month": "2018-01",
+      "requested_from": "2018.01.01",
+      "requested_to": "2018.02.01",
+      "probe_valid": "1",
+      "invalid_reason": "",
+      "finalization_event": "OnTester",
+      "final_tester_time": "2018.01.31 14:29:59",
+      "JPY_M30_bars": "1021",
+      "XAU_M30_bars": "972",
+      "exact_intersection": "972",
+      "info_availability_ratio": "95.2008",
+      "common_session_alignment_ratio": "100.0000",
+      "GateA_status": "PASS",
+      "GateB_status": "PASS",
+      "jpy_dup": "0",
+      "xau_dup": "0",
+      "jpy_non_monotonic": "0",
+      "xau_non_monotonic": "0",
+      "first_jpy": "2018.01.02 06:00",
+      "last_jpy": "2018.01.31 14:00",
+      "first_xau": "2018.01.02 06:00",
+      "last_xau": "2018.01.31 14:00",
+      "outside_requested_month": "0",
+      "methodA_jpy_count": "1021",
+      "methodB_jpy_count": "1021",
+      "methodA_xau_count": "972",
+      "methodB_xau_count": "972",
+      "methodA_methodB_jpy_equal": "1",
+      "methodA_methodB_xau_equal": "1",
+      "csA_jpy": "216941388",
+      "csB_jpy": "216941388",
+      "csA_xau": "37827567",
+      "csB_xau": "37827567",
+      "server_utc_offset": "0",
+      "diagnostic_iBars_jpy": "10280",
+      "diagnostic_iBars_xau": "9922",
+      "series_first_jpy": "2017.01.03 00:00",
+      "series_last_jpy": "2018.01.31 14:00",
+      "series_first_xau": "2017.01.03 00:00",
+      "series_last_xau": "2018.01.31 14:00",
+      "diagnostic_last_bar_jpy": "2018.01.31 14:00"
+    },
+    "journal": {
+      "USDJPYm": 1021
+    },
+    "checks": [
+      {
+        "name": "probe_valid=1",
+        "pass": true,
+        "detail": "invalid_reason="
+      },
+      {
+        "name": "finalization_event=OnTester",
+        "pass": true,
+        "detail": "event=OnTester"
+      },
+      {
+        "name": "MethodA==MethodB (JPY)",
+        "pass": true,
+        "detail": "A=1021 B=1021"
+      },
+      {
+        "name": "MethodA==MethodB (XAU)",
+        "pass": true,
+        "detail": "A=972 B=972"
+      },
+      {
+        "name": "outside_requested_month=0",
+        "pass": true,
+        "detail": "outside=0"
+      },
+      {
+        "name": "duplicate_timestamps=0",
+        "pass": true,
+        "detail": "jpy=0 xau=0"
+      },
+      {
+        "name": "non_monotonic_timestamps=0",
+        "pass": true,
+        "detail": "jpy=0 xau=0"
+      },
+      {
+        "name": "0 < JPY_monthly <= days*48",
+        "pass": true,
+        "detail": "jpy=1021 cap=1488"
+      },
+      {
+        "name": "JPY_monthly_reasonable_500_4000",
+        "pass": true,
+        "detail": "jpy=1021"
+      },
+      {
+        "name": "0 < XAU_monthly <= days*48",
+        "pass": true,
+        "detail": "xau=972 cap=1488"
+      },
+      {
+        "name": "first_last_within_requested_month",
+        "pass": true,
+        "detail": "jpy=2018.01.02 06:00..2018.01.31 14:00 xau=2018.01.02 06:00..2018.01.31 14:00"
+      },
+      {
+        "name": "GateA_status=PASS",
+        "pass": true,
+        "detail": "status=PASS ratio=100.0000"
+      },
+      {
+        "name": "GateB_status=PASS",
+        "pass": true,
+        "detail": "status=PASS ratio=95.2008"
+      },
+      {
+        "name": "exact_intersection_valid",
+        "pass": true,
+        "detail": "intersection=972 jpy=1021 xau=972"
+      }
+    ],
+    "regression_status": "PASS",
+    "output_fresh": true,
+    "terminal_timed_out": false,
+    "terminal_return_code": 0,
+    "probe_output": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30MON4\\m4_2018-01.txt"
+  },
+  {
+    "tag": "2023-01",
+    "requested_from": "2023.01.01",
+    "requested_to": "2023.02.01",
+    "parser_valid": true,
+    "parser_invalid_reason": "",
+    "det": {
+      "month": "2023-01",
+      "requested_from": "2023.01.01",
+      "requested_to": "2023.02.01",
+      "probe_valid": "1",
+      "invalid_reason": "",
+      "finalization_event": "OnTester",
+      "final_tester_time": "2023.01.31 23:59:59",
+      "JPY_M30_bars": "1060",
+      "XAU_M30_bars": "963",
+      "exact_intersection": "963",
+      "info_availability_ratio": "90.8491",
+      "common_session_alignment_ratio": "100.0000",
+      "GateA_status": "PASS",
+      "GateB_status": "PASS",
+      "jpy_dup": "0",
+      "xau_dup": "0",
+      "jpy_non_monotonic": "0",
+      "xau_non_monotonic": "0",
+      "first_jpy": "2023.01.01 22:00",
+      "last_jpy": "2023.01.31 23:30",
+      "first_xau": "2023.01.02 23:00",
+      "last_xau": "2023.01.31 23:30",
+      "outside_requested_month": "0",
+      "methodA_jpy_count": "1060",
+      "methodB_jpy_count": "1060",
+      "methodA_xau_count": "963",
+      "methodB_xau_count": "963",
+      "methodA_methodB_jpy_equal": "1",
+      "methodA_methodB_xau_equal": "1",
+      "csA_jpy": "433714495",
+      "csB_jpy": "433714495",
+      "csA_xau": "1938035412",
+      "csB_xau": "1938035412",
+      "server_utc_offset": "0",
+      "diagnostic_iBars_jpy": "13536",
+      "diagnostic_iBars_xau": "12780",
+      "series_first_jpy": "2022.01.02 22:00",
+      "series_last_jpy": "2023.01.31 23:30",
+      "series_first_xau": "2022.01.02 23:00",
+      "series_last_xau": "2023.01.31 23:30",
+      "diagnostic_last_bar_jpy": "2023.01.31 23:30"
+    },
+    "journal": {
+      "USDJPYm": 1060
+    },
+    "checks": [
+      {
+        "name": "probe_valid=1",
+        "pass": true,
+        "detail": "invalid_reason="
+      },
+      {
+        "name": "finalization_event=OnTester",
+        "pass": true,
+        "detail": "event=OnTester"
+      },
+      {
+        "name": "MethodA==MethodB (JPY)",
+        "pass": true,
+        "detail": "A=1060 B=1060"
+      },
+      {
+        "name": "MethodA==MethodB (XAU)",
+        "pass": true,
+        "detail": "A=963 B=963"
+      },
+      {
+        "name": "outside_requested_month=0",
+        "pass": true,
+        "detail": "outside=0"
+      },
+      {
+        "name": "duplicate_timestamps=0",
+        "pass": true,
+        "detail": "jpy=0 xau=0"
+      },
+      {
+        "name": "non_monotonic_timestamps=0",
+        "pass": true,
+        "detail": "jpy=0 xau=0"
+      },
+      {
+        "name": "0 < JPY_monthly <= days*48",
+        "pass": true,
+        "detail": "jpy=1060 cap=1488"
+      },
+      {
+        "name": "JPY_monthly_reasonable_500_4000",
+        "pass": true,
+        "detail": "jpy=1060"
+      },
+      {
+        "name": "0 < XAU_monthly <= days*48",
+        "pass": true,
+        "detail": "xau=963 cap=1488"
+      },
+      {
+        "name": "first_last_within_requested_month",
+        "pass": true,
+        "detail": "jpy=2023.01.01 22:00..2023.01.31 23:30 xau=2023.01.02 23:00..2023.01.31 23:30"
+      },
+      {
+        "name": "GateA_status=PASS",
+        "pass": true,
+        "detail": "status=PASS ratio=100.0000"
+      },
+      {
+        "name": "GateB_status=PASS",
+        "pass": true,
+        "detail": "status=PASS ratio=90.8491"
+      },
+      {
+        "name": "exact_intersection_valid",
+        "pass": true,
+        "detail": "intersection=963 jpy=1060 xau=963"
+      }
+    ],
+    "regression_status": "PASS",
+    "output_fresh": true,
+    "terminal_timed_out": false,
+    "terminal_return_code": 0,
+    "probe_output": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30MON4\\m4_2023-01.txt"
+  },
+  {
+    "tag": "2023-07",
+    "requested_from": "2023.07.01",
+    "requested_to": "2023.08.01",
+    "parser_valid": true,
+    "parser_invalid_reason": "",
+    "det": {
+      "month": "2023-07",
+      "requested_from": "2023.07.01",
+      "requested_to": "2023.08.01",
+      "probe_valid": "1",
+      "invalid_reason": "",
+      "finalization_event": "OnTester",
+      "final_tester_time": "2023.07.31 23:59:59",
+      "JPY_M30_bars": "1014",
+      "XAU_M30_bars": "965",
+      "exact_intersection": "965",
+      "info_availability_ratio": "95.1677",
+      "common_session_alignment_ratio": "100.0000",
+      "GateA_status": "PASS",
+      "GateB_status": "PASS",
+      "jpy_dup": "0",
+      "xau_dup": "0",
+      "jpy_non_monotonic": "0",
+      "xau_non_monotonic": "0",
+      "first_jpy": "2023.07.02 21:00",
+      "last_jpy": "2023.07.31 23:30",
+      "first_xau": "2023.07.02 22:00",
+      "last_xau": "2023.07.31 23:30",
+      "outside_requested_month": "0",
+      "methodA_jpy_count": "1014",
+      "methodB_jpy_count": "1014",
+      "methodA_xau_count": "965",
+      "methodB_xau_count": "965",
+      "methodA_methodB_jpy_equal": "1",
+      "methodA_methodB_xau_equal": "1",
+      "csA_jpy": "1237238538",
+      "csB_jpy": "1237238538",
+      "csA_xau": "1188539216",
+      "csB_xau": "1188539216",
+      "server_utc_offset": "0",
+      "diagnostic_iBars_jpy": "19730",
+      "diagnostic_iBars_xau": "18646",
+      "series_first_jpy": "2022.01.02 22:00",
+      "series_last_jpy": "2023.07.31 23:30",
+      "series_first_xau": "2022.01.02 23:00",
+      "series_last_xau": "2023.07.31 23:30",
+      "diagnostic_last_bar_jpy": "2023.07.31 23:30"
+    },
+    "journal": {
+      "USDJPYm": 1014
+    },
+    "checks": [
+      {
+        "name": "probe_valid=1",
+        "pass": true,
+        "detail": "invalid_reason="
+      },
+      {
+        "name": "finalization_event=OnTester",
+        "pass": true,
+        "detail": "event=OnTester"
+      },
+      {
+        "name": "MethodA==MethodB (JPY)",
+        "pass": true,
+        "detail": "A=1014 B=1014"
+      },
+      {
+        "name": "MethodA==MethodB (XAU)",
+        "pass": true,
+        "detail": "A=965 B=965"
+      },
+      {
+        "name": "outside_requested_month=0",
+        "pass": true,
+        "detail": "outside=0"
+      },
+      {
+        "name": "duplicate_timestamps=0",
+        "pass": true,
+        "detail": "jpy=0 xau=0"
+      },
+      {
+        "name": "non_monotonic_timestamps=0",
+        "pass": true,
+        "detail": "jpy=0 xau=0"
+      },
+      {
+        "name": "0 < JPY_monthly <= days*48",
+        "pass": true,
+        "detail": "jpy=1014 cap=1488"
+      },
+      {
+        "name": "JPY_monthly_reasonable_500_4000",
+        "pass": true,
+        "detail": "jpy=1014"
+      },
+      {
+        "name": "0 < XAU_monthly <= days*48",
+        "pass": true,
+        "detail": "xau=965 cap=1488"
+      },
+      {
+        "name": "first_last_within_requested_month",
+        "pass": true,
+        "detail": "jpy=2023.07.02 21:00..2023.07.31 23:30 xau=2023.07.02 22:00..2023.07.31 23:30"
+      },
+      {
+        "name": "GateA_status=PASS",
+        "pass": true,
+        "detail": "status=PASS ratio=100.0000"
+      },
+      {
+        "name": "GateB_status=PASS",
+        "pass": true,
+        "detail": "status=PASS ratio=95.1677"
+      },
+      {
+        "name": "exact_intersection_valid",
+        "pass": true,
+        "detail": "intersection=965 jpy=1014 xau=965"
+      }
+    ],
+    "regression_status": "PASS",
+    "output_fresh": true,
+    "terminal_timed_out": false,
+    "terminal_return_code": 0,
+    "probe_output": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30MON4\\m4_2023-07.txt"
+  },
+  {
+    "tag": "2024-03",
+    "requested_from": "2024.03.01",
+    "requested_to": "2024.04.01",
+    "parser_valid": true,
+    "parser_invalid_reason": "",
+    "det": {
+      "month": "2024-03",
+      "requested_from": "2024.03.01",
+      "requested_to": "2024.04.01",
+      "probe_valid": "1",
+      "invalid_reason": "",
+      "finalization_event": "OnTester",
+      "final_tester_time": "2024.03.31 23:59:59",
+      "JPY_M30_bars": "1010",
+      "XAU_M30_bars": "922",
+      "exact_intersection": "922",
+      "info_availability_ratio": "91.2871",
+      "common_session_alignment_ratio": "100.0000",
+      "GateA_status": "PASS",
+      "GateB_status": "PASS",
+      "jpy_dup": "0",
+      "xau_dup": "0",
+      "jpy_non_monotonic": "0",
+      "xau_non_monotonic": "0",
+      "first_jpy": "2024.03.01 00:00",
+      "last_jpy": "2024.03.31 23:30",
+      "first_xau": "2024.03.01 00:00",
+      "last_xau": "2024.03.31 23:30",
+      "outside_requested_month": "0",
+      "methodA_jpy_count": "1010",
+      "methodB_jpy_count": "1010",
+      "methodA_xau_count": "922",
+      "methodB_xau_count": "922",
+      "methodA_methodB_jpy_equal": "1",
+      "methodA_methodB_xau_equal": "1",
+      "csA_jpy": "2072844536",
+      "csB_jpy": "2072844536",
+      "csA_xau": "2005587871",
+      "csB_xau": "2005587871",
+      "server_utc_offset": "0",
+      "diagnostic_iBars_jpy": "15510",
+      "diagnostic_iBars_xau": "14664",
+      "series_first_jpy": "2023.01.01 22:00",
+      "series_last_jpy": "2024.03.31 23:30",
+      "series_first_xau": "2023.01.02 23:00",
+      "series_last_xau": "2024.03.31 23:30",
+      "diagnostic_last_bar_jpy": "2024.03.31 23:30"
+    },
+    "journal": {
+      "USDJPYm": 1010
+    },
+    "checks": [
+      {
+        "name": "probe_valid=1",
+        "pass": true,
+        "detail": "invalid_reason="
+      },
+      {
+        "name": "finalization_event=OnTester",
+        "pass": true,
+        "detail": "event=OnTester"
+      },
+      {
+        "name": "MethodA==MethodB (JPY)",
+        "pass": true,
+        "detail": "A=1010 B=1010"
+      },
+      {
+        "name": "MethodA==MethodB (XAU)",
+        "pass": true,
+        "detail": "A=922 B=922"
+      },
+      {
+        "name": "outside_requested_month=0",
+        "pass": true,
+        "detail": "outside=0"
+      },
+      {
+        "name": "duplicate_timestamps=0",
+        "pass": true,
+        "detail": "jpy=0 xau=0"
+      },
+      {
+        "name": "non_monotonic_timestamps=0",
+        "pass": true,
+        "detail": "jpy=0 xau=0"
+      },
+      {
+        "name": "0 < JPY_monthly <= days*48",
+        "pass": true,
+        "detail": "jpy=1010 cap=1488"
+      },
+      {
+        "name": "JPY_monthly_reasonable_500_4000",
+        "pass": true,
+        "detail": "jpy=1010"
+      },
+      {
+        "name": "0 < XAU_monthly <= days*48",
+        "pass": true,
+        "detail": "xau=922 cap=1488"
+      },
+      {
+        "name": "first_last_within_requested_month",
+        "pass": true,
+        "detail": "jpy=2024.03.01 00:00..2024.03.31 23:30 xau=2024.03.01 00:00..2024.03.31 23:30"
+      },
+      {
+        "name": "GateA_status=PASS",
+        "pass": true,
+        "detail": "status=PASS ratio=100.0000"
+      },
+      {
+        "name": "GateB_status=PASS",
+        "pass": true,
+        "detail": "status=PASS ratio=91.2871"
+      },
+      {
+        "name": "exact_intersection_valid",
+        "pass": true,
+        "detail": "intersection=922 jpy=1010 xau=922"
+      }
+    ],
+    "regression_status": "PASS",
+    "output_fresh": true,
+    "terminal_timed_out": false,
+    "terminal_return_code": 0,
+    "probe_output": "C:\\Users\\UIC\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\dshtrend\\XAMR30MON4\\m4_2024-03.txt"
+  }
+]
