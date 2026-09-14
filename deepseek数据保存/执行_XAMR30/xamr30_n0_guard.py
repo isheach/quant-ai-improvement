@@ -11,6 +11,7 @@ EA source.
 from __future__ import annotations
 
 import argparse
+import ast
 import datetime as dt
 import hashlib
 import json
@@ -32,6 +33,7 @@ PLANNED_PATH = REPO / "公共部分" / "XAMR30_planned_runs.jsonl"
 N0_DIR = FAM / "N0_final"
 INI_DIR = N0_DIR / "resolved_INIs"
 FINAL_SMOKE_JSON = FAM / "final_smoke_independent" / "final_smoke_independent.json"
+VERIFY_SMOKE_PY = FAM / "verify_final_smoke_independent.py"
 R2_SUMMARY_JSON = FAM / "doublecalc_r2" / "XAMR30_doublecalc_R2_summary.json"
 DATA_FREEZE = REPO / "公共部分" / "XAMR30_DATA_FREEZE_20260914_R4.md"
 FINAL_GUARD_DOC = REPO / "公共部分" / "XAMR30_FINAL_PRETRAIN_GUARD_20260914.md"
@@ -58,6 +60,30 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest().upper()
+
+
+def unconditional_true_check_lines(path: Path) -> tuple[list[int], str | None]:
+    """Find literal ``True`` as the second positional argument to ``check``."""
+    if not path.is_file():
+        return [], "MISSING"
+    try:
+        tree = ast.parse(path.read_text(encoding="utf-8-sig"), filename=str(path))
+    except (OSError, SyntaxError) as exc:
+        return [], type(exc).__name__
+
+    lines: list[int] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call) or len(node.args) < 2:
+            continue
+        if isinstance(node.func, ast.Name):
+            is_check = node.func.id == "check"
+        elif isinstance(node.func, ast.Attribute):
+            is_check = node.func.attr == "check"
+        else:
+            is_check = False
+        if is_check and isinstance(node.args[1], ast.Constant) and node.args[1].value is True:
+            lines.append(node.lineno)
+    return sorted(set(lines)), None
 
 
 def clean_default(raw: str) -> str:
@@ -435,6 +461,74 @@ def run_guard() -> tuple[dict[str, Any], int]:
     add_global("FINAL_SMOKE_INDEPENDENT = PASS", smoke.get("FINAL_SMOKE_INDEPENDENT") == "PASS", str(smoke.get("FINAL_SMOKE_INDEPENDENT")))
     add_global("independent smoke hold checks = 37/37", smoke_summary.get("hold_bar_pass") == 37 and smoke_summary.get("hold_bar_checks") == 37, json.dumps(smoke_summary, ensure_ascii=False))
 
+    def as_int(value: Any) -> int | None:
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
+    smoke_windows = [window for window in (smoke.get("windows") or []) if isinstance(window, dict)]
+    held_bar_rows = [
+        row
+        for window in smoke_windows
+        for row in (window.get("held_bar_rows") or [])
+        if isinstance(row, dict)
+    ]
+    time_exit_rows = [row for row in held_bar_rows if row.get("exit_reason") == "time_exit"]
+    non_time_exit_rows = [row for row in held_bar_rows if row.get("exit_reason") != "time_exit"]
+    time_exit_pass = sum(1 for row in time_exit_rows if as_int(row.get("full_held_bars")) == 12)
+    non_time_exit_pass = sum(1 for row in non_time_exit_rows if (as_int(row.get("full_held_bars")) is not None and as_int(row.get("full_held_bars")) <= 12))
+    canonical_checks = smoke_summary.get("checks") or {}
+    canonical_passed = as_int(canonical_checks.get("passed"))
+    canonical_total = as_int(canonical_checks.get("total"))
+    time_exit_count = as_int(smoke_summary.get("time_exit_count"))
+    weekend_trade = next(
+        (
+            row
+            for row in (smoke_summary.get("weekend_trade") or [])
+            if isinstance(row, dict) and row.get("window") == "SUMMER" and str(row.get("deal_ticket")) == "25"
+        ),
+        None,
+    )
+    weekend_full_held_bars = as_int(weekend_trade.get("full_held_bars")) if weekend_trade else None
+    ast_lines, ast_error = unconditional_true_check_lines(VERIFY_SMOKE_PY)
+    verifier_checks = [
+        {"name": "verifier AST scan parses", "pass": ast_error is None, "detail": ast_error or str(VERIFY_SMOKE_PY)},
+        {
+            "name": "verifier unconditional True checks = 0",
+            "pass": ast_error is None and not ast_lines,
+            "detail": json.dumps({"unconditional_true_check_lines": ast_lines}, ensure_ascii=False),
+        },
+        {
+            "name": "canonical verifier checks complete",
+            "pass": canonical_passed is not None and canonical_total is not None and canonical_total > 0 and canonical_passed == canonical_total,
+            "detail": f"{canonical_passed}/{canonical_total}",
+        },
+        {
+            "name": "held-bar evidence = 37/37",
+            "pass": smoke_summary.get("hold_bar_checks") == 37 and smoke_summary.get("hold_bar_pass") == 37,
+            "detail": f"{smoke_summary.get('hold_bar_pass')}/{smoke_summary.get('hold_bar_checks')}",
+        },
+        {
+            "name": "time-exit evidence = 2/2 exactly 12 bars",
+            "pass": time_exit_count == 2 and len(time_exit_rows) == 2 and time_exit_pass == 2,
+            "detail": f"{time_exit_pass}/{len(time_exit_rows)} rows; summary={time_exit_count}",
+        },
+        {
+            "name": "non-time-exit evidence <= 12 bars",
+            "pass": len(non_time_exit_rows) == 35 and non_time_exit_pass == len(non_time_exit_rows),
+            "detail": f"{non_time_exit_pass}/{len(non_time_exit_rows)}",
+        },
+        {
+            "name": "SUMMER ticket 25 weekend evidence = 12 bars",
+            "pass": weekend_full_held_bars == 12,
+            "detail": str(weekend_full_held_bars),
+        },
+    ]
+    verifier_compliance_status = all(item["pass"] for item in verifier_checks)
+    verifier_checks.append({"name": "VERIFIER_COMPLIANCE = PASS", "pass": verifier_compliance_status, "detail": "R1 machine evidence and AST gate"})
+    global_checks.extend(verifier_checks)
+
     r2: dict[str, Any] = {}
     if R2_SUMMARY_JSON.is_file():
         r2 = json.loads(R2_SUMMARY_JSON.read_text(encoding="utf-8"))
@@ -536,6 +630,20 @@ def run_guard() -> tuple[dict[str, Any], int]:
         "run_results": run_results,
         "R2_status": r2.get("SIGNAL_DOUBLECALC_R2"),
         "FINAL_SMOKE_INDEPENDENT": smoke.get("FINAL_SMOKE_INDEPENDENT"),
+        "verifier_compliance": {
+            "pass": verifier_compliance_status,
+            "unconditional_true_check_lines": ast_lines,
+            "canonical_checks_passed": canonical_passed,
+            "canonical_checks_total": canonical_total,
+            "held_bar_pass": smoke_summary.get("hold_bar_pass"),
+            "held_bar_checks": smoke_summary.get("hold_bar_checks"),
+            "time_exit_pass": time_exit_pass,
+            "time_exit_total": len(time_exit_rows),
+            "non_time_exit_pass": non_time_exit_pass,
+            "non_time_exit_total": len(non_time_exit_rows),
+            "weekend_ticket": "25",
+            "weekend_full_held_bars": weekend_full_held_bars,
+        },
     }
     N0_DIR.mkdir(parents=True, exist_ok=True)
     (N0_DIR / "XAMR30_N0_fourway.json").write_text(json.dumps(n0, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -598,7 +706,7 @@ def run_guard() -> tuple[dict[str, Any], int]:
     data_freeze_status = any(item["name"] == "DATA_FREEZE = PASS" and item["pass"] for item in global_checks)
     provenance_status = source_sha == EXPECTED_SOURCE_SHA and canonical_sha == EXPECTED_EX5_SHA and deployed_sha == EXPECTED_EX5_SHA
     r2_status = r2.get("SIGNAL_DOUBLECALC_R2") == "PASS"
-    final_status = "PASS" if all((data_freeze_status, provenance_status, r2_status, final_smoke_status, n0_status == "PASS")) else "FAIL"
+    final_status = "PASS" if all((data_freeze_status, provenance_status, r2_status, final_smoke_status, verifier_compliance_status, n0_status == "PASS")) else "FAIL"
     final_lines = [
         "# XAMR30 FINAL PRE-TRAIN GUARD · 2026-09-14",
         "",
@@ -613,12 +721,18 @@ def run_guard() -> tuple[dict[str, Any], int]:
         f"| N0_FOURWAY | {n0_status} |",
         f"| **FINAL_PRETRAIN_GUARD** | **{final_status}** |",
         "",
+        "TRAIN_AUTHORIZED = NO",
+        "WAIT_FOR_PLANNER_REVIEW = YES",
+        "",
         "## Frozen identities",
         "",
         f"- Strategy source SHA256: `{source_sha}`",
         f"- Canonical/deployed EX5 SHA256: `{canonical_sha}` / `{deployed_sha}`",
         f"- Parsed source inputs: `{len(source_inputs)}`",
         f"- Planned runs: `{len(records)}`; TRAIN=3, VALID conditional=3",
+        f"- Canonical independent verifier checks: `{canonical_passed}/{canonical_total}`; literal unconditional `True` checks: `{len(ast_lines)}`.",
+        f"- Independent held-bar checks: `{smoke_summary.get('hold_bar_pass')}/{smoke_summary.get('hold_bar_checks')}`; `time_exit={time_exit_pass}/{len(time_exit_rows)}` exactly 12 real M30 bars; non-time-exit=`{non_time_exit_pass}/{len(non_time_exit_rows)}` at most 12 bars.",
+        f"- SUMMER disputed weekend ticket `25`: `full_held_bars={weekend_full_held_bars}`.",
         "- Exact XAU availability mask is invariant before the V1/V2/V3 filter branch.",
         "- Tester intervals and forbidden exposed-OOS/user-holdout intervals are checked in the N0 manifest.",
         "",

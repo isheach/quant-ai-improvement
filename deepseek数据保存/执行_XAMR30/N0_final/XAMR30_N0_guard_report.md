@@ -32,6 +32,14 @@
 | TRAIN start month = 2018-01 | PASS | Data Freeze report |
 | FINAL_SMOKE_INDEPENDENT = PASS | PASS | PASS |
 | independent smoke hold checks = 37/37 | PASS | {"trades": 37, "time_exit_count": 2, "hold_bar_checks": 37, "hold_bar_pass": 37, "max_full_held_bars": 12, "weekend_trade": [{"window": "SUMMER", "deal_ticket": "25", "position_id": "24", "entry_time": "2023.07.21 17:00:00", "exit_time": "2023.07.23 23:00:00", "exit_reason": "time_exit", "full_held_bars": 12, "first_counted_bar_open": "2023.07.21 17:00:00", "last_counted_bar_open": "2023.07.23 22:30:00", "counted_bar_timestamps": ["2023.07.21 17:00:00", "2023.07.21 17:30:00", "2023.07.21 18:00:00", "2023.07.21 18:30:00", "2023.07.21 19:00:00", "2023.07.21 19:30:00", "2023.07.21 20:00:00", "2023.07.21 20:30:00", "2023.07.23 21:00:00", "2023.07.23 21:30:00", "2023.07.23 22:00:00", "2023.07.23 22:30:00"]}], "checks": {"passed": 72, "total": 72}} |
+| verifier AST scan parses | PASS | D:\desktop\新量化策略\_repo_量化交易ai改进\deepseek数据保存\执行_XAMR30\verify_final_smoke_independent.py |
+| verifier unconditional True checks = 0 | PASS | {"unconditional_true_check_lines": []} |
+| canonical verifier checks complete | PASS | 72/72 |
+| held-bar evidence = 37/37 | PASS | 37/37 |
+| time-exit evidence = 2/2 exactly 12 bars | PASS | 2/2 rows; summary=2 |
+| non-time-exit evidence <= 12 bars | PASS | 35/35 |
+| SUMMER ticket 25 weekend evidence = 12 bars | PASS | 12 |
+| VERIFIER_COMPLIANCE = PASS | PASS | R1 machine evidence and AST gate |
 | SIGNAL_DOUBLECALC_R2 = PASS | PASS | PASS |
 | exact XAU availability mask before filter branch | PASS | {"exact_declaration": 35170, "exact_match": 35363, "missing_branch": 35801, "filter_branch": 36419} |
 | all TRAIN configs otherwise identical | PASS | fixed inputs/tester core |
