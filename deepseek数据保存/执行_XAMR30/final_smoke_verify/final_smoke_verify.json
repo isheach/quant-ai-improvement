@@ -1,0 +1,488 @@
+[
+  {
+    "window": "WINTER",
+    "checks": [
+      [
+        "Bars>0",
+        true,
+        "Bars=29797"
+      ],
+      [
+        "Deposit=500",
+        true,
+        "500.00"
+      ],
+      [
+        "Symbol=USDJPYm",
+        true,
+        "USDJPYm"
+      ],
+      [
+        "HTML trades == 审计行数",
+        true,
+        "HTML=12 审计=12"
+      ],
+      [
+        "实际产生 closing deals",
+        true,
+        "12 笔"
+      ],
+      [
+        "fatal=0",
+        true,
+        "0"
+      ],
+      [
+        "audit_failed=0",
+        true,
+        "0"
+      ],
+      [
+        "active_positions=0",
+        true,
+        "0"
+      ],
+      [
+        "入场时序 entry_bar = signal_bar+30min",
+        true,
+        "抽查 12，违规 无"
+      ],
+      [
+        "入场时序 entry_time >= signal_close",
+        true,
+        "违规 无"
+      ],
+      [
+        "时序抽查（本窗口）",
+        true,
+        "12 笔"
+      ],
+      [
+        "time_exit 仅由 12 根规则触发（权威判据）",
+        true,
+        "time_exit=1 笔（跨周末者日历时间可 >375min，bar 数由 EA 保证）"
+      ],
+      [
+        "非 time_exit 持仓未超 12 根（日历上界）",
+        true,
+        "越界 无"
+      ],
+      [
+        "unique_deal_ticket_rows == audit_rows",
+        true,
+        "12/12"
+      ],
+      [
+        "duplicate_written_rows == 0",
+        true,
+        "重复 0"
+      ],
+      [
+        "duplicate_attempts_blocked（仅 diagnostic）",
+        true,
+        "dup_hits=12（seen-table 拦截的重复发现，非重复写入）"
+      ],
+      [
+        "每 UTC day <= 1 笔",
+        true,
+        "违反 无"
+      ],
+      [
+        "全部成交 alignment_exact=1",
+        true,
+        "异常 0"
+      ],
+      [
+        "cross_asset_missing_bar 的 xau_bar_time 为空（无状态污染）",
+        true,
+        "拒单 14 条，带 stale xau 值的 0 条"
+      ],
+      [
+        "atr_out_of_regime 的 xau 值为空（无状态污染）",
+        true,
+        "拒单 74 条，stale 0 条"
+      ],
+      [
+        "DEAL_PROFIT↔OCP<=0.05",
+        true,
+        "超容差 无"
+      ],
+      [
+        "spread / SL / TP 字段齐备",
+        true,
+        "★JSB30 缺口已解决"
+      ],
+      [
+        "median spread/SL <= 30%",
+        true,
+        "median=0.0449"
+      ],
+      [
+        "median spread/TP <= 30%",
+        true,
+        "median=0.0562"
+      ],
+      [
+        "HTML净利 == 审计净利",
+        true,
+        "audit -3.76 / html -3.76"
+      ]
+    ],
+    "trades": 12,
+    "ok": 25,
+    "tot": 25,
+    "selfcheck": {
+      "run_tag": "DS260914_XAMR30_SMOKE_WINTER",
+      "written_deals": "12",
+      "dup_hits": "12",
+      "audit_failed": "0",
+      "fatal": "0",
+      "fatal_reason": "",
+      "ocp_mismatch": "0",
+      "formula_diag_out": "0",
+      "risk_cap_breach": "0",
+      "trades": "12",
+      "wins": "6",
+      "long": "7",
+      "short": "5",
+      "active_positions": "0",
+      "rej_sigma": "0",
+      "rej_atr_insufficient": "0",
+      "rej_atr_regime": "74",
+      "rej_xau_missing": "14",
+      "rej_xau_fail": "27",
+      "rej_minlot": "0",
+      "rej_riskcap": "0",
+      "rej_ocp": "0",
+      "skip_no_signal": "446",
+      "skip_day_traded": "421",
+      "server_utc_offset": "0",
+      "reason": "1"
+    },
+    "rej": 115
+  },
+  {
+    "window": "DSTTR",
+    "checks": [
+      [
+        "Bars>0",
+        true,
+        "Bars=19862"
+      ],
+      [
+        "Deposit=500",
+        true,
+        "500.00"
+      ],
+      [
+        "Symbol=USDJPYm",
+        true,
+        "USDJPYm"
+      ],
+      [
+        "HTML trades == 审计行数",
+        true,
+        "HTML=10 审计=10"
+      ],
+      [
+        "实际产生 closing deals",
+        true,
+        "10 笔"
+      ],
+      [
+        "fatal=0",
+        true,
+        "0"
+      ],
+      [
+        "audit_failed=0",
+        true,
+        "0"
+      ],
+      [
+        "active_positions=0",
+        true,
+        "0"
+      ],
+      [
+        "入场时序 entry_bar = signal_bar+30min",
+        true,
+        "抽查 10，违规 无"
+      ],
+      [
+        "入场时序 entry_time >= signal_close",
+        true,
+        "违规 无"
+      ],
+      [
+        "时序抽查（本窗口）",
+        true,
+        "10 笔"
+      ],
+      [
+        "time_exit 仅由 12 根规则触发（权威判据）",
+        true,
+        "time_exit=0 笔（跨周末者日历时间可 >375min，bar 数由 EA 保证）"
+      ],
+      [
+        "非 time_exit 持仓未超 12 根（日历上界）",
+        true,
+        "越界 无"
+      ],
+      [
+        "unique_deal_ticket_rows == audit_rows",
+        true,
+        "10/10"
+      ],
+      [
+        "duplicate_written_rows == 0",
+        true,
+        "重复 0"
+      ],
+      [
+        "duplicate_attempts_blocked（仅 diagnostic）",
+        true,
+        "dup_hits=10（seen-table 拦截的重复发现，非重复写入）"
+      ],
+      [
+        "每 UTC day <= 1 笔",
+        true,
+        "违反 无"
+      ],
+      [
+        "全部成交 alignment_exact=1",
+        true,
+        "异常 0"
+      ],
+      [
+        "cross_asset_missing_bar 的 xau_bar_time 为空（无状态污染）",
+        true,
+        "拒单 0 条，带 stale xau 值的 0 条"
+      ],
+      [
+        "atr_out_of_regime 的 xau 值为空（无状态污染）",
+        true,
+        "拒单 49 条，stale 0 条"
+      ],
+      [
+        "DEAL_PROFIT↔OCP<=0.05",
+        true,
+        "超容差 无"
+      ],
+      [
+        "spread / SL / TP 字段齐备",
+        true,
+        "★JSB30 缺口已解决"
+      ],
+      [
+        "median spread/SL <= 30%",
+        true,
+        "median=0.0417"
+      ],
+      [
+        "median spread/TP <= 30%",
+        true,
+        "median=0.0521"
+      ],
+      [
+        "HTML净利 == 审计净利",
+        true,
+        "audit -21.26 / html -21.26"
+      ]
+    ],
+    "trades": 10,
+    "ok": 25,
+    "tot": 25,
+    "selfcheck": {
+      "run_tag": "DS260914_XAMR30_SMOKE_DSTTR",
+      "written_deals": "10",
+      "dup_hits": "10",
+      "audit_failed": "0",
+      "fatal": "0",
+      "fatal_reason": "",
+      "ocp_mismatch": "0",
+      "formula_diag_out": "0",
+      "risk_cap_breach": "0",
+      "trades": "10",
+      "wins": "4",
+      "long": "4",
+      "short": "6",
+      "active_positions": "0",
+      "rej_sigma": "0",
+      "rej_atr_insufficient": "0",
+      "rej_atr_regime": "49",
+      "rej_xau_missing": "0",
+      "rej_xau_fail": "24",
+      "rej_minlot": "0",
+      "rej_riskcap": "0",
+      "rej_ocp": "0",
+      "skip_no_signal": "264",
+      "skip_day_traded": "318",
+      "server_utc_offset": "0",
+      "reason": "1"
+    },
+    "rej": 73
+  },
+  {
+    "window": "SUMMER",
+    "checks": [
+      [
+        "Bars>0",
+        true,
+        "Bars=28695"
+      ],
+      [
+        "Deposit=500",
+        true,
+        "500.00"
+      ],
+      [
+        "Symbol=USDJPYm",
+        true,
+        "USDJPYm"
+      ],
+      [
+        "HTML trades == 审计行数",
+        true,
+        "HTML=15 审计=15"
+      ],
+      [
+        "实际产生 closing deals",
+        true,
+        "15 笔"
+      ],
+      [
+        "fatal=0",
+        true,
+        "0"
+      ],
+      [
+        "audit_failed=0",
+        true,
+        "0"
+      ],
+      [
+        "active_positions=0",
+        true,
+        "0"
+      ],
+      [
+        "入场时序 entry_bar = signal_bar+30min",
+        true,
+        "抽查 15，违规 无"
+      ],
+      [
+        "入场时序 entry_time >= signal_close",
+        true,
+        "违规 无"
+      ],
+      [
+        "时序抽查（本窗口）",
+        true,
+        "15 笔"
+      ],
+      [
+        "time_exit 仅由 12 根规则触发（权威判据）",
+        true,
+        "time_exit=1 笔（跨周末者日历时间可 >375min，bar 数由 EA 保证）"
+      ],
+      [
+        "非 time_exit 持仓未超 12 根（日历上界）",
+        true,
+        "越界 无"
+      ],
+      [
+        "unique_deal_ticket_rows == audit_rows",
+        true,
+        "15/15"
+      ],
+      [
+        "duplicate_written_rows == 0",
+        true,
+        "重复 0"
+      ],
+      [
+        "duplicate_attempts_blocked（仅 diagnostic）",
+        true,
+        "dup_hits=15（seen-table 拦截的重复发现，非重复写入）"
+      ],
+      [
+        "每 UTC day <= 1 笔",
+        true,
+        "违反 无"
+      ],
+      [
+        "全部成交 alignment_exact=1",
+        true,
+        "异常 0"
+      ],
+      [
+        "cross_asset_missing_bar 的 xau_bar_time 为空（无状态污染）",
+        true,
+        "拒单 1 条，带 stale xau 值的 0 条"
+      ],
+      [
+        "atr_out_of_regime 的 xau 值为空（无状态污染）",
+        true,
+        "拒单 66 条，stale 0 条"
+      ],
+      [
+        "DEAL_PROFIT↔OCP<=0.05",
+        true,
+        "超容差 无"
+      ],
+      [
+        "spread / SL / TP 字段齐备",
+        true,
+        "★JSB30 缺口已解决"
+      ],
+      [
+        "median spread/SL <= 30%",
+        true,
+        "median=0.0777"
+      ],
+      [
+        "median spread/TP <= 30%",
+        true,
+        "median=0.0972"
+      ],
+      [
+        "HTML净利 == 审计净利",
+        true,
+        "audit -25.26 / html -25.26"
+      ]
+    ],
+    "trades": 15,
+    "ok": 25,
+    "tot": 25,
+    "selfcheck": {
+      "run_tag": "DS260914_XAMR30_SMOKE_SUMMER",
+      "written_deals": "15",
+      "dup_hits": "15",
+      "audit_failed": "0",
+      "fatal": "0",
+      "fatal_reason": "",
+      "ocp_mismatch": "0",
+      "formula_diag_out": "0",
+      "risk_cap_breach": "0",
+      "trades": "15",
+      "wins": "6",
+      "long": "11",
+      "short": "4",
+      "active_positions": "0",
+      "rej_sigma": "0",
+      "rej_atr_insufficient": "0",
+      "rej_atr_regime": "66",
+      "rej_xau_missing": "1",
+      "rej_xau_fail": "31",
+      "rej_minlot": "0",
+      "rej_riskcap": "0",
+      "rej_ocp": "0",
+      "skip_no_signal": "385",
+      "skip_day_traded": "435",
+      "server_utc_offset": "0",
+      "reason": "1"
+    },
+    "rej": 98
+  }
+]

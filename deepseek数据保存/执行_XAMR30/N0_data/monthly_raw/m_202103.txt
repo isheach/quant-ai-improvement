@@ -1,0 +1,2 @@
+month,requested_from,requested_to,JPY_M30_bars,XAU_M30_bars,exact_intersection,info_availability_ratio,common_session_alignment_ratio,jpy_dup_ts,xau_dup_ts,jpy_non_monotonic,xau_non_monotonic,first_jpy,last_jpy,first_xau,last_xau,counted_outside_requested_month,server_utc_offset
+202103,2021.03.01,2021.04.01,1,1,1,100.0000,100.0000,0,0,0,0,2021.03.01 00:00,2021.03.01 00:00,2021.03.01 00:00,2021.03.01 00:00,0,0
