@@ -1,0 +1,4 @@
+HD 0 08:19:54.037 Tester startup from start config R1
+EF 0 08:19:54.142 Terminal launched with R1
+JI 0 08:19:57.708 Tester automatic testing started
+IP 0 08:20:00.221 Tester last test passed with result "some error after pass finished"

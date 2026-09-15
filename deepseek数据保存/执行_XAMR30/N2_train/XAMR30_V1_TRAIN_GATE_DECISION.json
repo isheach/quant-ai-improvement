@@ -1,0 +1,40 @@
+{
+  "run_id": "DS260914_XAMR30_V1_TRAIN",
+  "run_integrity_status": "VALID",
+  "variant_train_gate_status": "CLOSED",
+  "v1_valid_authorized": false,
+  "valid_authorized": false,
+  "closure_reason": "PREREGISTERED_HARD_GATES_FAILED",
+  "hard_gates": {
+    "net_usd_gt_0": {
+      "observed": -446.84,
+      "pass": false
+    },
+    "profit_factor_gt_1": {
+      "observed": 0.66,
+      "pass": false
+    },
+    "equity_drawdown_pct_le_40": {
+      "observed": 89.92,
+      "pass": false
+    },
+    "two_x_cost_net_usd_gt_0": {
+      "observed": -764.2701354,
+      "pass": false
+    },
+    "net_without_top10_winners_usd_gt_0": {
+      "observed": -504.32,
+      "pass": false
+    },
+    "audit_consistency": {
+      "observed": "PASS",
+      "pass": true
+    }
+  },
+  "canonical_train_trading_calendar": "UNAVAILABLE",
+  "v1_daily_bootstrap_series": "BLOCKED_NO_CANONICAL_TRADING_CALENDAR",
+  "v1_v2_bootstrap": "BLOCKED_PRECONDITION",
+  "bootstrap_executed": false,
+  "data_probe_execution_count": 2,
+  "data_probe_r3_authorized": false
+}

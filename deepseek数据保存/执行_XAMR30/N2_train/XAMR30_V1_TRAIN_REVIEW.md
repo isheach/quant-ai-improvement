@@ -93,3 +93,25 @@ pre-run SHA-256 identities.  Raw HTML, trade audit, reject audit and self-check
 files remain outside Git and are referenced by path, size, SHA-256, row count,
 and timestamp metadata in the manifest.  Broker account or connection
 identifiers are intentionally omitted from this package.
+
+## Planner gate decision
+
+`RUN_INTEGRITY_STATUS = VALID`.
+`VARIANT_TRAIN_GATE_STATUS = CLOSED`.
+`V1_VALID_AUTHORIZED = NO`.
+
+The V1 economic run is reproducible and internally consistent, but it is a
+closed candidate because the preregistered hard gates failed: net profit was
+`-446.84` USD, profit factor was `0.66`, equity drawdown was `89.92%`, the
+2x-cost net was `-764.2701354` USD, and net without the top ten winners was
+`-504.32` USD. Audit consistency passed.
+
+The canonical TRAIN trading calendar is unavailable after two authorized
+data-only probes failed with `FAILED_ENGINEERING_NO_DATA`. A third probe is not
+authorized. Consequently, the canonical daily bootstrap series is unavailable
+and the V1-vs-V2 paired bootstrap is `BLOCKED_PRECONDITION`; no bootstrap was
+executed. Weekday, trade-date, and reject-date proxy calendars are not allowed.
+
+V2 and V3 remain independently preregistered but were not executed or
+authorized by this closure record. The failure of V1 does not invalidate those
+variants.

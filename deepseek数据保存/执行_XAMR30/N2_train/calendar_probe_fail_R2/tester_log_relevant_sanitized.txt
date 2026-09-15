@@ -1,0 +1,5 @@
+PG 0 08:29:43.358 Startup initialized from R2 config
+OE 0 08:29:43.397 Terminal launched R2
+GH 0 08:29:46.416 Tester automatic testing started
+RO 0 08:29:48.573 Tester last test passed with result "some error after pass finished"
+QS 0 08:29:48.814 Terminal exited with code 0

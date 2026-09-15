@@ -1,0 +1,15 @@
+{
+  "canonical_calendar_status": "UNAVAILABLE",
+  "r1_probe_status": "FAILED_ENGINEERING_NO_DATA",
+  "r2_probe_status": "FAILED_ENGINEERING_NO_DATA",
+  "data_probe_execution_count_total": 2,
+  "third_probe_authorized": false,
+  "third_probe_forbidden": true,
+  "weekday_proxy_allowed": false,
+  "trade_date_proxy_allowed": false,
+  "reject_date_proxy_allowed": false,
+  "calendar_reconciliation_status": "NOT_RUN_NO_CALENDAR",
+  "v1_daily_bootstrap_series_status": "BLOCKED_NO_CANONICAL_TRADING_CALENDAR",
+  "v1_v2_bootstrap_status": "BLOCKED_PRECONDITION",
+  "bootstrap_executed": false
+}
