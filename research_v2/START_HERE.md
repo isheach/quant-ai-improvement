@@ -1,3 +1,11 @@
-# research_v2
+# 当前研究入口：WF3（2026-09-25 用户重新规划）
 
-Current stage: RESEARCH_V2_ENGINE_AND_RECOVERY_REPAIR_R1. Historical replay is disabled. Read `reviews/engine_repair_r1/REPAIR_SUMMARY.md` and `CURRENT_STATUS.json`.
+先读 `mt5_wf_v3/MASTER_PLAN.md`，再读 `mt5_wf_v3/EXECUTOR_PROMPT.md`。
+
+新要求：黄金单标的；趋势、受限网格分别研究；6个月训练/3个月验证/3个月测试、每月推进；第一阶段月度选参，第二阶段缓慢自适应；所有用于选参和评价盈利的收益只来自MT5原生品种，Python不再跑收益模拟。
+
+新范围为2024-01-01～2026-06-30。旧历史暴露事实保留，2026-07及之后不分析。只授权新提示词中的S0准备与最多T/G各一次限定工程smoke；大批滚动实验尚未启动或自动批准。
+
+`CURRENT_STATUS.json`、旧 `protocol/`、R1/P4/R12—R24报告属于旧路线快照，保留但不能给WF3提供执行授权。新状态写在 `mt5_wf_v3/STATUS.json`，初次尚未创建时按新提示词初始化，不猜本机进程状态。
+
+旧代码/结果不覆盖，不切回陈旧main。继续使用当前研究分支。完整机器窗口见 `mt5_wf_v3/WINDOWS.csv`。
