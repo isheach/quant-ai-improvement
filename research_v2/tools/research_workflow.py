@@ -100,8 +100,25 @@ def approval() -> dict:
 
 
 def historical_authorized() -> bool:
+    """Return whether bounded historical replay is explicitly authorized.
+
+    Older approval packages used ``formal_runs_authorized`` while newer ones
+    use ``historical_replay_authorized``.  Both are explicit approvals; the
+    latter takes precedence when present.  A cost-incomplete result blocks
+    final claims, but it does not block the already-authorized quick screen.
+    """
     value = approval()
-    return bool(value.get("historical_replay_authorized") is True)
+    if "historical_replay_authorized" in value:
+        return value.get("historical_replay_authorized") is True
+    return value.get("formal_runs_authorized") is True
+
+
+def final_claim_authorized() -> bool:
+    value = approval()
+    return historical_authorized() and value.get("result_status") not in {
+        "INCONCLUSIVE_COST_INCOMPLETE",
+        "COST_INCOMPLETE",
+    }
 
 
 def verify_required_files() -> None:
@@ -138,6 +155,8 @@ def reserve(
         raise RuntimeError("BLOCKED: historical replay requires protocol/APPROVAL.json authorization")
     if mode in FINAL_MODES and data_identity != "mt5_strategy_tester":
         raise RuntimeError("BLOCKED: final modes require data_identity=mt5_strategy_tester")
+    if mode == "mt5_final" and not final_claim_authorized():
+        raise RuntimeError("BLOCKED: approval package is cost-incomplete; MT5 evidence may be collected but cannot be promoted to a final claim")
     run_root = ROOT / "runs" / ("engineering" if mode == "engineering" else "workflow")
     target = run_root / run_id
     if target.exists():
@@ -246,7 +265,7 @@ def cmd_run(args: argparse.Namespace) -> None:
 def cmd_finish(args: argparse.Namespace) -> None:
     if args.mode in FINAL_MODES:
         validate_mt5_evidence(Path(args.report), Path(args.manifest))
-        print(json.dumps(finish(args.run_id, final_claim_allowed=True), ensure_ascii=False, indent=2))
+        print(json.dumps(finish(args.run_id, final_claim_allowed=(args.mode == "mt5_holdout" or final_claim_authorized())), ensure_ascii=False, indent=2))
     else:
         print(json.dumps(finish(args.run_id), ensure_ascii=False, indent=2))
 
