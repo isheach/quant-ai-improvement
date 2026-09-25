@@ -1,0 +1,8 @@
+seq,timestamp_utc,stage,step_id,event,input_identity,output_paths,result,next_action
+1,2026-09-25T00:00:00Z,P0,P0.01_IDENTIFY_ROOT,ROOT_IDENTIFIED,local_workspace,START_HERE.md;CURRENT_STATUS.json,OK,完成 P1 资产盘点
+2,2026-09-25T00:00:00Z,P0,P0.02_CAPTURE_LOCAL_STATE,LOCAL_STATE_CAPTURED,local_git_head,inventory/ENVIRONMENT.json,OK,完成 P1 资产盘点
+3,2026-09-25T00:00:00Z,P1,P1.01_INVENTORY_DATA,ASSET_INVENTORY_WRITTEN,metadata_only,inventory/*;reports/P1_INVENTORY_REPORT.md,OK,冻结 P2 协议
+4,2026-09-25T00:00:00Z,P3,P3.10_REPORT_IDEMPOTENCE_TEST,ENGINEERING_TESTS_READY,synthetic_only,tests/*;reports/P3_APPROVAL_PACKAGE.md,OK,等待用户批准 P4
+{"seq":5,"timestamp_utc":"2026-09-25T00:00:00Z","stage":"P3","step_id":"P3.11_APPROVAL_PACKAGE","event":"P3_COMPLETE","input_identity":"synthetic_tests_and_local_inventory","output_paths":["reports/P3_APPROVAL_PACKAGE.md","checkpoints/P3_CHECKPOINT.json"],"result":"READY_FOR_EXPERIMENT_APPROVAL","next_action":"await_user_approval"}
+{"seq":6,"timestamp_utc":"2026-09-25T00:00:00Z","stage":"P4","step_id":"P4.15_FORMAL_RUNS_COMPLETE","event":"FORMAL_RUNS_COMPLETED","input_identity":"XAUUSDm_allowed_2023_01_to_2024_05","output_paths":["runs/P4_20260925","reports/RESULTS_SUMMARY.csv","reports/P4_FORMAL_RESEARCH_REPORT.md"],"result":"INCONCLUSIVE_COST_INCOMPLETE","next_action":"user_review"}
+{"seq":7,"timestamp_utc":"2026-09-25T00:00:00Z","stage":"P6","step_id":"P6.04_FINAL_RESEARCH_REVIEW","event":"FINAL_REVIEW_COMPLETE","input_identity":"P4_15_runs_and_fold_diagnostics","output_paths":["reports/FINAL_RESEARCH_REVIEW.md","reports/P5_FOLD_DIAGNOSTICS.json"],"result":"INCONCLUSIVE","next_action":"user_decision"}

@@ -1,0 +1,208 @@
+{
+  "symbol": "XAUUSDm",
+  "timeframe": "M1",
+  "files": 17,
+  "first_timestamp": "2023-01-02T23:01:00",
+  "last_timestamp": "2024-05-31T20:57:00",
+  "row_count": 500025,
+  "duplicate_timestamps": 0,
+  "gaps_gt_1m": 435,
+  "invalid_rows_or_ohlc": 0,
+  "spread_min": 0.0,
+  "spread_median": 200.0,
+  "spread_max": 2254.0,
+  "source_hashes": [
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-01.csv",
+      "sha256": "0f4ba8947195dbedbc8c747acd67f79d5089284e2782f06bfc8b504a91632ad3",
+      "size_bytes": 2224496
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-02.csv",
+      "sha256": "184ecf0eb75e25f6f1efb383e4ca4bbfc2197358fb10b18f505b91f24b707b90",
+      "size_bytes": 2112186
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-03.csv",
+      "sha256": "5bf775936fb9885a810da157962493e059fe3bcb2e849fbdad9f8a33acede476",
+      "size_bytes": 2442812
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-04.csv",
+      "sha256": "87f671ce252c724dcd68feac3a199aa376d208583127ec31bf370016209b01cc",
+      "size_bytes": 2027285
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-05.csv",
+      "sha256": "166d2bcbab47fa6810ce609f46d5b39cbd18592a21c72e817063590a81b1dde5",
+      "size_bytes": 2426524
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-06.csv",
+      "sha256": "66e8d096df298b3d40b1190b7cd24be2cd343a7bba0b39dccf2641b854010480",
+      "size_bytes": 2309163
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-07.csv",
+      "sha256": "64dab6afa8fc1b74ab0decf0d7f3aa1e292e4023b9cdd04a4dd647a703dde8c9",
+      "size_bytes": 2224700
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-08.csv",
+      "sha256": "e2be00284d17c41fe606c02dc82df156599e6168ded475e00ba78713ebd72ff0",
+      "size_bytes": 2440182
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-09.csv",
+      "sha256": "9e9ceff4bd5d01de863ebe925f24ac6c20d652ebd79e80a7174dc7627ba5082f",
+      "size_bytes": 2200871
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-10.csv",
+      "sha256": "e22a674a4e16f80c6161b2613b3d5c52b22865863dc5d4ba26ca3a3ac33ff8d0",
+      "size_bytes": 2345414
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-11.csv",
+      "sha256": "c5585834a8c3812784e7fa80bef85967e5a00202fdbc2fc67b4d0768e240d63b",
+      "size_bytes": 2296042
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-12.csv",
+      "sha256": "7149d84aa0d84107cf4f1df9c502527c075890c3378739f4c32954cd747cfd4e",
+      "size_bytes": 2120241
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-01.csv",
+      "sha256": "81446f3c373f4a53d380b0c3a6f6ad51a516ee094b0012b3cd9eb7f1582aaf72",
+      "size_bytes": 2327851
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-02.csv",
+      "sha256": "7999ca854a047a982fcf3b2bbabad8842d880b7efe2a8f5004e8eca087670aac",
+      "size_bytes": 2212444
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-03.csv",
+      "sha256": "02e39c57e9791673eb5bcccf30a6916226ed04c2bd6686ef15e66147aac147b9",
+      "size_bytes": 2126326
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-04.csv",
+      "sha256": "ab2573da46fe7ab671d3e108f541ad4fb9f49e2f5c1b751beb7291753e74c556",
+      "size_bytes": 2344433
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-05.csv",
+      "sha256": "1cbe263ae046945542d102c0754fc76812eec7e2c5009c96a29417706e697b02",
+      "size_bytes": 2422749
+    }
+  ],
+  "monthly": [
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-01.csv",
+      "rows": 28812,
+      "first": "2023-01-02T23:01:00",
+      "last": "2023-01-31T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-02.csv",
+      "rows": 27361,
+      "first": "2023-02-01T00:00:00",
+      "last": "2023-02-28T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-03.csv",
+      "rows": 31595,
+      "first": "2023-03-01T00:00:00",
+      "last": "2023-03-31T20:57:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-04.csv",
+      "rows": 26255,
+      "first": "2023-04-02T22:05:00",
+      "last": "2023-04-30T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-05.csv",
+      "rows": 31430,
+      "first": "2023-05-01T00:00:00",
+      "last": "2023-05-31T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-06.csv",
+      "rows": 29934,
+      "first": "2023-06-01T00:00:00",
+      "last": "2023-06-30T20:57:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-07.csv",
+      "rows": 28851,
+      "first": "2023-07-02T22:05:00",
+      "last": "2023-07-31T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-08.csv",
+      "rows": 31655,
+      "first": "2023-08-01T00:00:00",
+      "last": "2023-08-31T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-09.csv",
+      "rows": 28557,
+      "first": "2023-09-01T00:00:00",
+      "last": "2023-09-29T20:57:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-10.csv",
+      "rows": 30393,
+      "first": "2023-10-01T22:05:00",
+      "last": "2023-10-31T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-11.csv",
+      "rows": 29772,
+      "first": "2023-11-01T00:00:00",
+      "last": "2023-11-30T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2023-12.csv",
+      "rows": 27464,
+      "first": "2023-12-01T00:00:00",
+      "last": "2023-12-29T21:57:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-01.csv",
+      "rows": 30161,
+      "first": "2024-01-01T23:05:00",
+      "last": "2024-01-31T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-02.csv",
+      "rows": 28695,
+      "first": "2024-02-01T00:00:00",
+      "last": "2024-02-29T23:58:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-03.csv",
+      "rows": 27536,
+      "first": "2024-03-01T00:00:00",
+      "last": "2024-03-31T23:58:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-04.csv",
+      "rows": 30245,
+      "first": "2024-04-01T00:00:00",
+      "last": "2024-04-30T23:59:00"
+    },
+    {
+      "path": "旧量化策略\\31代数据\\eva_data\\eva_data\\XAUUSDm\\m1\\2024-05.csv",
+      "rows": 31309,
+      "first": "2024-05-01T00:00:00",
+      "last": "2024-05-31T20:57:00"
+    }
+  ],
+  "allowed_interval": "2023-01-01 through 2024-05-31 23:59:59",
+  "protected_data_read": false,
+  "status": "PASS_WITH_CAVEATS"
+}

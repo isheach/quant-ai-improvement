@@ -1,0 +1,14 @@
+{
+  "captured_utc": "2026-09-25T00:00:00Z",
+  "os": "Windows",
+  "python": "3.12.4",
+  "mt5_terminal": "UNKNOWN",
+  "metaeditor": "UNKNOWN",
+  "repo_root": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进",
+  "head": "4703322db35d4110c549def5b7f409a56082d7f1",
+  "branch": "repair/xamr30-v1-daily-r1",
+  "git_status": "captured via explicit safe.directory; no tracked diff reported",
+  "remote_freshness": "NOT_CHECKED_OFFLINE",
+  "active_mt5_or_strategy_process": "NOT_CONFIRMED; no clear terminal64/metaeditor process found",
+  "formal_experiments_started": 0
+}

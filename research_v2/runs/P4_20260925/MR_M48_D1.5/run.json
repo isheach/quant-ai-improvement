@@ -1,0 +1,26 @@
+{
+  "run_id": "MR_M48_D1.5",
+  "protocol_version": "R2.1-P4",
+  "strategy_id": "MR",
+  "parameter": {
+    "mean": 48,
+    "dev": 1.5,
+    "sl": 1.5
+  },
+  "data_scope": "2023-01-01..2024-05-31",
+  "engine": "local_m1_to_m30_bar_engine",
+  "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+  "execution_state": "COMPLETED",
+  "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+  "summary": {
+    "trades": 1110,
+    "net_profit": -568.3859,
+    "final_equity": -68.3859,
+    "max_drawdown": 1.18226,
+    "win_rate": 0.38018,
+    "profit_factor": 0.852535,
+    "cost_total": 460.763,
+    "r_sum": -103.020103,
+    "top10_winner_contribution": -0.502896
+  }
+}

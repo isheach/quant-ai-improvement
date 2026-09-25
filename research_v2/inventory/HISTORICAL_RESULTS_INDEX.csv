@@ -1,0 +1,4 @@
+result_id,source_path,identity,status,scope_note
+HISTORICAL_INDEX_001,公共部分/PROJECT_FEASIBILITY_REVIEW_20260914.md,legacy_summary,READ_ONLY,历史结论索引；不重跑
+HISTORICAL_INDEX_002,公共部分/GPT_PLANNER_HANDOFF_20260914.md,planner_handoff,READ_ONLY,交接线索；不替代本地新状态
+HISTORICAL_INDEX_003,deepseek数据保存/交接,legacy_reports,READ_ONLY,旧策略证据；不改写

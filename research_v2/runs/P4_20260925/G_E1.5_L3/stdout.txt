@@ -1,0 +1,11 @@
+{
+  "trades": 1496,
+  "net_profit": -433.4939,
+  "final_equity": 66.5061,
+  "max_drawdown": 0.935902,
+  "win_rate": 0.532754,
+  "profit_factor": 0.910302,
+  "cost_total": 208.34,
+  "r_sum": -98.124641,
+  "top10_winner_contribution": -0.553496
+}

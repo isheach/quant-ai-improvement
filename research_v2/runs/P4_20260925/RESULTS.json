@@ -1,0 +1,412 @@
+{
+  "base": {
+    "bars_m30": 16723,
+    "first": "2023-01-02T23:00:00",
+    "last": "2024-05-31T20:30:00"
+  },
+  "runs": [
+    {
+      "run_id": "T_F12_S36_SL1.5",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "T",
+      "parameter": {
+        "fast": 12,
+        "slow": 36,
+        "sl": 1.5
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 928,
+        "net_profit": -482.2633,
+        "final_equity": 17.7367,
+        "max_drawdown": 1.110191,
+        "win_rate": 0.219828,
+        "profit_factor": 0.851069,
+        "cost_total": 381.447,
+        "r_sum": -102.924338,
+        "top10_winner_contribution": -1.124286
+      }
+    },
+    {
+      "run_id": "T_F12_S36_SL2.5",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "T",
+      "parameter": {
+        "fast": 12,
+        "slow": 36,
+        "sl": 2.5
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 739,
+        "net_profit": -382.121,
+        "final_equity": 117.879,
+        "max_drawdown": 0.965923,
+        "win_rate": 0.26387,
+        "profit_factor": 0.877747,
+        "cost_total": 303.224,
+        "r_sum": -44.634786,
+        "top10_winner_contribution": -1.417829
+      }
+    },
+    {
+      "run_id": "T_F24_S72_SL1.5",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "T",
+      "parameter": {
+        "fast": 24,
+        "slow": 72,
+        "sl": 1.5
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 892,
+        "net_profit": -695.6188,
+        "final_equity": -195.6188,
+        "max_drawdown": 1.472855,
+        "win_rate": 0.216368,
+        "profit_factor": 0.793951,
+        "cost_total": 367.86,
+        "r_sum": -152.961234,
+        "top10_winner_contribution": -0.72814
+      }
+    },
+    {
+      "run_id": "T_F24_S72_SL2.5",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "T",
+      "parameter": {
+        "fast": 24,
+        "slow": 72,
+        "sl": 2.5
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 640,
+        "net_profit": -576.5163,
+        "final_equity": -76.5163,
+        "max_drawdown": 1.242806,
+        "win_rate": 0.303125,
+        "profit_factor": 0.814739,
+        "cost_total": 265.749,
+        "r_sum": -68.599996,
+        "top10_winner_contribution": -0.883411
+      }
+    },
+    {
+      "run_id": "MR_M24_D1.0",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "MR",
+      "parameter": {
+        "mean": 24,
+        "dev": 1.0,
+        "sl": 1.5
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 1697,
+        "net_profit": -1120.4682,
+        "final_equity": -620.4682,
+        "max_drawdown": 2.211977,
+        "win_rate": 0.43901,
+        "profit_factor": 0.774449,
+        "cost_total": 703.975,
+        "r_sum": -242.848903,
+        "top10_winner_contribution": -0.192649
+      }
+    },
+    {
+      "run_id": "MR_M24_D1.5",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "MR",
+      "parameter": {
+        "mean": 24,
+        "dev": 1.5,
+        "sl": 1.5
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 1285,
+        "net_profit": -665.1162,
+        "final_equity": -165.1162,
+        "max_drawdown": 1.341894,
+        "win_rate": 0.433463,
+        "profit_factor": 0.82856,
+        "cost_total": 533.963,
+        "r_sum": -134.482586,
+        "top10_winner_contribution": -0.322822
+      }
+    },
+    {
+      "run_id": "MR_M48_D1.0",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "MR",
+      "parameter": {
+        "mean": 48,
+        "dev": 1.0,
+        "sl": 1.5
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 1393,
+        "net_profit": -650.2264,
+        "final_equity": -150.2264,
+        "max_drawdown": 1.329956,
+        "win_rate": 0.406317,
+        "profit_factor": 0.85747,
+        "cost_total": 578.346,
+        "r_sum": -132.062887,
+        "top10_winner_contribution": -0.441817
+      }
+    },
+    {
+      "run_id": "MR_M48_D1.5",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "MR",
+      "parameter": {
+        "mean": 48,
+        "dev": 1.5,
+        "sl": 1.5
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 1110,
+        "net_profit": -568.3859,
+        "final_equity": -68.3859,
+        "max_drawdown": 1.18226,
+        "win_rate": 0.38018,
+        "profit_factor": 0.852535,
+        "cost_total": 460.763,
+        "r_sum": -103.020103,
+        "top10_winner_contribution": -0.502896
+      }
+    },
+    {
+      "run_id": "G_E1.0_L2",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "G",
+      "parameter": {
+        "mean": 24,
+        "entry": 1.0,
+        "basket_sl": 3.0,
+        "max_layers": 2
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 477,
+        "net_profit": -905.2868,
+        "final_equity": -405.2868,
+        "max_drawdown": 1.834735,
+        "win_rate": 0.33543,
+        "profit_factor": 0.696352,
+        "cost_total": 202.225,
+        "r_sum": -107.771911,
+        "top10_winner_contribution": -0.463389
+      }
+    },
+    {
+      "run_id": "G_E1.0_L3",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "G",
+      "parameter": {
+        "mean": 24,
+        "entry": 1.0,
+        "basket_sl": 3.0,
+        "max_layers": 3
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 477,
+        "net_profit": -905.2868,
+        "final_equity": -405.2868,
+        "max_drawdown": 1.834735,
+        "win_rate": 0.33543,
+        "profit_factor": 0.696352,
+        "cost_total": 202.225,
+        "r_sum": -107.771911,
+        "top10_winner_contribution": -0.463389
+      }
+    },
+    {
+      "run_id": "G_E1.5_L2",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "G",
+      "parameter": {
+        "mean": 24,
+        "entry": 1.5,
+        "basket_sl": 3.0,
+        "max_layers": 2
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 444,
+        "net_profit": -584.7936,
+        "final_equity": -84.7936,
+        "max_drawdown": 1.250542,
+        "win_rate": 0.34009,
+        "profit_factor": 0.786006,
+        "cost_total": 185.691,
+        "r_sum": -69.104926,
+        "top10_winner_contribution": -0.818111
+      }
+    },
+    {
+      "run_id": "G_E1.5_L3",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "G",
+      "parameter": {
+        "mean": 24,
+        "entry": 1.5,
+        "basket_sl": 3.0,
+        "max_layers": 3
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 444,
+        "net_profit": -584.7936,
+        "final_equity": -84.7936,
+        "max_drawdown": 1.250542,
+        "win_rate": 0.34009,
+        "profit_factor": 0.786006,
+        "cost_total": 185.691,
+        "r_sum": -69.104926,
+        "top10_winner_contribution": -0.818111
+      }
+    },
+    {
+      "run_id": "C1",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "C",
+      "parameter": {
+        "level": 0.25
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 1920,
+        "net_profit": -858.319,
+        "final_equity": -358.319,
+        "max_drawdown": 1.801868,
+        "win_rate": 0.28125,
+        "profit_factor": 0.784207,
+        "cost_total": 796.523,
+        "r_sum": -176.576432,
+        "top10_winner_contribution": -0.484932
+      },
+      "state_counts": {
+        "TREND": 6295,
+        "RANGE": 7232,
+        "NO_TRADE": 3196
+      }
+    },
+    {
+      "run_id": "C2",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "C",
+      "parameter": {
+        "level": 0.35
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 1707,
+        "net_profit": -1164.1977,
+        "final_equity": -664.1977,
+        "max_drawdown": 2.352465,
+        "win_rate": 0.264792,
+        "profit_factor": 0.709103,
+        "cost_total": 709.575,
+        "r_sum": -214.862385,
+        "top10_winner_contribution": -0.300597
+      },
+      "state_counts": {
+        "TREND": 3564,
+        "RANGE": 9671,
+        "NO_TRADE": 3488
+      }
+    },
+    {
+      "run_id": "C3",
+      "protocol_version": "R2.1-P4",
+      "strategy_id": "C",
+      "parameter": {
+        "level": 0.45
+      },
+      "data_scope": "2023-01-01..2024-05-31",
+      "engine": "local_m1_to_m30_bar_engine",
+      "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+      "execution_state": "COMPLETED",
+      "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+      "summary": {
+        "trades": 1376,
+        "net_profit": -857.6103,
+        "final_equity": -357.6103,
+        "max_drawdown": 1.699973,
+        "win_rate": 0.262355,
+        "profit_factor": 0.764041,
+        "cost_total": 575.451,
+        "r_sum": -140.721818,
+        "top10_winner_contribution": -0.397825
+      },
+      "state_counts": {
+        "TREND": 1722,
+        "RANGE": 11714,
+        "NO_TRADE": 3287
+      }
+    }
+  ]
+}

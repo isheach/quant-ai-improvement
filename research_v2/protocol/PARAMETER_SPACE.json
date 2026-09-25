@@ -1,0 +1,95 @@
+{
+  "T": {
+    "max_candidates": 4,
+    "candidates": [
+      {
+        "fast": 12,
+        "slow": 36,
+        "sl": 1.5
+      },
+      {
+        "fast": 12,
+        "slow": 36,
+        "sl": 2.5
+      },
+      {
+        "fast": 24,
+        "slow": 72,
+        "sl": 1.5
+      },
+      {
+        "fast": 24,
+        "slow": 72,
+        "sl": 2.5
+      }
+    ]
+  },
+  "MR": {
+    "max_candidates": 4,
+    "candidates": [
+      {
+        "mean": 24,
+        "dev": 1.0,
+        "sl": 1.5
+      },
+      {
+        "mean": 24,
+        "dev": 1.5,
+        "sl": 1.5
+      },
+      {
+        "mean": 48,
+        "dev": 1.0,
+        "sl": 1.5
+      },
+      {
+        "mean": 48,
+        "dev": 1.5,
+        "sl": 1.5
+      }
+    ]
+  },
+  "G": {
+    "max_candidates": 4,
+    "candidates": [
+      {
+        "entry": 1.0,
+        "layer_dist": 0.75,
+        "max_layers": 2,
+        "basket_sl": 3.0
+      },
+      {
+        "entry": 1.0,
+        "layer_dist": 0.75,
+        "max_layers": 3,
+        "basket_sl": 3.0
+      },
+      {
+        "entry": 1.5,
+        "layer_dist": 0.75,
+        "max_layers": 2,
+        "basket_sl": 3.0
+      },
+      {
+        "entry": 1.5,
+        "layer_dist": 0.75,
+        "max_layers": 3,
+        "basket_sl": 3.0
+      }
+    ]
+  },
+  "controller": {
+    "max_candidates": 3,
+    "candidates": [
+      {
+        "er_trend": 0.25
+      },
+      {
+        "er_trend": 0.35
+      },
+      {
+        "er_trend": 0.45
+      }
+    ]
+  }
+}

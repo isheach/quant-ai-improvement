@@ -1,0 +1,25 @@
+{
+  "protocol_version": "R2.1-P4",
+  "allowed_data_start": "2018-01-01T00:00:00",
+  "allowed_data_end": "2024-05-31T23:59:59",
+  "protected_intervals": [
+    "2024-06-01/2025-05-31",
+    "2025-06-01/2026-05-31",
+    "2026-06-01/2026-09-30"
+  ],
+  "symbol": "XAUUSDm",
+  "signal_timeframe": "M30",
+  "account_usd": 500,
+  "max_preferred_drawdown": 0.2,
+  "experts": [
+    "T",
+    "MR",
+    "G",
+    "CASH"
+  ],
+  "formal_runs": 15,
+  "status": "APPROVED_FOR_P4_EXECUTION",
+  "validated_data_start": "2023-01-02T23:01:00",
+  "validated_data_end": "2024-05-31T20:57:00",
+  "validated_m1_rows": 500025
+}

@@ -1,0 +1,4 @@
+path,protected_interval_risk,read_policy,reason,status
+*/*行情缓存*,2024-06-01 onward,deny unless restricted reader,may cross protected ranges,UNREAD
+旧量化策略/31代数据/eva_data,2024-06 onward,deny full read,known cross-boundary monthly files,UNREAD
+deepseek数据保存/data/real/XAUUSDm_M1_real.csv,UNKNOWN,allow only bounded validation,coverage not yet verified,PENDING_P4

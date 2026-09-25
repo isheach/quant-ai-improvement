@@ -1,0 +1,29 @@
+{
+  "run_id": "C1",
+  "protocol_version": "R2.1-P4",
+  "strategy_id": "C",
+  "parameter": {
+    "level": 0.25
+  },
+  "data_scope": "2023-01-01..2024-05-31",
+  "engine": "local_m1_to_m30_bar_engine",
+  "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+  "execution_state": "COMPLETED",
+  "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+  "summary": {
+    "trades": 1920,
+    "net_profit": -858.319,
+    "final_equity": -358.319,
+    "max_drawdown": 1.801868,
+    "win_rate": 0.28125,
+    "profit_factor": 0.784207,
+    "cost_total": 796.523,
+    "r_sum": -176.576432,
+    "top10_winner_contribution": -0.484932
+  },
+  "state_counts": {
+    "TREND": 6295,
+    "RANGE": 7232,
+    "NO_TRADE": 3196
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "checkpoint_id": "P3_20260925",
+  "created_utc": "2026-09-25T00:00:00Z",
+  "formal_experiments_started": 0,
+  "files": [
+    {
+      "path": "BLOCKERS.md",
+      "sha256": "278141a3709b1573ae9860ad668c817638d194af549942982416621a036a9d7c",
+      "size_bytes": 372
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "ff9b294f8c8630020b47a28afe53e6b0c60c7b3cbf43d4b6b885227c6927f659",
+      "size_bytes": 209
+    },
+    {
+      "path": "CURRENT_STATUS.json",
+      "sha256": "c8e5e114d6a254fe42db24ae3f0dc03689db5c181187538834cd7d618a825d02",
+      "size_bytes": 1267
+    },
+    {
+      "path": "DECISIONS.md",
+      "sha256": "ac28e14f785f2057d255594bf7de624fe1e1095b82d37efd114bf58f68d76ede",
+      "size_bytes": 425
+    },
+    {
+      "path": "inventory/DATA_EXPOSURE_REGISTER.csv",
+      "sha256": "080e9a2c021826980c33c3dc4f329c91b160267197774f83c2ef3c1baf7d3526",
+      "size_bytes": 390
+    },
+    {
+      "path": "inventory/DATASET_INVENTORY.csv",
+      "sha256": "e91cf4d59969d8460a60d91f5ab7f7b7884b9c24841c537848488d725ff03415",
+      "size_bytes": 1136
+    },
+    {
+      "path": "inventory/ENVIRONMENT.json",
+      "sha256": "7a853f14973336177af09aeac5e451fdf1d29f97aaea3961b9a9738770592aba",
+      "size_bytes": 574
+    },
+    {
+      "path": "inventory/HISTORICAL_RESULTS_INDEX.csv",
+      "sha256": "d20d72561284c684f269b9955dc102479759a72d884d1d72319e59738e4548a0",
+      "size_bytes": 413
+    },
+    {
+      "path": "inventory/STRATEGY_LIBRARY.csv",
+      "sha256": "5e05a3cfb8871379a99247c246d271c5456bdb5b3a43b84bc1340a4a63d3b9a5",
+      "size_bytes": 1197
+    },
+    {
+      "path": "LOCAL_TASK_AUTHORIZATION.md",
+      "sha256": "251fd99765876c30ae982f532b3d201765a9bc14f333ffa11a40918a8927e758",
+      "size_bytes": 715
+    },
+    {
+      "path": "NEXT_ACTION.md",
+      "sha256": "1b3b1394cf25ec07e0263a777a08b40b355b4ee84f724c194faeffad2e5fd3ae",
+      "size_bytes": 546
+    },
+    {
+      "path": "protocol/APPROVAL.json",
+      "sha256": "63cdf685186acb7c4ee8c58d8f3ac8c62c29ea3e4a6b4b4ba53a8aa1763c9a44",
+      "size_bytes": 349
+    },
+    {
+      "path": "protocol/DATA_ACCESS_POLICY.json",
+      "sha256": "a2cae6dac56e763004b06fdf2ab92b969217970b84934cd1f196d8a48dbef4b8",
+      "size_bytes": 427
+    },
+    {
+      "path": "protocol/EXPERIMENT_PLAN.jsonl",
+      "sha256": "f3042f04af924ac279ace1fed4a175f4dde14ed580461e8a4577e970ec968626",
+      "size_bytes": 203
+    },
+    {
+      "path": "protocol/METRIC_DEFINITIONS.md",
+      "sha256": "98899f28e76414cf14870840190f5471cfc2083591e861f9b62b2840647f79fc",
+      "size_bytes": 673
+    },
+    {
+      "path": "protocol/PARAMETER_SPACE.json",
+      "sha256": "865b976c45431ca02b8bf1beced0bf951e836acbd8532475f3c3bf68a33e50e5",
+      "size_bytes": 545
+    },
+    {
+      "path": "protocol/RESEARCH_PROTOCOL.md",
+      "sha256": "849b423033b0b409aedc44f86d9aa4b984e0aecdd0fbf7bfafee3f0cd2acf990",
+      "size_bytes": 2948
+    },
+    {
+      "path": "reports/P1_INVENTORY_REPORT.md",
+      "sha256": "faec606b6463e1ba7d9766b990ef66bbfb8a51d59db59a2dd1b4626dbbe21630",
+      "size_bytes": 1427
+    },
+    {
+      "path": "reports/P3_APPROVAL_PACKAGE.md",
+      "sha256": "707ac48932190c0f9d422e4510078f8113d3b9153a511b5781313e42da174acd",
+      "size_bytes": 1662
+    },
+    {
+      "path": "src/__pycache__/research_core.cpython-312.pyc",
+      "sha256": "f2505bee39e6f97f5efdb562d7d512933917a3f0e4d4bda7f4e3701714432640",
+      "size_bytes": 2969
+    },
+    {
+      "path": "src/research_core.py",
+      "sha256": "9b5bdbf6ff551ddaace44bfb8f16da1e0ea1b77235d57c54262ae0af3a847c5a",
+      "size_bytes": 1094
+    },
+    {
+      "path": "START_HERE.md",
+      "sha256": "07accf6c1f1b0536b6ab3f552162ec54b9d2f4aa31af9d468f6a45045d1c3499",
+      "size_bytes": 723
+    },
+    {
+      "path": "TASK_LOG.jsonl",
+      "sha256": "0c1d7baa0a45ffbae28251cf44d8b17ede3301e91ed5e3ff8d6cb92f79e9791f",
+      "size_bytes": 672
+    },
+    {
+      "path": "tests/__pycache__/test_synthetic_engineering.cpython-312.pyc",
+      "sha256": "7d59d62b2009a3d0477c5b6c52e1404eb562d6533287cc57e2f25339a09aa41f",
+      "size_bytes": 4589
+    },
+    {
+      "path": "tests/test_synthetic_engineering.py",
+      "sha256": "84c64383effa1c68d0768a4e68ecf0455bb678a3b467eb58425be0ec1b0b579e",
+      "size_bytes": 1531
+    },
+    {
+      "path": "tools/research_workflow.py",
+      "sha256": "7116b20c276322975da514d23d756d5081f41f17041538fc2d08fb0e2154b168",
+      "size_bytes": 3092
+    }
+  ]
+}

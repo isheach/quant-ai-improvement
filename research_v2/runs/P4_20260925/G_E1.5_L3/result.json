@@ -1,0 +1,28 @@
+{
+  "run_id": "G_E1.5_L3",
+  "protocol_version": "R2.1-P4",
+  "strategy_id": "G",
+  "parameter": {
+    "mean": 24,
+    "entry": 1.5,
+    "basket_sl": 3.0,
+    "layer_dist": 0.75,
+    "max_layers": 3
+  },
+  "data_scope": "2023-01-01..2024-05-31",
+  "engine": "local_m1_to_m30_bar_engine",
+  "cost_model": "spread_only; commission_and_swap_NOT_COMPUTABLE",
+  "execution_state": "COMPLETED",
+  "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+  "summary": {
+    "trades": 1496,
+    "net_profit": -433.4939,
+    "final_equity": 66.5061,
+    "max_drawdown": 0.935902,
+    "win_rate": 0.532754,
+    "profit_factor": 0.910302,
+    "cost_total": 208.34,
+    "r_sum": -98.124641,
+    "top10_winner_contribution": -0.553496
+  }
+}

@@ -1,0 +1,453 @@
+{
+  "runs": [
+    {
+      "run_id": "C1",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 446,
+          "net_profit": -126.7201,
+          "wins": 133
+        },
+        {
+          "fold": 2,
+          "trades": 522,
+          "net_profit": -286.18,
+          "wins": 146
+        },
+        {
+          "fold": 3,
+          "trades": 473,
+          "net_profit": -220.5961,
+          "wins": 122
+        },
+        {
+          "fold": 4,
+          "trades": 478,
+          "net_profit": -221.7358,
+          "wins": 139
+        }
+      ]
+    },
+    {
+      "run_id": "C2",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 404,
+          "net_profit": -245.6312,
+          "wins": 120
+        },
+        {
+          "fold": 2,
+          "trades": 450,
+          "net_profit": -304.2362,
+          "wins": 105
+        },
+        {
+          "fold": 3,
+          "trades": 444,
+          "net_profit": -301.6632,
+          "wins": 117
+        },
+        {
+          "fold": 4,
+          "trades": 408,
+          "net_profit": -311.5721,
+          "wins": 110
+        }
+      ]
+    },
+    {
+      "run_id": "C3",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 334,
+          "net_profit": -191.0927,
+          "wins": 97
+        },
+        {
+          "fold": 2,
+          "trades": 348,
+          "net_profit": -218.9719,
+          "wins": 75
+        },
+        {
+          "fold": 3,
+          "trades": 347,
+          "net_profit": -232.1712,
+          "wins": 82
+        },
+        {
+          "fold": 4,
+          "trades": 346,
+          "net_profit": -214.2795,
+          "wins": 107
+        }
+      ]
+    },
+    {
+      "run_id": "G_E1.0_L2",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 458,
+          "net_profit": -245.9356,
+          "wins": 246
+        },
+        {
+          "fold": 2,
+          "trades": 452,
+          "net_profit": 187.8169,
+          "wins": 283
+        },
+        {
+          "fold": 3,
+          "trades": 451,
+          "net_profit": -485.5936,
+          "wins": 233
+        },
+        {
+          "fold": 4,
+          "trades": 443,
+          "net_profit": -287.2663,
+          "wins": 237
+        }
+      ]
+    },
+    {
+      "run_id": "G_E1.0_L3",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 486,
+          "net_profit": -228.999,
+          "wins": 255
+        },
+        {
+          "fold": 2,
+          "trades": 469,
+          "net_profit": 209.1945,
+          "wins": 288
+        },
+        {
+          "fold": 3,
+          "trades": 481,
+          "net_profit": -478.4338,
+          "wins": 242
+        },
+        {
+          "fold": 4,
+          "trades": 468,
+          "net_profit": -288.1987,
+          "wins": 240
+        }
+      ]
+    },
+    {
+      "run_id": "G_E1.5_L2",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 351,
+          "net_profit": -104.5646,
+          "wins": 191
+        },
+        {
+          "fold": 2,
+          "trades": 351,
+          "net_profit": 158.0083,
+          "wins": 210
+        },
+        {
+          "fold": 3,
+          "trades": 363,
+          "net_profit": -367.3924,
+          "wins": 182
+        },
+        {
+          "fold": 4,
+          "trades": 358,
+          "net_profit": -231.6495,
+          "wins": 186
+        }
+      ]
+    },
+    {
+      "run_id": "G_E1.5_L3",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 372,
+          "net_profit": -82.8032,
+          "wins": 199
+        },
+        {
+          "fold": 2,
+          "trades": 361,
+          "net_profit": 181.8901,
+          "wins": 215
+        },
+        {
+          "fold": 3,
+          "trades": 386,
+          "net_profit": -352.3572,
+          "wins": 191
+        },
+        {
+          "fold": 4,
+          "trades": 376,
+          "net_profit": -184.1586,
+          "wins": 191
+        }
+      ]
+    },
+    {
+      "run_id": "MR_M24_D1.0",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 432,
+          "net_profit": -294.5918,
+          "wins": 188
+        },
+        {
+          "fold": 2,
+          "trades": 416,
+          "net_profit": -54.3297,
+          "wins": 201
+        },
+        {
+          "fold": 3,
+          "trades": 425,
+          "net_profit": -407.1263,
+          "wins": 174
+        },
+        {
+          "fold": 4,
+          "trades": 423,
+          "net_profit": -365.0254,
+          "wins": 181
+        }
+      ]
+    },
+    {
+      "run_id": "MR_M24_D1.5",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 327,
+          "net_profit": -148.6159,
+          "wins": 142
+        },
+        {
+          "fold": 2,
+          "trades": 306,
+          "net_profit": 30.4764,
+          "wins": 152
+        },
+        {
+          "fold": 3,
+          "trades": 326,
+          "net_profit": -316.4297,
+          "wins": 124
+        },
+        {
+          "fold": 4,
+          "trades": 325,
+          "net_profit": -231.152,
+          "wins": 138
+        }
+      ]
+    },
+    {
+      "run_id": "MR_M48_D1.0",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 357,
+          "net_profit": -228.5151,
+          "wins": 141
+        },
+        {
+          "fold": 2,
+          "trades": 338,
+          "net_profit": 32.6493,
+          "wins": 156
+        },
+        {
+          "fold": 3,
+          "trades": 337,
+          "net_profit": -254.8387,
+          "wins": 123
+        },
+        {
+          "fold": 4,
+          "trades": 360,
+          "net_profit": -200.1269,
+          "wins": 145
+        }
+      ]
+    },
+    {
+      "run_id": "MR_M48_D1.5",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 285,
+          "net_profit": -177.6837,
+          "wins": 107
+        },
+        {
+          "fold": 2,
+          "trades": 259,
+          "net_profit": 73.8341,
+          "wins": 117
+        },
+        {
+          "fold": 3,
+          "trades": 273,
+          "net_profit": -230.5372,
+          "wins": 90
+        },
+        {
+          "fold": 4,
+          "trades": 292,
+          "net_profit": -234.6041,
+          "wins": 107
+        }
+      ]
+    },
+    {
+      "run_id": "T_F12_S36_SL1.5",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 236,
+          "net_profit": -62.4438,
+          "wins": 51
+        },
+        {
+          "fold": 2,
+          "trades": 243,
+          "net_profit": -299.066,
+          "wins": 49
+        },
+        {
+          "fold": 3,
+          "trades": 216,
+          "net_profit": 13.0719,
+          "wins": 47
+        },
+        {
+          "fold": 4,
+          "trades": 232,
+          "net_profit": -137.1875,
+          "wins": 56
+        }
+      ]
+    },
+    {
+      "run_id": "T_F12_S36_SL2.5",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 180,
+          "net_profit": 66.404,
+          "wins": 49
+        },
+        {
+          "fold": 2,
+          "trades": 198,
+          "net_profit": -311.3432,
+          "wins": 50
+        },
+        {
+          "fold": 3,
+          "trades": 168,
+          "net_profit": 64.8144,
+          "wins": 46
+        },
+        {
+          "fold": 4,
+          "trades": 192,
+          "net_profit": -205.3582,
+          "wins": 49
+        }
+      ]
+    },
+    {
+      "run_id": "T_F24_S72_SL1.5",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 231,
+          "net_profit": -306.158,
+          "wins": 47
+        },
+        {
+          "fold": 2,
+          "trades": 224,
+          "net_profit": -252.1325,
+          "wins": 47
+        },
+        {
+          "fold": 3,
+          "trades": 212,
+          "net_profit": -22.3684,
+          "wins": 47
+        },
+        {
+          "fold": 4,
+          "trades": 224,
+          "net_profit": -117.1469,
+          "wins": 51
+        }
+      ]
+    },
+    {
+      "run_id": "T_F24_S72_SL2.5",
+      "folds": [
+        {
+          "fold": 1,
+          "trades": 161,
+          "net_profit": -278.8319,
+          "wins": 42
+        },
+        {
+          "fold": 2,
+          "trades": 157,
+          "net_profit": -225.7945,
+          "wins": 48
+        },
+        {
+          "fold": 3,
+          "trades": 157,
+          "net_profit": 41.378,
+          "wins": 54
+        },
+        {
+          "fold": 4,
+          "trades": 164,
+          "net_profit": -115.4549,
+          "wins": 49
+        }
+      ]
+    }
+  ],
+  "cash": {
+    "run_id": "CASH",
+    "strategy_id": "CASH",
+    "summary": {
+      "trades": 0,
+      "net_profit": 0.0,
+      "final_equity": 500.0,
+      "max_drawdown": 0.0,
+      "win_rate": null,
+      "profit_factor": null,
+      "cost_total": 0.0
+    },
+    "research_conclusion": "BASELINE"
+  }
+}

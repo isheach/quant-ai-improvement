@@ -1,0 +1,26 @@
+{
+  "run_id": "T_F12_S36_SL2.5",
+  "protocol_version": "R2.1-P4",
+  "strategy_id": "T",
+  "parameter": {
+    "fast": 12,
+    "slow": 36,
+    "sl": 2.5
+  },
+  "data_scope": "2023-01-01..2024-05-31",
+  "engine": "local_m1_to_m30_bar_engine",
+  "cost_model": "spread_from_bar_spread_only; commission_and_swap_NOT_COMPUTABLE",
+  "execution_state": "COMPLETED",
+  "research_conclusion": "INCONCLUSIVE_COST_INCOMPLETE",
+  "summary": {
+    "trades": 739,
+    "net_profit": -382.121,
+    "final_equity": 117.879,
+    "max_drawdown": 0.965923,
+    "win_rate": 0.26387,
+    "profit_factor": 0.877747,
+    "cost_total": 303.224,
+    "r_sum": -44.634786,
+    "top10_winner_contribution": -1.417829
+  }
+}

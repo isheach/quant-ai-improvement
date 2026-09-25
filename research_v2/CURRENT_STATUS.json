@@ -1,0 +1,28 @@
+{
+  "task_id": "research_v2_regime_library",
+  "protocol_version": "R2.1-P4",
+  "root_path": "D:\\desktop\\新量化策略",
+  "research_root": "D:\\desktop\\新量化策略\\research_v2",
+  "local_git_repo": "D:\\desktop\\新量化策略\\_repo_量化交易ai改进",
+  "local_git_head": "4703322db35d4110c549def5b7f409a56082d7f1",
+  "local_git_branch": "repair/xamr30-v1-daily-r1",
+  "workspace_git_status": "CLEAN_AT_CAPTURE_OR_NO_TRACKED_DIFF_REPORTED",
+  "remote_freshness": "NOT_CHECKED_OFFLINE",
+  "current_stage": "P6",
+  "current_step": "P6.04_FINAL_RESEARCH_REVIEW",
+  "last_completed_step": "P6.04_FINAL_RESEARCH_REVIEW",
+  "active_run_id": null,
+  "active_process_identity": null,
+  "authorization_status": "RESEARCH_COMPLETE_INCONCLUSIVE",
+  "completed_run_count": 15,
+  "planned_formal_run_count": 15,
+  "remaining_run_budget": 0,
+  "blockers": [
+    "commission and swap NOT_COMPUTABLE",
+    "engine is local bar replay, not MT5 real ticks",
+    "all 15 candidates have negative net profit"
+  ],
+  "next_action": "用户决定是否补齐佣金/swap/执行口径后做一次受限复核；否则保留 CASH",
+  "last_event_seq": 7,
+  "created_utc": "2026-09-25T00:00:00Z"
+}

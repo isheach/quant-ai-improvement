@@ -1,0 +1,6 @@
+﻿path,format,symbol,timeframe,source,time_zone_evidence,first_timestamp,last_timestamp,row_count,size_bytes,hash_or_existing_manifest,quality_status,access_status
+D:\desktop\新量化策略\deepseek数据保存\data\real\XAUUSDm_M1_real.csv,csv,XAUUSDm,M1,local_real_data,time_iso broker-local unspecified,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,NOT_COMPUTED,PROTECTED_RANGE_STARTS_2025_04_11,NOT_OPENED_FULL
+D:\desktop\新量化策略\deepseek数据保存\data\real\XAUUSDm_M5_real.csv,csv,XAUUSDm,M5,local_real_data,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,NOT_COMPUTED,UNVERIFIED,NOT_OPENED_FULL,
+D:\desktop\新量化策略\deepseek数据保存\data\real\USDJPYm_M1_real.csv,csv,USDJPYm,M1,local_real_data,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,NOT_COMPUTED,OUT_OF_SCOPE_THIS_ROUND,NOT_OPENED_FULL,
+D:\desktop\新量化策略\deepseek数据保存\data\real\BTCUSDm_M1_real.csv,csv,BTCUSDm,M1,local_real_data,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,NOT_COMPUTED,OUT_OF_SCOPE_THIS_ROUND,NOT_OPENED_FULL,
+D:\desktop\新量化策略\旧量化策略\31代数据\eva_data\eva_data\XAUUSDm\m1\2023-01.csv..2024-05.csv,monthly_csv,XAUUSDm,M1,legacy_cache_allowed_slice,time_iso broker-local unspecified,2023-01-02 23:01:00,2024-05-31 20:57:00,500025,~39200000,see inventory/XAUUSDm_ALLOWED_VALIDATION.json,PASS_WITH_CAVEATS,READ_ALLOWED_BOUNDED

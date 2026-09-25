@@ -1,0 +1,6 @@
+strategy_id,family,source_path,source_hash,symbol,signal_timeframe,execution_timeframe,entry_logic,exit_logic,position_sizing,max_hold,grid_or_martingale,known_defects,result_evidence_path,historical_status,reuse_status
+XAMR30, cross_asset_mean_reversion,deepseek数据保存/执行_XAMR30/*.mq5,NOT_COMPUTED,USDJPYm+XAUUSDm,M30,M30,legacy_cross_asset_signal,legacy_exit,legacy,UNKNOWN,no,closed per handoff,deepseek数据保存/执行_XAMR30, CLOSED_HISTORICAL_VARIANT,CLOSED_HISTORICAL_VARIANT
+T_NEW,trend,research_v2/src,NEW_CODE,XAUUSDm,M30,M30,to_be_frozen,to_be_frozen,account_risk_capped,to_be_frozen,no,not_run,research_v2/reports,NOT_RUN,RESEARCH_LEAD_ONLY
+MR_NEW,mean_reversion,research_v2/src,NEW_CODE,XAUUSDm,M30,M30,to_be_frozen,to_be_frozen,account_risk_capped,to_be_frozen,no,not_run,research_v2/reports,NOT_RUN,RESEARCH_LEAD_ONLY
+G_NEW,restricted_grid,research_v2/src,NEW_CODE,XAUUSDm,M30,M30,to_be_frozen,to_be_frozen,basket_risk_capped,to_be_frozen,restricted,no,not_run,research_v2/reports,NOT_RUN,RESEARCH_LEAD_ONLY
+CASH,none,research_v2/protocol,NOT_APPLICABLE,XAUUSDm,M30,M30,no_entry,no_exit,no_position,none,no,baseline only,research_v2/reports,NOT_RUN,RESEARCH_LEAD_ONLY

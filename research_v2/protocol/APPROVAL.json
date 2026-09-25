@@ -1,0 +1,11 @@
+{
+  "approval_status": "P4_APPROVED_AND_EXECUTED",
+  "approved_scope": "P4 bounded XAUUSDm M30 historical research",
+  "next_gate": "P4 formal historical research",
+  "required_user_action": "Review this package and explicitly approve the final P4 protocol/version after data validation",
+  "formal_runs_authorized": true,
+  "protocol_sha256": "COMPUTE_AFTER_FINAL_P4_FREEZE",
+  "approved_on": "2026-09-25",
+  "formal_runs_completed": 15,
+  "result_status": "INCONCLUSIVE_COST_INCOMPLETE"
+}
