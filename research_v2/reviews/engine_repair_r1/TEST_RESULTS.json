@@ -1,0 +1,18 @@
+{
+  "test_command": "python -m unittest discover -s research_v2/tests -v",
+  "synthetic_tests_total": 7,
+  "passed": 7,
+  "failed": 0,
+  "historical_replay_count": 0,
+  "mt5_start_count": 0,
+  "protected_data_reads": 0,
+  "cases": [
+    "fixed_quote_no_double_spread",
+    "volume_preserved",
+    "grid_legs_sum_to_basket",
+    "next_event_execution",
+    "gap_stop_quote_fill",
+    "workflow_idempotent_completion",
+    "workflow_unknown_output_rejection"
+  ]
+}

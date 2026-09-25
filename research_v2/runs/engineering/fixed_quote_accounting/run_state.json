@@ -1,0 +1,8 @@
+{
+  "run_id": "fixed_quote_accounting",
+  "status": "COMPLETED",
+  "data_identity": "synthetic_only",
+  "execution_attempt": 1,
+  "historical_replay": false,
+  "mt5_started": false
+}

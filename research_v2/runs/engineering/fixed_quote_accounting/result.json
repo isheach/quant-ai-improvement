@@ -1,0 +1,54 @@
+{
+  "account": {
+    "balance": 499.8000000000002,
+    "floating_pnl": 0.0,
+    "risk_budget": 500.0,
+    "margin_per_lot": 0.0
+  },
+  "baskets": [],
+  "legs": [
+    {
+      "side": 1,
+      "volume": 0.01,
+      "entry": 2000.1,
+      "exit": 1999.9,
+      "entry_i": 1,
+      "exit_i": 1,
+      "gross": -0.1999999999998181,
+      "commission": 0.0,
+      "swap": 0.0,
+      "cost": 0.0,
+      "net": -0.1999999999998181,
+      "reason": "fixed_quote",
+      "initial_stop_risk": 0.0,
+      "r": null
+    }
+  ],
+  "fills": [
+    {
+      "side": 1,
+      "volume": 0.01,
+      "entry": 2000.1,
+      "exit": 1999.9,
+      "entry_i": 1,
+      "exit_i": 1,
+      "gross": -0.1999999999998181,
+      "commission": 0.0,
+      "swap": 0.0,
+      "cost": 0.0,
+      "net": -0.1999999999998181,
+      "reason": "fixed_quote",
+      "initial_stop_risk": 0.0,
+      "r": null
+    }
+  ],
+  "decisions": [
+    {
+      "index": 0,
+      "execution_index": 1,
+      "decision": "accepted"
+    }
+  ],
+  "ledger_net": -0.1999999999998181,
+  "final_equity": 499.8000000000002
+}

@@ -8,12 +8,12 @@
   "local_git_branch": "repair/xamr30-v1-daily-r1",
   "workspace_git_status": "CLEAN_AT_CAPTURE_OR_NO_TRACKED_DIFF_REPORTED",
   "remote_freshness": "NOT_CHECKED_OFFLINE",
-  "current_stage": "P6",
-  "current_step": "P6.04_FINAL_RESEARCH_REVIEW",
-  "last_completed_step": "P6.04_FINAL_RESEARCH_REVIEW",
+  "current_stage": "R1",
+  "current_step": "R1.ENGINE_AND_RECOVERY_REPAIR",
+  "last_completed_step": "R1.SYNTHETIC_ENGINEERING_TESTS",
   "active_run_id": null,
-  "active_process_identity": null,
-  "authorization_status": "RESEARCH_COMPLETE_INCONCLUSIVE",
+  "active_process_identity": "UNKNOWN_ACCESS_DENIED",
+  "authorization_status": "ENGINEERING_REPAIR_ONLY_HISTORICAL_REPLAY_FALSE",
   "completed_run_count": 15,
   "planned_formal_run_count": 15,
   "remaining_run_budget": 0,
@@ -22,7 +22,7 @@
     "engine is local bar replay, not MT5 real ticks",
     "all 15 candidates have negative net profit"
   ],
-  "next_action": "用户决定是否补齐佣金/swap/执行口径后做一次受限复核；否则保留 CASH",
-  "last_event_seq": 7,
+  "next_action": "STOP; await Planner approval for any limited corrected replay",
+  "last_event_seq": 10,
   "created_utc": "2026-09-25T00:00:00Z"
 }

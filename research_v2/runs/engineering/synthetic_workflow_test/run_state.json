@@ -1,0 +1,14 @@
+{
+  "run_id": "synthetic_workflow_test",
+  "status": "COMPLETED",
+  "protocol_hash": "UNKNOWN",
+  "plan_hash": "UNKNOWN",
+  "engine_hash": "UNKNOWN",
+  "data_identity": "synthetic_only",
+  "parameters": {},
+  "command": "engineering_synthetic",
+  "start_time": "2026-09-25T09:31:14Z",
+  "process_identity": "UNKNOWN_ACCESS_DENIED",
+  "execution_attempt": 1,
+  "end_time": "2026-09-25T09:31:14Z"
+}

@@ -1,0 +1,159 @@
+{
+  "scope": "research_v2/runs/P4_20260925",
+  "preserve_original_numbers": true,
+  "strategy_evidence_status": "NOT_ESTABLISHED",
+  "eligible_for_parameter_selection": false,
+  "reason": "identified accounting/execution defects; repair stage does not rerun historical data",
+  "runs": {
+    "T_F12_S36_SL1.5": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "T_F12_S36_SL2.5": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "T_F24_S72_SL1.5": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "T_F24_S72_SL2.5": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "MR_M24_D1.0": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "MR_M24_D1.5": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "MR_M48_D1.0": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "MR_M48_D1.5": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "G_E1.0_L2": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "G_E1.0_L3": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "G_E1.5_L2": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "G_E1.5_L3": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "C1": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "C2": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    },
+    "C3": {
+      "execution_artifacts_present": true,
+      "engine_accounting_validity": "INVALID",
+      "account_feasibility_validity": "INVALID_OR_UNVERIFIED",
+      "cost_completeness": "INCOMPLETE",
+      "authorization_provenance": "HISTORICAL_RECORD_RETAINED; protocol hash placeholder requires audit",
+      "strategy_evidence_status": "NOT_ESTABLISHED",
+      "eligible_for_parameter_selection": false,
+      "reason": "identified accounting/execution defects"
+    }
+  }
+}

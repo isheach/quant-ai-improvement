@@ -1,0 +1,16 @@
+{
+  "allowed_validation_inventory": "inventory/XAUUSDm_ALLOWED_VALIDATION.json",
+  "validated_inventory_scope": "17 gold M1 month files listed; completeness for 2018-2024 not established",
+  "unknowns": [
+    "price_basis",
+    "time_zone_evidence",
+    "contract_specifications",
+    "volume_specifications",
+    "commission_history",
+    "swap_history",
+    "margin_stop_out_rules"
+  ],
+  "new_data_read": false,
+  "post_2024_06_01_data_read": false,
+  "data_probe_rerun": false
+}

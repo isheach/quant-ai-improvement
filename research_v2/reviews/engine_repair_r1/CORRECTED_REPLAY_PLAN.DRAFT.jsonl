@@ -1,0 +1,7 @@
+{"plan_id": "R1_CORRECTED_REPLAY_DRAFT", "status": "DRAFT_ONLY", "historical_replay_authorized": false, "parameter_expansion": false}
+{"step": "verify_time_boundaries", "status": "PENDING"}
+{"step": "verify_trade_mapping", "status": "PENDING"}
+{"step": "verify_cross_boundary_positions", "status": "PENDING"}
+{"step": "verify_segment_aggregation", "status": "PENDING"}
+{"step": "verify_training_selection_records", "status": "PENDING"}
+{"step": "old_fold_diagnostics_interpretation", "status": "legacy_segment_description_only_until_verified"}

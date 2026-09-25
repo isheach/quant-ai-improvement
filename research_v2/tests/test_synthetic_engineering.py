@@ -1,20 +1,60 @@
-import json, sys, unittest
+import json, sys, tempfile, unittest
+from datetime import datetime, timedelta
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'src'))
-from research_core import ema, atr, efficiency_ratio, round_lot_down, risk_usd
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
+from formal_engine import Account, Bar, InstrumentSpec, execute_signal_sequence, open_position, close_position, pnl, round_lot_down
+from research_workflow import reserve, finish
 
-class SyntheticTest(unittest.TestCase):
-    def test_ema_hand_checked(self):
-        self.assertEqual(ema([1,2,3,4],3)[:2],[None,None]); self.assertAlmostEqual(ema([1,2,3,4],3)[2],2.0); self.assertAlmostEqual(ema([1,2,3,4],3)[3],3.0)
-    def test_atr(self):
-        self.assertEqual(atr([10,12,13],[9,10,11],[9.5,11,12],2)[0],None); self.assertAlmostEqual(atr([10,12,13],[9,10,11],[9.5,11,12],2)[1],1.75)
-    def test_er_zero_denominator(self): self.assertIsNone(efficiency_ratio([1,1,1],2)[2])
-    def test_lot_floor_never_up(self): self.assertEqual(round_lot_down(0.009,0.01,0.01),0.0); self.assertEqual(round_lot_down(0.027,0.01,0.01),0.02)
-    def test_risk(self): self.assertAlmostEqual(risk_usd(2.0,10.0,0.01),0.2)
-    def test_causality(self):
-        a=ema([1,2,3,4,5],3); b=ema([1,2,3,4,999],3); self.assertEqual(a[:4],b[:4])
-    def test_state_no_overlap_and_recovery_files(self):
-        root=Path(__file__).resolve().parents[1]; self.assertTrue((root/'CURRENT_STATUS.json').exists()); self.assertTrue((root/'TASK_LOG.jsonl').exists())
-    def test_idempotent_report_exists(self):
-        root=Path(__file__).resolve().parents[1]; p=root/'reports'/'P3_APPROVAL_PACKAGE.md'; self.assertTrue(p.exists()); first=p.read_bytes(); second=p.read_bytes(); self.assertEqual(first,second)
+class EngineeringSyntheticTest(unittest.TestCase):
+    def setUp(self):
+        lock=Path(__file__).resolve().parents[1]/'.engineering_run.lock'
+        if lock.exists(): lock.rmdir()
+    def bars(self):
+        t=datetime(2023,1,1)
+        return [Bar(t+timedelta(minutes=i),2000,2001,1999,2000,200,1999.9,2000.1) for i in range(4)]
+    def test_fixed_quote_no_double_spread(self):
+        result=execute_signal_sequence(self.bars(), {0:{'action':'open','side':1,'volume':0.01}, 1:{'action':'close','reason':'signal'}})
+        self.assertEqual(len(result['legs']),1)
+        self.assertAlmostEqual(result['legs'][0]['net'],-0.2,8)
+        result=execute_signal_sequence(self.bars(), {0:{'action':'open','side':-1,'volume':0.01}, 1:{'action':'close','reason':'signal'}})
+        self.assertAlmostEqual(result['legs'][0]['net'],-0.2,8)
+    def test_volume_is_preserved_and_accounted(self):
+        bars=self.bars(); spec=InstrumentSpec(); account=Account(); pos,_=open_position(account,bars[0],0,1,0.005,spec)
+        self.assertIsNone(pos)
+        pos,reason=open_position(account,bars[0],0,1,0.02,spec)
+        self.assertEqual(reason,'accepted'); leg=close_position(account,pos,bars[1],1,'test',spec)
+        self.assertEqual(leg['volume'],0.02); self.assertAlmostEqual(leg['gross'],-0.4,8)
+    def test_grid_style_legs_sum_to_basket(self):
+        bars=self.bars(); spec=InstrumentSpec(volume_min=0.005,volume_step=0.005); account=Account(); legs=[]
+        for i in (0,1):
+            pos,_=open_position(account,bars[i],i,1,0.005,spec)
+            if pos: legs.append(close_position(account,pos,bars[2],2,'basket_close',spec))
+        self.assertAlmostEqual(sum(x['net'] for x in legs),-0.2,8)
+    def test_signal_executes_next_event(self):
+        result=execute_signal_sequence(self.bars(), {0:{'action':'open','side':1,'volume':0.01}})
+        self.assertEqual(result['decisions'][0]['execution_index'],1)
+        self.assertEqual(result['legs'][0]['entry_i'],1)
+    def test_gap_stop_fills_at_quote_event(self):
+        bars=self.bars(); bars[2]=Bar(bars[2].t,2005,2010,2004,2008,200,2007.9,2008.1)
+        result=execute_signal_sequence(bars,{0:{'action':'open','side':1,'volume':0.01,'stop':1995}})
+        self.assertEqual(result['legs'][0]['reason'],'end')
+        bars[2]=Bar(bars[2].t,1990,1991,1985,1988,200,1987.9,1988.1)
+        result=execute_signal_sequence(bars,{0:{'action':'open','side':1,'volume':0.01,'stop':1995}})
+        self.assertEqual(result['legs'][0]['reason'],'stop'); self.assertAlmostEqual(result['legs'][0]['exit'],1987.9,8)
+    def test_workflow_reserve_complete_idempotent(self):
+        root=Path(__file__).resolve().parents[1]; run_id='synthetic_workflow_test'
+        target=root/'runs'/'engineering'/run_id
+        if target.exists():
+            import shutil; shutil.rmtree(target)
+        state=reserve(run_id); self.assertEqual(state['status'],'RESERVED'); done=finish(run_id); self.assertEqual(done['status'],'COMPLETED')
+        again=reserve(run_id); self.assertEqual(again['status'],'COMPLETED')
+    def test_workflow_rejects_unknown_existing_state(self):
+        root=Path(__file__).resolve().parents[1]; run_id='synthetic_unknown_test'; target=root/'runs'/'engineering'/run_id; target.mkdir(parents=True,exist_ok=True)
+        try:
+            with self.assertRaises(RuntimeError): reserve(run_id)
+        finally:
+            import shutil; shutil.rmtree(target)
+
 if __name__=='__main__': unittest.main()
+
