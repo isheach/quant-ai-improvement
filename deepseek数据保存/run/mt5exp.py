@@ -44,7 +44,8 @@ EXPERT_REL = "eva028\\eva028_VolumetricPulseGrid_CoreRiskV1"
 
 SYMBOL = "XAUUSD_HIST"          # 42 个月真实 XAUUSDm M1 导入的自定义品种
 TRAIN_FROM, TRAIN_TO = "2023.01.03", "2024.12.31"
-VALID_FROM, VALID_TO = "2025.01.02", "2026.06.30"
+VALID_FROM, VALID_TO = "2025.01.02", "2026.03.31"
+HOLDOUT_FROM, HOLDOUT_TO = "2026.04.01", "2026.06.30"
 SMOKE_FROM, SMOKE_TO = "2023.01.03", "2023.02.03"
 DEPOSIT = "500"
 
@@ -203,13 +204,49 @@ EXPERIMENTS = {
                             "验证期全关（对照：什么都不做）", "attr"),
     "att_valid_confirm1": E("valid", {"InpTrendConfirmBars": "1"},
                             "验证期确认根数=1（更高频趋势）", "attr"),
+    # ================= ★R22 候选：放宽 Vol-Gate，保留确认速度 =================
+    "r22_gateoff_train": E("train", {"InpUseVolGateForTrendSide": "false"},
+                           "R22训练：关闭趋势 Vol-Gate，确认根数保持3", "r22"),
+    "r22_gateoff_valid": E("valid", {"InpUseVolGateForTrendSide": "false"},
+                           "R22验证：关闭趋势 Vol-Gate，确认根数保持3", "r22"),
+    "r22_gateoff_z5000_valid": E("valid", {"InpUseVolGateForTrendSide": "false",
+                                             "InpGridZ": "5000", "InpMinGridZ": "2500"},
+                                  "R22验证：关闭Vol-Gate + 网格基距5000", "r22"),
+    "r22_gateoff_z3000_valid": E("valid", {"InpUseVolGateForTrendSide": "false",
+                                             "InpGridZ": "3000", "InpMinGridZ": "1500"},
+                                  "R22验证：关闭Vol-Gate + 网格基距3000", "r22"),
+    "base_locked_clean_valid": E("valid", {}, "正式验证：不含空白留出集", "clean"),
+    "r22_gateoff_clean_valid": E("valid", {"InpUseVolGateForTrendSide": "false"},
+                                  "R22正式验证：不含空白留出集", "clean"),
+    "r22_gateoff_holdout": E("holdout", {"InpUseVolGateForTrendSide": "false"},
+                              "R22留出：2026Q2，仅最终报告", "holdout"),
+    # ================= R23：基于正式验证审计的趋势防守候选 =================
+    "r23_gateoff_bo45_train": E("train", {"InpUseVolGateForTrendSide": "false", "InpTrendBreakoutBars": "45"},
+                                "R23训练：关Vol-Gate + 延长突破窗口", "r23"),
+    "r23_gateoff_rv025_train": E("train", {"InpUseVolGateForTrendSide": "false", "InpTrendMinRVRatio": "0.025"},
+                                  "R23训练：关Vol-Gate + 提高趋势RV门槛", "r23"),
+    "r23_gateoff_adx30_train": E("train", {"InpUseVolGateForTrendSide": "false", "InpMinADX": "30"},
+                                  "R23训练：关Vol-Gate + 提高ADX门槛", "r23"),
+    "r23_gateoff_sl25_train": E("train", {"InpUseVolGateForTrendSide": "false", "InpTrendSL_ATR_Mult": "2.5"},
+                                 "R23训练：关Vol-Gate + 收紧趋势止损", "r23"),
+    "r23_gateoff_trail45_train": E("train", {"InpUseVolGateForTrendSide": "false", "InpTrendTrail_ATR_Mult": "4.5"},
+                                    "R23训练：关Vol-Gate + 放宽趋势跟踪距离", "r23"),
+    "r23_combo_train": E("train", {"InpUseVolGateForTrendSide": "false", "InpTrendBreakoutBars": "45",
+                                     "InpTrendMinRVRatio": "0.025", "InpMinADX": "30"},
+                          "R23训练组合：延长突破 + RV/ADX双重防守", "r23"),
+    "r23_trail45_valid": E("valid", {"InpUseVolGateForTrendSide": "false", "InpTrendTrail_ATR_Mult": "4.5"},
+                            "R23正式验证：采用训练段筛出的4.5 ATR跟踪距离", "r23"),
+    "r23_trail45_holdout": E("holdout", {"InpUseVolGateForTrendSide": "false", "InpTrendTrail_ATR_Mult": "4.5"},
+                              "R23留出：采用训练段筛出的4.5 ATR跟踪距离", "r23"),
 }
+
 
 
 # ---------------------------------------------------------------- 构建与运行
 def dates_for(period):
     return {"train": (TRAIN_FROM, TRAIN_TO),
             "valid": (VALID_FROM, VALID_TO),
+            "holdout": (HOLDOUT_FROM, HOLDOUT_TO),
             "smoke": (SMOKE_FROM, SMOKE_TO)}[period]
 
 
@@ -270,6 +307,19 @@ def run_experiment(exp_id):
 
     outdir = os.path.join(RUN_DIR, exp_id)
     os.makedirs(outdir, exist_ok=True)
+    report_src = os.path.join(TERM_DATA, report_name + ".htm")
+    report_dst = os.path.join(outdir, os.path.basename(report_src))
+    # 清掉旧产物，避免测试器失败时误把上一次报告当成本次结果。
+    for stale in (report_src, report_dst):
+        try:
+            os.remove(stale)
+        except FileNotFoundError:
+            pass
+    src_audit = os.path.join(COMMON_FILES, "eva_audit", exp_id)
+    dst_audit = os.path.join(outdir, "audit")
+    if os.path.isdir(src_audit):
+        shutil.rmtree(src_audit, ignore_errors=True)
+    shutil.rmtree(dst_audit, ignore_errors=True)
 
     print("[%s] %s .. %s" % (exp_id, d_from, d_to))
     t0 = time.time()
@@ -277,25 +327,35 @@ def run_experiment(exp_id):
     proc.wait()
     el = time.time() - t0
 
-    src_audit = os.path.join(COMMON_FILES, "eva_audit", exp_id)
-    dst_audit = os.path.join(outdir, "audit")
-    if os.path.isdir(src_audit):
-        shutil.rmtree(dst_audit, ignore_errors=True)
-        shutil.copytree(src_audit, dst_audit)
-
-    for cand in (os.path.join(TERM_DATA, report_name + ".htm"),):
-        if os.path.isfile(cand):
-            shutil.copy2(cand, os.path.join(outdir, os.path.basename(cand)))
-
     today = datetime.now().strftime("%Y%m%d")
     tlog = os.path.join(TERM_DATA, "logs", today + ".log")
+    tail = []
     if os.path.isfile(tlog):
         with open(tlog, "r", encoding="utf-16-le", errors="replace") as f:
-            tail = f.readlines()[-300:]
-        with open(os.path.join(outdir, "terminal_tail.log"), "w",
-                  encoding="utf-8") as f:
-            f.writelines(tail)
+            lines = f.readlines()
+        marker = "launched with " + ini
+        starts = [i for i, line in enumerate(lines) if marker in line]
+        tail = lines[starts[-1]:] if starts else lines[-300:]
+        tail = tail[-300:]
+    with open(os.path.join(outdir, "terminal_tail.log"), "w",
+              encoding="utf-8") as f:
+        f.writelines(tail)
 
+    joined = "".join(tail)
+    bad = ("tester didn't start" in joined or
+           "symbol " + SYMBOL + " not exist" in joined or
+           "no history data" in joined)
+    good = ("automatic testing started" in joined and
+            "last test passed with result \"successfully finished\"" in joined and
+            os.path.isfile(report_src) and
+            os.path.getmtime(report_src) >= t0)
+    if bad or not good:
+        raise RuntimeError("[%s] MT5 run failed validation; see %s" %
+                           (exp_id, os.path.join(outdir, "terminal_tail.log")))
+
+    if os.path.isdir(src_audit):
+        shutil.copytree(src_audit, dst_audit)
+    shutil.copy2(report_src, report_dst)
     print("[%s] done %.1fs" % (exp_id, el))
     return exp_id
 
